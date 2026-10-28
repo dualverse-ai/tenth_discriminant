@@ -1,0 +1,123 @@
+\section{Resultants and full rank}\label{app:resultants}
+For the range $D\geq875$ we use a rank criterion that does not require
+an auxiliary inert prime. The nodes lie on a small number of horizontal
+lattice lines. A polynomial of small weighted degree can vanish at few
+points of those lines unless it contains one of them as a factor;
+a resultant bounds the additional multiplicity at the remaining points.
+
+For a polynomial $F(z,w)$, write
+\[
+ \deg_{S,R}F=\max\{Si+Rj:z^iw^j\text{ occurs in }F\}.
+\]
+This degree is additive under multiplication, since the highest weighted
+homogeneous parts multiply to a nonzero polynomial. A polynomial supported
+on $\Lambda$ has weighted degree at most $S(R-1)<RS$.
+
+\begin{lemma}\label{lem:weighted-resultant}
+Let $F\in\CC[z,w]$ be irreducible, of $z$-degree $d\geq1$ and weighted
+degree $H=\deg_{S,R}F$. Then $\mathcal R(w)=\operatorname{Res}_z(F,\partial_zF)$
+is nonzero and
+\[
+ \deg\mathcal R\leq\frac{(2d-1)H-Sd^2}{R}
+                  \leq\frac{H^2}{RS}.
+\]
+If $F(z,w_0)$ has a root of multiplicity $m$ at $z_0$, then
+$\mathcal R$ vanishes to order at least $m-1$ at $w_0$.
+\end{lemma}
+\begin{proof}
+Write $F=\sum_{i=0}^d c_i(w)z^i$. Irreducibility and characteristic zero
+imply that $F$ and $\partial_zF$ are relatively prime over $\CC(w)$.
+Their resultant is therefore nonzero. Also
+$R\deg c_i\leq H-Si$.
+
+Each monomial in the Sylvester determinant has coefficient degree
+$2d-1$, and the sum of its coefficient indices is $d^2$.
+For example, the latter follows by replacing $z$ by $tz$: the resultant
+of $F(tz,w)$ and its $z$-derivative is $t^{d^2}\mathcal R(w)$.
+Thus each term has $w$-degree at most $((2d-1)H-Sd^2)/R$.
+The second inequality follows from
+\[
+ H^2-S\bigl((2d-1)H-Sd^2\bigr)=(H-Sd)^2+SH\geq0.
+\]
+
+It remains to justify the multiplicity statement, including when the
+leading coefficient vanishes at $w_0$. The specialization $F(z,w_0)$
+is not identically zero: otherwise $w-w_0$ would divide the irreducible
+polynomial $F$, contrary to $d\geq1$. Every row of its specialized
+Sylvester matrix is a polynomial divisible by $(z-z_0)^{m-1}$.
+The $m-1$ functionals given by evaluation of the first $m-1$ Taylor
+coefficients at $z_0$ therefore annihilate its row space. They are
+independent, so the matrix has corank at least $m-1$.
+For a polynomial matrix, corank at least $k$ at $w_0$ forces its
+determinant to be divisible by $(w-w_0)^k$: constant row and column
+operations put its value at $w_0$ in rank normal form, and each of the
+remaining rows supplies a factor $w-w_0$ in the determinant expansion.
+This proves the assertion without a condition on $c_d(w_0)$.
+\end{proof}
+
+Let the nodes lie in $|z|\leq\rho$. Write $M_y$ for an upper bound
+on the number of horizontal lattice lines meeting this disk, and $M_x$
+for an upper bound on the number of nodes on any one such line. We may take
+\[
+ M_y=2\lfloor2\rho/\sqrt D\rfloor+1,
+ \qquad M_x=\lfloor2\rho\rfloor+1.
+\]
+On a line of imaginary coordinate $y\sqrt D/2$ we have
+$w=\bar z=z-y\sqrt{-D}$.
+
+\begin{lemma}\label{lem:lattice-line-multiplicity}
+Let $F$ be as in Lemma~\ref{lem:weighted-resultant}. At a node $z_i$,
+let $m_i$ be the multiplicity of $z_i$ as a root of $F(z,\bar z_i)$.
+If $F$ is a constant multiple of $z-w-y\sqrt{-D}$ for some integer $y$,
+then $H=R$ and $\sum_i m_i\leq M_x$. Otherwise
+\[
+ \sum_i m_i\leq\frac{M_yH}{S}+\frac{H^2}{RS}.
+\]
+\end{lemma}
+\begin{proof}
+A horizontal-line factor has simple $z$-roots and vanishes at nodes of
+one line only. In the other case, irreducibility implies that
+$F(z,z-y\sqrt{-D})$ is nonzero for every integer $y$.
+Its ordinary degree is at most $H/S$, since $S\leq R$.
+There are consequently at most $M_yH/S$ nodes at which $F$ vanishes.
+
+For the excess multiplicities, apply Lemma~\ref{lem:weighted-resultant}
+at $w=\bar z_i$. These values of $w$ are distinct, because conjugation
+is injective. Hence $\sum_i(m_i-1)_+\leq\deg\mathcal R\leq H^2/(RS)$.
+Adding the two bounds proves the result.
+\end{proof}
+
+\begin{proposition}[Resultant rank criterion]\label{prop:resultant-rank}
+The interpolation matrix $V$ has full row rank if
+\begin{equation}\label{eq:resultant-rank}
+ nJ>R(S+M_y),\qquad \max(J,M_x)\leq R+KM_y.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Otherwise there is a nonzero polynomial $F$ supported on $\Lambda$
+such that $F(z,\bar z_i)$ vanishes to order at least $J$ at $z_i$ for
+every node. Factor it over $\CC$ as
+\[
+ F(z,w)=F_0(w)\prod_\ell F_\ell(z,w),
+\]
+listing repeated irreducible factors separately. Put $d_0=\deg F_0$.
+Let $k$ count the horizontal-line factors and let $H_*$ be the sum of
+the weighted degrees of all other factors involving $z$. Additivity gives
+\[
+ R(d_0+k)+H_*<RS.
+\]
+A root of $F_0$ affects at most one node. Truncating each node's
+multiplicity at $J$, these roots contribute at most $Jd_0$.
+Lemma~\ref{lem:lattice-line-multiplicity} and
+$\sum H_\ell^2\leq(\sum H_\ell)^2$ give
+\[
+ nJ\leq Jd_0+M_xk+\frac{M_yH_*}{S}+\frac{H_*^2}{RS}.
+\]
+Write $\beta=H_*/(RS)$, so $0\leq\beta<1$ and
+$d_0+k<(1-\beta)S$. The right side is strictly less than
+\[
+ (1-\beta)S\max(J,M_x)+\beta M_yR+\beta^2RS
+ \leq(1-\beta)R(S+M_y)+\beta R(S+M_y).
+\]
+This contradicts the first inequality in \eqref{eq:resultant-rank}.
+\end{proof}

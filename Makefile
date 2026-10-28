@@ -1,4 +1,4 @@
-BOUND ?= 498
+BOUND ?= 331
 
 .PHONY: all verify clean
 all verify clean:

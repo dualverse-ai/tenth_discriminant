@@ -1,0 +1,22 @@
+{
+  "base_bound": 498,
+  "target_bound": 331,
+  "required_prime_cases": [
+    347,
+    379,
+    419,
+    443,
+    467,
+    491
+  ],
+  "remaining_prime_cases": [
+    179,
+    211,
+    227,
+    251,
+    283,
+    307,
+    331
+  ],
+  "passed": true
+}

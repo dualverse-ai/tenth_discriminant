@@ -1,0 +1,309 @@
+\section{A radial estimate for the larger discriminants}\label{app:radial}
+For the range $D\geq875$ we use an entrywise estimate in place of the
+spectral estimate of Section~\ref{sec:metric}. The two estimates start from
+the same normalized matrix. Here the additional saving comes from keeping
+track of which nodes and derivative orders can occur together in a
+determinant term. A node used many times must supply smaller derivative
+orders, while nodes near the origin give stronger radial decay. We express
+these restrictions by a convex function of the numbers of columns selected
+at the different radii.
+
+Throughout this appendix assume $K\geq2$ and $S\geq1$. Put $R=KS$, $M=R(S+1)/2$, $W=R^2S/3$, and
+$\theta=M/(nJ)\leq1$. The derivative scale is denoted by $\ell$, as in
+\eqref{eq:residual-matrix}. We assume $\ell\geq0$ and put
+$\varepsilon=J/R$. The parameters in Appendix~\ref{app:global} satisfy
+these assumptions.
+
+\subsection{Counting the ordered exponents}
+Put
+\[
+ u(G)=1-\sqrt{1-G},\qquad
+ v(G)=\begin{cases}
+ \sqrt{G/K},&0\leq G\leq1/K,\\
+ 1-\sqrt{(1-1/K)(1-G)},&1/K\leq G\leq1.
+ \end{cases}
+\]
+The second function is the quantile of $r+s$, after scaling by $R$, on
+the continuous triangle $r+Ks\leq R$. The following bounds account for
+the discrete rows of the interpolation matrix.
+
+\begin{lemma}\label{lem:radial-quantiles}
+List the values of $r$ and $r+s$ on $\Lambda$ in nondecreasing order as
+$r_{(k)}$ and $z_{(k)}$, respectively. For $G_k=k/M$,
+\[
+ Ru(G_k)-1\leq r_{(k)}\leq(R+K)u(G_k),\qquad
+ z_{(k)}\geq Rv(G_k)-2.
+\]
+\end{lemma}
+\begin{proof}
+For $0\leq a\leq R$, the number of rows with $r\geq a$, with $a$ an
+integer, is
+\[
+ T_r(a)=\sum_{b=1}^S(Kb-a)_+
+       =\frac K2\{y^2+y+\alpha(1-\alpha)\},
+ \quad y=S-a/K,\quad\alpha=\{a/K\}.
+\]
+This follows by summing the arithmetic progression of positive terms.
+It implies
+\[
+ M(1-a/R)^2\leq T_r(a)
+       \leq M(1-a/(R+K))^2.
+\]
+For the first inequality, subtracting its right-hand quadratic from
+$y^2+y$ leaves $y(1-y/S)\geq0$.
+For the second, write $a/K=q+\alpha$. After multiplication by $S+1$,
+the difference of the two sides, apart from the positive factor $K/2$,
+is $q(S+1-q-2\alpha)+S\alpha^2\geq0$.
+The endpoints $a=0,R$ satisfy the same inequalities.
+Applying the lower tail bound at $a=r_{(k)}+1$ and the upper tail bound
+at $a=r_{(k)}$ proves the two assertions about $r_{(k)}$.
+
+For the joint exponent, let $N(t)$ count rows with $r+s\leq t$, for an
+integer $0\leq t<R$. Let $F$ be the inverse of $v$, extended by $F(x)=1$
+for $x\geq1$. We show that $N(t)\leq MF((t+2)/R)$.
+If $t\leq S-2$, the whole triangle $r+s\leq t$ is contained in
+$\Lambda$, so
+\[
+ N(t)=\frac{(t+1)(t+2)}2
+       \leq\frac{S+1}{2S}(t+2)^2=MF((t+2)/R).
+\]
+If $t\geq S-1$, put $h=K-1$ and $A=R-t-1$.
+For $A\geq1$ the complementary count is
+\[
+ M-N(t)=\sum_{s=0}^{S-1}(A-hs)_+
+       \geq\frac{A^2}{2h}+\frac A2.
+\]
+Here $1\leq A\leq hS$. On this interval
+\[
+ A^2+hA\geq(1+1/S)(A-1)^2:
+\]
+the difference is a concave quadratic in $A$ and is nonnegative at both
+endpoints. The last lower bound is therefore at least
+$M\{1-F((t+2)/R)\}$. When $A=0$ the desired assertion is immediate.
+Taking $t=z_{(k)}$ and using $k\leq N(t)$ proves the remaining bound.
+\end{proof}
+
+\subsection{The falling factorial and the derivative orders}
+For $0\leq t\leq x\leq1$, define
+\[
+ f(x,t)=x\log x-(x-t)\log(x-t)-t,
+ \qquad
+ g(x,t)=\max_{0\leq a\leq\min(x,t)}\{a\ell+f(x,a)\},
+\]
+with $0\log0=0$. We also use $g(x,t)$ for $t>x$ with this same
+definition. Its maximum occurs at
+$a=\max(0,\min(t,x-e^{-\ell}))$.
+For $0\leq j\leq r<R$, integral comparison gives
+\begin{equation}\label{eq:radial-factorial}
+ \log\frac{\fall rj}{R^j}
+ \leq Rf\left(\frac{r+1}{R},\frac jR\right).
+\end{equation}
+Indeed, on each unit interval the decreasing function
+$\log((r+1-t)/R)$ is at least its value at the right endpoint.
+This also proves the inequality when $j=r$.
+
+Fix a set $C$ of $M$ columns, and write $c_i$ for the number selected at
+node $i$. Replace its selected orders by $J-c_i,\ldots,J-1$, and list
+the resulting multiset increasingly as $j_k^+$. If the original orders
+are listed as $j_{(k)}$, then
+\begin{equation}\label{eq:radial-order-envelope}
+ j_{(k)}\leq j_k^+\leq t_k,
+ \qquad t_k=J-\frac{M-k}{n}.
+\end{equation}
+The first assertion follows by ordering the columns at each node; the
+second follows because at most $n(J-a)$ orders can be at least $a$.
+
+Consider a nonzero term in the expansion of a selected determinant.
+Every assigned derivative satisfies $j\leq r$. The mixed derivative
+$f_{xt}=1/(x-t)$ is positive. Exchanging two oppositely ordered pairs
+therefore increases the sum of $f$; the exchange preserves feasibility,
+since the larger derivative was already assigned to the smaller row degree.
+Successive exchanges pair the increasingly ordered row degrees and
+derivatives. Increasing the row bound and then using that $g$ is
+nondecreasing in its second argument gives
+\begin{equation}\label{eq:radial-rearrangement}
+ \sum_C\left(j\ell+
+       \log\frac{\fall rj}{R^j}\right)
+ \leq R\sum_{k=1}^M g(x_k,j_k^+/R),
+ \qquad x_k=\min\left(1,(1+1/S)u(G_k)+1/R\right).
+\end{equation}
+The exchange argument extends to the boundary $x=t$ by continuity.
+
+Put $h(x,t)=t\ell-g(x,t)$. For $\ell\geq0$, this function is
+nonnegative, increases with $t$ and $\ell$, and decreases with $x$.
+For example $g_t=(\ell+\log(x-t))_+$ before the maximum becomes
+constant, so $0\leq g_t\leq\ell$. The other assertions follow either
+by differentiation at the maximizing argument or directly from the
+definition. Thus an admissible normalized factorial saving is any
+number $S_{\rm der}$ satisfying
+\begin{equation}\label{eq:radial-derivative-saving}
+ 0\leq S_{\rm der}\leq\frac3M\sum_{k=1}^M h(x_k,t_k/R).
+\end{equation}
+It can be bounded by grouping consecutive indices: on a group with
+$x_k\leq b$ and $t_k/R\geq a$, use its relative size times $3h(b,a)$.
+This requires only a finite sum, rather than a list of the $M$ rows.
+
+\subsection{An additional saving from the number of columns at a node}
+Suppose $\theta\varepsilon<1/2$. Choose integers
+$0<m_1<\cdots<m_L<M/n$, put $\tau_r=m_r/J$, and suppose
+\[
+ a_r=1-\sqrt{\tau_r/\theta}-(1-\tau_r)\varepsilon>0,
+ \qquad \nu_r=\ell+\log a_r>0.
+\]
+These $\nu_r$ decrease with $r$: the derivative of
+$1-\sqrt{\tau/\theta}-(1-\tau)\varepsilon$ is
+$\varepsilon-1/(2\sqrt{\theta\tau})<0$ for $\tau<\theta$.
+Set $\nu_{L+1}=0$ and $\lambda_r=\nu_r-\nu_{r+1}$.
+Smaller nonnegative increments may be used throughout.
+
+If $t_k\geq J-m_r$, then $G_k\geq1-\tau_r/\theta$.
+The function
+$u(G)-\varepsilon(1-\theta(1-G))$ is increasing, since its derivative
+is at least $1/2-\theta\varepsilon>0$.
+It follows that $x_k-t_k/R\geq a_r$. On the interval between
+$j_k^+$ and $t_k$, the derivative of $Rg(x_k,t/R)$ is therefore at
+least the staircase
+$\sum_r\lambda_r\boldsymbol1_{t\geq J-m_r}$.
+Integration gives an improvement to \eqref{eq:radial-rearrangement}.
+The improvement can be summed explicitly, because
+\begin{align*}
+ \sum_k(t_k-J+m)_+&=\frac{nm^2+m}{2},\\
+ \sum_k(j_k^+-J+m)_+
+ &=\frac{nm(m-1)}2
+       -\frac12\sum_i(m-c_i)_+(m-c_i-1).
+\end{align*}
+Subtracting these identities, and using
+$\sum_i(m-c_i)_+\leq nm$, gives a difference at least
+$\frac12\sum_i(m-c_i)_+^2$. Consequently
+\begin{equation}\label{eq:radial-derivative-coupled}
+ \frac2W\sum_C\left(j\ell+\log\frac{\fall rj}{R^j}\right)
+ \leq\gamma\ell-S_{\rm der}
+       -\frac1W\sum_{i,r}\lambda_r(m_r-c_i)_+^2,
+ \quad
+ \gamma=\frac2W\left(MJ(1-\theta/2)+\theta J/2\right).
+\end{equation}
+In obtaining the factorial saving we used $2RM/W=3(1+1/S)\geq3$.
+
+\subsection{Radial weights and the convex estimate}
+Order the nodes by modulus. Suppose $N$ divides $n$, and divide the
+nodes into $N$ consecutive groups of $n/N$ nodes. Choose numbers
+$L_0\geq\cdots\geq L_{N-1}\geq L_N=0$ such that
+\[
+ \log(\rho/|z_i|)\geq L_b\qquad
+       (bn/N<i\leq(b+1)n/N).
+\]
+At a zero node the assertion has its limiting meaning. The disk estimate
+\eqref{eq:node-disk} permits the choice
+\begin{equation}\label{eq:radial-bin-weights}
+ L_b=\log\frac{1+\eta}
+ {\sqrt{\min(1,(b+1)/N+1/n)}+\eta},
+ \qquad \eta=\frac{\sqrt{D+4}/4}{\sqrt{n\sqrt D/(2\pi)}}.
+\end{equation}
+The extra $1/n$ weakens the bound and is convenient when a common bound
+is used for several values of $n$.
+Choose an index $b_0$ and a number $\overline L\geq L_{b_0}$.
+Write
+\[
+ w_b=\frac{N}{nJ}\sum_{i\text{ in group }b}c_i,
+ \qquad G_b(w)=\frac1{N\theta}\sum_{a=0}^bw_a.
+\]
+Thus $0\leq w_b\leq1$ and $\sum_bw_b=N\theta$.
+Define
+\begin{align}
+ \Phi(G)&=3\int_0^G\left(v(t)-\frac{J+2}{R}\right)_+\,dt,
+                                                        \label{eq:radial-Phi}\\
+ \Delta&=\frac2W\left\{\binom{J+2}{3}
+                         -\binom{(J-S)_++2}{3}\right\}.
+                                                        \label{eq:radial-Delta}
+\end{align}
+In particular, when $J\geq S$,
+\[
+ \Delta=3\left(\frac{J+1}{R}\right)^2
+       -\frac3K\frac{J+1}{R}+\frac1{K^2}-\frac1{R^2}.
+\]
+On the polytope $\mathcal P_\theta=\{w\in[0,1]^N:\sum_bw_b=N\theta\}$,
+put
+\begin{align}
+ \mathcal F(w)={}&\sum_{b=0}^{N-1}(L_b-L_{b+1})\Phi(G_b(w))
+                                                     \notag\\
+ &+\frac{3\varepsilon}{2N\theta}\sum_{b=0}^{N-1}
+   \left\{L_{\max(b,b_0)}w_b^2
+             +\sum_{r=1}^L\lambda_r(\tau_r-w_b)_+^2\right\}
+       -\overline L\Delta.                 \label{eq:radial-functional}
+\end{align}
+
+\begin{proposition}[Radial determinant estimate]\label{prop:radial-size}
+With the preceding choices, let $F_*\leq\min_{\mathcal P_\theta}\mathcal F$.
+Then every maximal minor satisfies
+\begin{equation}\label{eq:radial-minor-bound}
+ \frac1W\log|\det B_C(\ell)|^2
+ \leq\gamma\ell-S_{\rm der}-F_*+\frac{2M\log M}{W}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Consider a nonzero determinant term, and put $z=r+s$ for its assigned
+row. Since $z\geq r\geq j$, for a radial weight $l\geq0$ and
+$\widetilde l=\min(l,\overline L)$ one has
+\[
+ (z-j)l\geq(z-J)_+l+(J-j)\widetilde l
+                               -(J-z)_+\widetilde l.
+\]
+Indeed, subtracting the first term leaves
+$(\min(z,J)-j)l$, whose coefficient is nonnegative.
+This observation allows us to retain the full radial weight on the
+first term while bounding the possible negative correction by
+$\overline L$.
+
+Among all assignments of rows to columns, pairing the smallest values
+of $(r+s-J)_+$ with the largest radial weights minimizes their sum.
+For any integer $h\leq M$, Lemma~\ref{lem:radial-quantiles} and the
+right-endpoint integral inequality for an increasing function give
+\[
+ \frac2W\sum_{k=1}^h(z_{(k)}-J)_+
+ \geq\frac{2RM}{3W}\Phi(h/M)\geq\Phi(h/M).
+\]
+Summation by parts over the node groups therefore gives the first sum
+in \eqref{eq:radial-functional}.
+At node $i$, the distinct derivative orders satisfy
+$\sum(J-j)\geq c_i(c_i+1)/2\geq c_i^2/2$.
+Also
+\[
+ \sum_{\Lambda}(J-r-s)_+
+ \leq\sum_{s=0}^{S-1}\binom{(J-s)_++1}{2}
+ =\binom{J+2}{3}-\binom{(J-S)_++2}{3}.
+\]
+Thus the clipped radial terms contribute at least
+$W^{-1}\sum_i c_i^2L_{\max(b(i),b_0)}-\overline L\Delta$.
+
+Combine this with \eqref{eq:radial-derivative-coupled}.
+Convexity on each node group gives
+\[
+ \sum_{i\text{ in group }b}c_i^2\geq\frac nN J^2w_b^2,
+ \qquad
+ \sum_{i\text{ in group }b}(m_r-c_i)_+^2
+       \geq\frac nN J^2(\tau_r-w_b)_+^2.
+\]
+Since $nJ^2/W=3\varepsilon(1+1/S)/(2\theta)$, dropping the factor
+$1+1/S$ proves that the total normalized saving is at least
+$S_{\rm der}+\mathcal F(w)$. The modulus of each nonzero determinant
+term is bounded accordingly. There are at most $M!\leq M^M$ terms;
+taking the square of their sum proves \eqref{eq:radial-minor-bound}.
+\end{proof}
+
+The function $\Phi$ is convex, because its derivative is increasing.
+Every coefficient of the convex terms in \eqref{eq:radial-functional}
+is nonnegative. Hence $\mathcal F$ is convex. In particular, any
+$w^*\in\mathcal P_\theta$ gives the explicit lower bound
+\begin{equation}\label{eq:radial-supporting-plane}
+ F_*=\mathcal F(w^*)-\nabla\mathcal F(w^*)\cdot w^*
+                 +\min_{w\in\mathcal P_\theta}
+                         \nabla\mathcal F(w^*)\cdot w.
+\end{equation}
+The last minimum is found by filling the coordinates with the smallest
+coefficients first, subject to the upper bound one and the prescribed
+sum. This follows by transferring mass from a larger coefficient to a
+smaller one whenever the latter coordinate is not full. No assertion
+that $w^*$ minimizes $\mathcal F$ is required.
+For numerical evaluation its gradient is obtained directly from
+\eqref{eq:radial-functional}; the positive-part squares are continuously
+differentiable, including at their endpoints.

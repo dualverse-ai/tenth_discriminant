@@ -3,7 +3,7 @@
 \usepackage{lmodern,amsmath,amssymb,mathtools,booktabs,array,longtable}
 \usepackage[margin=1.05in]{geometry}
 \usepackage{microtype}
-\usepackage{xcolor,xr-hyper}
+\usepackage{xcolor}
 \usepackage[unicode,colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
 \usepackage{enumitem,needspace,etoolbox}
 \setcounter{tocdepth}{1}
@@ -40,8 +40,8 @@
 \title[A determinant bound for the tenth discriminant]{A determinant bound of 498 for the tenth discriminant}
 \author[Stephen Chung]{Stephen Chung}
 \date{Working draft, 28 October 2026}
-\thanks{This work extends an externally verified finding made by autonomous
-\href{https://rstation.ai/}{rStation} agents. See the section on
+\thanks{This work is based on an externally verified finding made by autonomous
+rStation agents (\url{https://rstation.ai/}). See the section on
 \hyperref[sec:ai-use]{AI use} for details.}
 \keywords{Imaginary quadratic fields, class number one, interpolation determinants, Frobenius, explicit bounds}
 \BeforeBeginEnvironment{lemma}{\Needspace{7\baselineskip}}
@@ -62,20 +62,12 @@
 \setlength{\belowcaptionskip}{0pt}
 \pretocmd{\@makecaption}{\ifnum\@tempcnta>63\relax\vskip8pt\fi}{}{}
 \makeatother
-\externaldocument{supplementary}[https://github.com/dualverse-ai/tenth_discriminant/blob/HEAD/bound-498/supplementary/details.pdf]
-% amsart stores TOC widths as nonstandard labels; do not import those widths.
-\makeatletter
-\expandafter\let\csname r@tocindent-1\endcsname\relax
-\expandafter\let\csname r@tocindent0\endcsname\relax
-\expandafter\let\csname r@tocindent1\endcsname\relax
-\expandafter\let\csname r@tocindent2\endcsname\relax
-\expandafter\let\csname r@tocindent3\endcsname\relax
-\makeatother
 \begin{document}
 \begin{abstract}
 We address the challenge of obtaining a small explicit upper bound for a
 hypothetical tenth imaginary quadratic discriminant of class number one,
-without using Heegner's methods or the known classification. We prove the
+without using Heegner's methods or the known classification. We also make no
+quasi-Riemann-hypothesis assumption. We prove the
 computer-assisted bound $D\leq498$ for every negative fundamental discriminant
 $-D$ with class number one. The proof constructs a nonzero interpolation
 determinant from polynomial values and derivatives at algebraic integers of
@@ -92,6 +84,13 @@ comparisons are evaluated with directed rounding.
 \input{metric}
 \input{rank}
 \input{completion}
+\appendix
+\input{appendix-local}
+\input{appendix-norms}
+\input{appendix-spectral}
+\input{appendix-resultants}
+\input{appendix-radial}
+\input{appendix-global}
 \input{ai-use}
 \input{references}
 \end{document}

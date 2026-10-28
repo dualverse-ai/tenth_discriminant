@@ -1,0 +1,488 @@
+\section{Local divisibility and finite row sums}\label{app:local}\label{supp:local}
+The local estimates have two separate ingredients. A change of polynomial
+basis makes divisibility visible in each row. A counting argument then bounds
+how much of that divisibility can be lost to the derivative orders in a
+selected minor. We give both arguments here, including the finite corrections
+needed for the small primes.
+
+Throughout this appendix, $K,S,J,n$ are positive integers, $R=KS$, and
+\[
+ \Lambda=\{(r,s)\in\NN^2:r+Ks<R\},\qquad
+ M=\frac{R(S+1)}2,\qquad W=\frac{R^2S}3,\qquad
+ \theta=\frac{M}{nJ}\leq1.
+\]
+The nodes $z_1,\ldots,z_n$ may be any elements of $\OO_D$. Columns are indexed
+by $(i,j)$ with $1\leq i\leq n$ and $0\leq j<J$, and $C$ denotes any selection
+of $M$ columns. Thus each derivative order occurs in $C$ at most $n$ times.
+The determinant $\Delta_C$ is formed with the Hasse derivatives in
+\eqref{eq:jet-matrix}; differentiation is in $z$, with $w$ held fixed.
+
+\subsection{Passing from entries to a determinant}
+The following elementary observation allows different derivative estimates
+to be used on different sets of rows.
+
+\begin{lemma}\label{lem:local-determinant}
+Let $A=(a_{rc})$ be a square matrix over a discretely valued field, and let
+$v$ be its valuation. Suppose that $E$ is a set of rows and
+\[
+ v(a_{rc})\geq a_r-b_c-\boldsymbol1_{r\in E}d_c,
+ \qquad d_c\geq0.
+\]
+Then
+\[
+ v(\det A)\geq\sum_r a_r-\sum_c b_c
+ -\max_{\substack{I\subseteq C\\|I|=|E|}}\sum_{c\in I}d_c.
+\]
+An integral unitriangular change of rows does not change the determinant.
+If columns of order $j$ have cost $d(j)$, each order is available at most
+$n$ times, and $d(j)$ is nondecreasing, the maximum cost of $m$ columns is
+bounded by filling the orders $J-1,J-2,\ldots$ in that order, with capacity
+$n$ at each order. The minimum of a nondecreasing cost is bounded from below
+by filling orders $0,1,\ldots$ in the same way.
+\end{lemma}
+\begin{proof}
+Each term of the determinant uses every row and every column once. The
+columns paired with rows in $E$ form a set of size $|E|$, so the displayed
+entry estimate gives the asserted lower bound for every determinant term.
+The valuation of a sum is at least the minimum valuation of its terms.
+A unitriangular row transformation has determinant one. Finally, if a
+selected column has smaller cost than an available column, exchanging them
+cannot decrease the total cost. Repeating this exchange proves the capacity
+assertions, and reversing the exchanges proves the assertion about minima.
+\end{proof}
+
+\subsection{Two finite row sums}\label{supp:rows}
+For integers $N\geq0$ and $m\geq1$, define
+\[
+ T(N,m)=\sum_{s=0}^{N-1}(N-s)\floor{s/m}.
+\]
+An empty sum is zero. Expressing $\floor{s/m}$ as the number of positive
+multiples of $m$ not exceeding $s$, and interchanging the two finite sums,
+gives
+\begin{equation}\label{eq:T-floor}
+ T(N,m)=\frac12\sum_{\substack{a\geq1\\am<N}}(N-am)(N-am+1).
+\end{equation}
+There are $K(S-s)$ rows with a given second coordinate $s$. Consequently
+\[
+ \sum_{(r,s)\in\Lambda}\sum_{a\geq1}\floor{s/q^{2a}}
+ =K\sum_{a\geq1}T(S,q^{2a}).
+\]
+In particular, this sum is finite even when written with no upper limit.
+
+The corresponding sum in the first coordinate is conveniently bounded by
+\begin{equation}\label{eq:Sr}
+ S_r(R,K,x)=\sum_{a=1}^{\floor{R/x}}(R-ax)(R+K-ax),\qquad x>0.
+\end{equation}
+For an integer $q\geq1$, put $Q=\floor{R/q}$ and $c_a=aq\bmod K$.
+Then the exact identity is
+\begin{equation}\label{eq:local-r-sum}
+ 2K\sum_{\Lambda}\floor{r/q}
+ =S_r(R,K,q)+\sum_{a=1}^{Q}c_a(K-c_a)
+ \geq S_r(R,K,q).
+\end{equation}
+To see this, count the rows with $r\geq aq$. Write $aq=Kb+c$, where
+$0\leq c<K$, and put $u=S-b$. For each $s=0,\ldots,u-1$ there are
+$K(u-s)-c$ such rows. Their number is $Ku(u+1)/2-cu$.
+Multiplication by $2K$ gives
+$(R-aq)(R+K-aq)+c(K-c)$. Summing over $a$ proves
+\eqref{eq:local-r-sum}.
+
+We will also need the shape of this weight as its argument varies. On an
+interval on which $Q=\floor{R/x}$ is fixed, summing $a$ and $a^2$ gives
+\begin{equation}\label{eq:local-Sr-polynomial}
+ S_r(R,K,x)=QR(R+K)
+ -\frac{Q(Q+1)(2R+K)}2x
+ +\frac{Q(Q+1)(2Q+1)}6x^2.
+\end{equation}
+At an endpoint $x=R/Q$, the summand that disappears is zero, so $S_r$ is
+continuous. If $u=R-Qx$, differentiation of this polynomial yields
+\[
+ -\frac{d}{dx}\bigl(xS_r(R,K,x)\bigr)
+ =Q\left(\frac{Q-1}{2}x^2+u(2x-u)+K(x-u)\right).
+\]
+For $0<x<R$ we have $Q\geq1$ and $0\leq u<x$, and the right side is
+positive. Since $\log x/x$ is positive and decreasing for $x\geq3$, it
+follows that
+\begin{equation}\label{eq:local-weight-decreasing}
+ x\longmapsto\frac{S_r(R,K,x)\log x}{KW}
+ \quad\hbox{is decreasing for }3\leq x<R.
+\end{equation}
+It is zero for $x\geq R$. This is the monotonicity used when replacing a
+possible prime norm by a lower endpoint for that norm.
+
+For the unbounded range, an explicit lower bound is more useful than a
+piecewise polynomial. Set $\vartheta=\{R/q\}$ and substitute
+$Q=R/q-\vartheta$ into \eqref{eq:local-Sr-polynomial}. Expanding gives
+\begin{align*}
+ S_r(R,K,q)={}&\frac{R^3}{3q}-\frac{R^2}2
+ +\frac{KR^2}{2q}+\frac{qR}6-\frac{KR}2\\
+ &-\frac{q^2}{6}\vartheta(1-\vartheta)(1-2\vartheta)
+ +\frac{Kq}{2}\vartheta(1-\vartheta).
+\end{align*}
+The last term is nonnegative, and
+$|\vartheta(1-\vartheta)(1-2\vartheta)|\leq1/(6\sqrt3)$.
+Using $KW=R^3/3$, we obtain
+\begin{equation}\label{eq:local-Bernoulli}
+ \frac{S_r(R,K,q)}{KW}\geq
+ \frac1q-\frac{3}{2R}+\frac{3K}{2Rq}
+ +\frac{q}{2R^2}-\frac{3K}{2R^2}
+ -\frac{q^2}{12\sqrt3 R^3}.
+\end{equation}
+The cubic expression in $\vartheta$ is the usual third Bernoulli-polynomial
+remainder; the displayed calculation fixes both its sign and its constant.
+
+\subsection{The basis for a small inert prime}
+Fix an inert prime $q<K$, and write
+\[
+ h=h_q(r,s)=\min\left(\floor{r/q},
+       \floor{(R-1-r-Ks)/(K-q)}\right),\qquad
+ \tau_q(s)=\sum_{a\geq1}\floor{s/q^{2a}}.
+\]
+The first bound on $h$ permits $h$ copies of $z^q$ to be replaced by $w$.
+The second ensures that the resulting monomials stay inside $\Lambda$.
+For fixed $s$ put $t=S-s$. The inequalities $h\geq a$ say exactly
+$qa\leq r<Kt-(K-q)a$, so there are $K(t-a)$ such rows when $a<t$,
+and none otherwise. Summing these superlevel counts gives
+\begin{equation}\label{eq:local-h-sum}
+ 2\sum_\Lambda h_q(r,s)=\frac{R(S^2-1)}3=W_2.
+\end{equation}
+
+We first describe the rows on which the two derivative estimates will be
+used. In the part $0\leq r<q(S-s)$, one has $h=\floor{r/q}$, so
+$0\leq r-qh<q$. In the remaining part, write
+\[
+ R-1-r-Ks=(K-q)h+e,\qquad 0\leq e<K-q.
+\]
+Here $h$ is the second member of the minimum. If
+$d=S-s-1-h$ and $c=K-1-e$, then
+\begin{equation}\label{eq:local-strip}
+ r-qh=Kd+c,\qquad 0\leq d<S,\quad q\leq c<K.
+\end{equation}
+Conversely, for any such $d,c$, the values
+\[
+ 0\leq s<S-d,\qquad h=S-d-1-s,\qquad r=qh+Kd+c
+\]
+give exactly these rows. Thus for each pair $(d,c)$ there is a strip of
+length $t=S-d$, and there are $K-q$ strips of every length
+$1,\ldots,S$. The number
+\[
+ m=\floor{(r-qh)/q^2}=\floor{(Kd+c)/q^2}
+\]
+is constant on a strip. This constancy is what makes the finite estimate
+below possible.
+
+Choose an integer $L$ with $0\leq L\leq S$, and let $E_L$ consist of the
+strips of length at most $L$. In particular,
+\begin{equation}\label{eq:local-cut-size}
+ m_L:=|E_L|=\frac{(K-q)L(L+1)}2,\qquad \varpi_L:=\frac{m_L}{M}.
+\end{equation}
+On these rows we
+will use all available factors $w^q-z$. On the other rows we keep the tower
+in $w$, which has no derivative cost.
+
+Let $T_a$ be the inert tower from \eqref{eq:tower-value}. Writing
+$s=\sum_{a\geq0}d_aq^{2a}$, put
+\[
+ B_s(w)=\prod_{a\geq1}T_a(w)^{d_a},\qquad
+ u(s)=\floor{s/q}\bmod q,\qquad r_0=r-qh-q^2m.
+\]
+Thus $B_s$ is monic of degree $q^2\floor{s/q^2}$ and
+$v_q(B_s(\bar z_i))\geq\tau_q(s)$. Define
+\begin{equation}\label{eq:local-mixed-basis}
+ P_{r,s}(z,w)=z^{r_0}(z^{q^2}-z)^m(z^q-w)^h w^{s\bmod q}
+ \begin{cases}
+ (w^q-z)^{\floor{s/q}},&(r,s)\in E_L,\\
+ (w^q-z)^{u(s)}B_s(w),&(r,s)\notin E_L.
+ \end{cases}
+\end{equation}
+In both cases the leading choice from the factors is $z^rw^s$, with
+coefficient one.
+
+Here are the two checks needed to use these polynomials as row operations.
+First, replacing $z^q$ by $w$ increases the weight $r+Ks$ by $K-q$, but
+there are at most $h$ such replacements. Their total increase is at most
+$R-1-r-Ks$. Every other replacement in
+\eqref{eq:local-mixed-basis} decreases the weight. All monomials therefore
+remain in $\Lambda$. Second, order monomials lexicographically by
+$(qr+s,s)$. Replacing $z^{q^2}$ by $z$, or $z^q$ by $w$, strictly decreases
+the first coordinate. Replacing $w^q$ by $z$ preserves the first coordinate
+and decreases the second. A lower term of $B_s$ decreases the first
+coordinate. Hence the change from $z^rw^s$ to $P_{r,s}$ is integral and
+unitriangular. It preserves every selected minor.
+
+\subsection{Valuations and derivative costs}
+At a node, Frobenius and conjugation agree modulo an inert prime. Taylor
+expansion in $z$ consequently has the form
+\[
+ (z_i+t)^q-\bar z_i=qU(t)+t^q,\qquad
+ \bar z_i^q-(z_i+t)=qV-t,
+\]
+\[
+ (z_i+t)^{q^2}-(z_i+t)=qH(t)-t+t^{q^2},
+\]
+with $U,H\in\OO_D[t]$ and $V\in\OO_D$. Let $a$ denote the combined number
+of factors of the latter two types: $a=m+\floor{s/q}$ on $E_L$, and
+$a=m+u(s)$ off $E_L$.
+
+To lose a factor of $q$ from one of the $h$ factors of the first type, a
+Taylor term must spend at least $q$ degrees in $t$. To lose one from any of
+the other $a$ factors, it must spend at least one degree. If $a_1$ and $a_2$
+are the respective numbers of such choices in a term of degree $j$, then
+$qa_1+a_2\leq j$ and $a_2\leq a$. Its valuation is at least
+$h+a-a_1-a_2$. These two inequalities imply, respectively,
+\[
+ h+a-a_1-a_2\geq h+a-j,
+ \qquad
+ h+a-a_1-a_2\geq h-\floor{(j-a)/q}.
+\]
+All factors not yet counted have integral coefficients. Thus the entry
+valuation, before adding the tower contribution, is at least
+\begin{equation}\label{eq:local-entry}
+ \max\left(0,h+a-j,h-\floor{(j-a)/q}\right).
+\end{equation}
+
+Set $\delta_q(j)=j-\floor{j/q}$. For a row outside $E_L$, the last member
+of \eqref{eq:local-entry}, together with the tower, gives
+\begin{equation}\label{eq:local-entry-low}
+ v_q\bigl(\partial_z^{[j]}P_{r,s}(z_i,\bar z_i)\bigr)
+ \geq h+\tau_q(s)+\floor{(m+u(s))/q}-\floor{j/q}.
+\end{equation}
+For a row in $E_L$, the middle member gives instead
+\begin{align}
+ v_q\bigl(\partial_z^{[j]}P_{r,s}(z_i,\bar z_i)\bigr)
+ \geq{}&h+\tau_q(s)
+       +\bigl(m+\floor{s/q}-\tau_q(s)\bigr)\notag\\
+       &-\floor{j/q}-\delta_q(j).
+ \label{eq:local-entry-high}
+\end{align}
+Both estimates have the same baseline row contribution $h+\tau_q(s)$
+and the same column cost $\floor{j/q}$. The extra row contribution is
+nonnegative in both cases, since $\tau_q(s)\leq\floor{s/q}$.
+Only rows in $E_L$ incur the additional cost $\delta_q(j)$.
+
+\subsection{Summing the extra row contribution}
+For the rows outside the cut, the following finite form of the floor-sum
+identity controls an incomplete strip.
+
+\begin{lemma}\label{lem:local-Hermite}
+For integers $m,t\geq0$ and $q\geq2$,
+\[
+ \sum_{s=0}^{t-1}\floor{\bigl(m+(\floor{s/q}\bmod q)\bigr)/q}
+ \geq\frac{tm}{q}-\frac{q^2}{4}.
+\]
+\end{lemma}
+\begin{proof}
+Write $m=aq+b$, with $0\leq b<q$. On each complete block of $q^2$
+consecutive values of $s$, the summand is $a$ for $q(q-b)$ values and
+$a+1$ for $qb$ values. Its average is exactly $m/q$.
+It remains to examine a final block of length $kq+v$, with
+$0\leq k,v<q$. If $k<q-b$, its deficit from this average is
+$b(k+v/q)\leq b(q-b)$. If $k\geq q-b$, the deficit is
+$(q-b)(q-k-v/q)\leq b(q-b)$. Both bounds are at most $q^2/4$.
+The case $b=0$ has zero deficit.
+\end{proof}
+
+We now sum over the strips in \eqref{eq:local-strip}. Put
+\[
+ c_{K,q}=\frac{K+q-1}{2}-(q^2-1).
+\]
+For a fixed length $t$, summing
+$\floor{(K(S-t)+c)/q^2}\geq(K(S-t)+c-(q^2-1))/q^2$
+over $c=q,\ldots,K-1$ gives
+\begin{equation}\label{eq:local-strip-mass}
+ \sum_{c=q}^{K-1}\floor{(K(S-t)+c)/q^2}
+ \geq\frac{K-q}{q^2}\bigl(K(S-t)+c_{K,q}\bigr).
+\end{equation}
+The right side is allowed to be negative; the exact extra contribution is
+still nonnegative.
+
+Define
+\begin{align*}
+ A_q(L)&=\frac{2(K-q)}{q^2}\sum_{t=1}^{L}
+              t\bigl(K(S-t)+c_{K,q}\bigr),\\
+ B_q(L)&=\frac{2(K-q)}{q^3}\sum_{t=L+1}^{S}
+              t\bigl(K(S-t)+c_{K,q}\bigr),\\
+ E_q(L)&=A_q(L)+B_q(L)-\frac{q^2}{2}(S-L)(K-q)\\
+ &\hspace{12mm}+2(K-q)\left(T(L,q)-\sum_{a\geq1}T(L,q^{2a})\right).
+\end{align*}
+Twice the sum of the extra row contributions in
+\eqref{eq:local-entry-low}--\eqref{eq:local-entry-high} is at least $E_q(L)$.
+Indeed, on each strip of length $t\leq L$, the contribution of $m$ is $tm$;
+\eqref{eq:local-strip-mass} sums these contributions to at least $A_q(L)/2$.
+The remaining contribution on those strips is
+\[
+ (K-q)\sum_{t=1}^{L}\sum_{s=0}^{t-1}
+       \left(\floor{s/q}-\tau_q(s)\right)
+ =(K-q)\left(T(L,q)-\sum_{a\geq1}T(L,q^{2a})\right).
+\]
+Here a given $s$ occurs $L-s$ times, explaining the function $T$.
+
+For a strip of length $t>L$, Lemma~\ref{lem:local-Hermite} bounds the extra
+contribution from below by $tm/q-q^2/4$. Summing the first term with
+\eqref{eq:local-strip-mass} gives $B_q(L)/2$; there are
+$(S-L)(K-q)$ such strips. The rows in the remaining left part of the
+triangle have nonnegative extra contribution and may be omitted. These
+observations account for every term of $E_q(L)$. Since the exact total
+extra contribution is itself nonnegative, we have the stronger lower bound
+\begin{equation}\label{eq:local-extra-positive}
+ 2\sum_\Lambda(\text{extra row contribution})\geq\pos{E_q(L)}.
+\end{equation}
+The positive part is taken before subtracting the extra derivative cost.
+
+\subsection{The extra column cost and the retained weight}
+The cost $\delta_q(j)$ is nondecreasing. Its prefix sum has a simple exact
+form:
+\begin{equation}\label{eq:small-column-prefix}
+ \Sigma_q(B):=\sum_{j=0}^{B-1}\delta_q(j)
+ =\frac{q-1}{2q}B^2-\frac{r_B(q-r_B)}{2q},
+ \qquad r_B=B\bmod q.
+\end{equation}
+This follows by writing $B=aq+r_B$ and summing the complete blocks of the
+floor function. It also holds for $B=0$.
+
+Write $m_L=nt+r$, where $0\leq r<n$, and put $A=J-t$. By
+Lemma~\ref{lem:local-determinant}, the extra derivative cost is at most
+\[
+ n\bigl(\Sigma_q(J)-\Sigma_q(A)\bigr)+r\delta_q(A-1).
+\]
+The last term is omitted when $r=0$. In particular, $A-1$ is only used
+when $A\geq1$. To estimate the remainder in this formula, rewrite it as
+\[
+ n\Sigma_q(J)-(n-r)\Sigma_q(A)-r\Sigma_q(A-1).
+\]
+For $r=0$ the term with $A-1$ is again omitted. The remainder in $\Sigma_q(J)$
+is nonpositive, whereas each of the other two remainders is bounded above
+in absolute value by $\floor{q^2/4}/(2q)$. The quadratic parts give
+\[
+ \frac{q-1}{q}\left(m_LJ-\frac{m_L^2}{2n}\right)
+ -\frac{q-1}{2q}r\left(1-\frac rn\right).
+\]
+Dropping the final nonpositive term proves the upper bound
+\begin{equation}\label{eq:local-extra-cost}
+ \frac{q-1}{q}\left(m_LJ-\frac{m_L^2}{2n}\right)
+ +\boldsymbol1_{m_L>0}\frac{n\floor{q^2/4}}{2q}.
+\end{equation}
+If $m_L=0$, the exact cost is zero, so no remainder is charged.
+
+Normalize twice this cost by $W$, and recall $m_L=\varpi_LM$ and
+$M/(nJ)=\theta$. Since $2M/W=3(S+1)/(RS)$, the resulting expression is
+\[
+ C_q(L)=3\left(1+\frac1S\right)\varpi_L
+       \left(1-\frac{\varpi_L\theta}{2}\right)\frac{q-1}{q}\frac JR
+       +\boldsymbol1_{L>0}\frac{n\floor{q^2/4}}{qW}.
+\]
+We have now obtained every term of the small-prime formula.
+
+\begin{proposition}\label{prop:local-small-prime}
+For an inert prime $q<K$, define
+\begin{equation}\label{eq:wkeep}
+ w_{\rm keep}(q)=
+ \frac{W_2+2K\sum_{a\geq1}T(S,q^{2a})}{W}
+ +\max_{0\leq L\leq S}
+       \left(\frac{\pos{E_q(L)}}W-C_q(L)\right).
+\end{equation}
+Then every selected minor satisfies
+\[
+ v_q(\Delta_C)\geq\frac W2w_{\rm keep}(q)
+                       -\sum_{(i,j)\in C}\floor{j/q}.
+\]
+The maximum is over integers $L$. Using any one admissible value of $L$
+in place of the maximum also gives a valid lower bound.
+\end{proposition}
+\begin{proof}
+For the basis associated with $L$, the sum of the baseline row contributions
+is, by \eqref{eq:local-h-sum} and \eqref{eq:T-floor},
+\[
+ \sum_\Lambda(h+\tau_q(s))
+ =\frac{W_2}{2}+K\sum_{a\geq1}T(S,q^{2a}).
+\]
+Equation~\eqref{eq:local-extra-positive} bounds the extra row contribution
+from below, and \eqref{eq:local-extra-cost} bounds its extra column cost
+from above. Apply Lemma~\ref{lem:local-determinant} to
+\eqref{eq:local-entry-low} and \eqref{eq:local-entry-high}. Every choice
+of $L$ gives a bound for the same determinant, because all the bases are
+unitriangular. Taking the best of these bounds proves the proposition.
+\end{proof}
+
+In particular, the argument includes $q=2$ when $2$ is inert in the maximal
+order. The factors $1+1/S$ and the last remainder in $C_q(L)$ are exact
+finite-size corrections.
+
+\subsection{Split and ramified primes}
+For completeness we give the local contributions at the other primes.
+They are needed when primes beyond the guaranteed inert range are retained.
+At a split prime, a tower in $w$ gives a contribution with no derivative
+cost. At a ramified prime, the inert estimates remain valid in the prime
+ideal valuation, but this has half the norm contribution of the inert
+valuation.
+
+Suppose first that $q$ splits. Then
+$\OO_D/q\OO_D\simeq\FF_q\times\FF_q$, so $b^q-b$ is divisible by $q$
+for every $b\in\OO_D$. Define monic polynomials
+\[
+ G_1(w)=w^q-w,\qquad
+ G_{a+1}(w)=G_a(w)^q-q^{q^a-1}G_a(w),\qquad
+ \mu_a=\frac{q^a-1}{q-1}.
+\]
+They have degrees $q^a$, and $G_a(\bar z_i)\in q^{\mu_a}\OO_D$.
+Indeed, if $G_a(\bar z_i)=q^{\mu_a}b$, the next value is
+$q^{q\mu_a}(b^q-b)$, divisible by $q^{q\mu_a+1}=q^{\mu_{a+1}}$.
+For the base-$q$ expansion $s=\sum_{a\geq0}d_aq^a$, the polynomial
+\[
+ \widetilde A_s(w)=w^{d_0}\prod_{a\geq1}G_a(w)^{d_a}
+\]
+is monic of degree $s$ and has values divisible by
+$q^{\sum_{a\geq1}\floor{s/q^a}}$. The basis
+$z^r\widetilde A_s(w)$ is unitriangular on $\Lambda$, and differentiating
+in $z$ does not alter this divisibility. Hence
+\begin{equation}\label{eq:local-split}
+ \Delta_C\in q^{K\sum_{a\geq1}T(S,q^a)}\OO_D.
+\end{equation}
+Its contribution to $\log|\Delta_C|^2/W$ is at least
+\[
+ \bigl(e(q)+s(q)\bigr)\log q,\qquad
+ e(q)=\frac{2K}{W}\sum_{a\geq1}T(S,q^{2a}),\quad
+ s(q)=\frac{2K}{W}\sum_{a\geq1}T(S,q^{2a-1}).
+\]
+There is no first-power derivative debit in this estimate. When the
+arithmetic lower bound is organized with a common debit
+$\sum_C\floor{j/q}$ for all primes, a split prime therefore permits that
+debit to be refunded. Its minimum over $C$ is given by the capacity
+principle in Lemma~\ref{lem:local-determinant}.
+
+Now suppose that $q\geq K$ and $(q)=\mathfrak q^2$ is ramified. In our
+application the ramified prime is $q=D>K$. Normalize $v_{\mathfrak q}$
+by $v_{\mathfrak q}(\mathfrak q)=1$. Conjugation acts trivially on
+$\OO_D/\mathfrak q\simeq\FF_q$, so $z_i^q-\bar z_i$ and
+$\bar z_i^q-\bar z_i$ belong to $\mathfrak q$.
+A substitute for the inert tower is
+\[
+ \widehat B_s(w)=(w^q-w)^{q\floor{s/q^2}}.
+\]
+It is monic of degree $q^2\floor{s/q^2}$, and
+\[
+ v_{\mathfrak q}(\widehat B_s(\bar z_i))
+ \geq q\floor{s/q^2}\geq\tau_q(s).
+\]
+For the last inequality, put $a=\floor{s/q^2}$; then
+$\tau_q(s)=a+\floor{a/q^2}+\floor{a/q^4}+\cdots
+\leq aq^2/(q^2-1)\leq aq$.
+
+Use the unitriangular basis
+\[
+ z^{r\bmod q}(z^q-w)^{\floor{r/q}}
+ w^{s\bmod q^2}\widehat B_s(w).
+\]
+As in \eqref{eq:tower-valuation}, its entries have valuation at least
+$\floor{r/q}+\tau_q(s)-\floor{j/q}$. Therefore
+\begin{equation}\label{eq:local-ramified}
+ v_{\mathfrak q}(\Delta_C)\geq
+ \frac{S_r(R,K,q)}{2K}+K\sum_{a\geq1}T(S,q^{2a})
+ -\sum_{(i,j)\in C}\floor{j/q}.
+\end{equation}
+One may replace a negative right side by zero, since the entries are
+integral. Finally, an inert prime ideal has norm $q^2$, whereas a ramified
+prime ideal has norm $q$. The contribution of
+$v_{\mathfrak q}(\Delta_C)$ to $\log|\Delta_C|^2$ is consequently
+$v_{\mathfrak q}(\Delta_C)\log q$. This explains the factor of one half
+in the normalized ramified contribution used in the arithmetic comparison.

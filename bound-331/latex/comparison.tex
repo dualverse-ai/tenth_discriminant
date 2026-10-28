@@ -1,0 +1,210 @@
+\section{The determinant comparison}\label{sec:comparison}
+We recall the determinant and the estimates from~\cite{chung498} that will
+be used. The comparison applies to every nonzero maximal minor. Thus the
+rank argument in the next section need only establish that such a minor
+exists; it need not identify its columns.
+
+\subsection{The matrix and its normalization}
+Assume that $h(-D)=1$ and $D>331$. Write
+$\omega=(1+\sqrt{-D})/2$ and $\OO_D=\mathbb Z[\omega]$.
+Choose integers $K\geq2$, $S\geq1$ and $1\leq J\leq R:=KS$, and put
+\begin{equation}\label{eq:triangle}
+ \Lambda=\{(r,s)\in\mathbb Z_{\geq0}^2:r+Ks<R\},\qquad
+ M=|\Lambda|=\frac{R(S+1)}2.
+\end{equation}
+Let $z_1,\ldots,z_n$ be the $n$ elements of $\OO_D$ nearest to the origin,
+with ties broken arbitrarily. We use the Hasse derivatives in $z$, with the
+second variable $w$ held fixed: $\partial_z^{[j]}P$ is the coefficient of
+$t^j$ in $P(z+t,w)$. The matrix is
+\begin{equation}\label{eq:jet-matrix}
+ V_{(r,s),(i,j)}=\binom rjz_i^{r-j}\bar z_i^{\,s},
+ \qquad (r,s)\in\Lambda,\quad 1\leq i\leq n,\quad 0\leq j<J.
+\end{equation}
+The entry is zero if $j>r$. Dividing ordinary derivatives by $j!$ removes their factorial
+factors while retaining algebraic-integer entries. For any selection
+$C$ of $M$ columns, let $\Delta_C=\det V_C$.
+
+The nearest-node estimate of~\cite[Lemma 2.5]{chung498} gives
+\begin{equation}\label{eq:node-disk}
+ |z_i|\leq\rho_i:=\sqrt{\frac{i\sqrt D}{2\pi}}+\delta,
+ \qquad \delta=\frac{\sqrt{D+4}}4.
+\end{equation}
+The lattice has covolume $\sqrt D/2$ and covering radius
+at most $\delta$: its horizontal rows have vertical spacing $\sqrt D/2$,
+and the points on each row have spacing one. The disk of radius
+$\rho-\delta$ is therefore covered by Voronoi cells of lattice points in
+the disk of radius $\rho$. Comparing areas shows that this latter disk
+contains at least $2\pi(\rho-\delta)^2/\sqrt D$ lattice points, proving
+\eqref{eq:node-disk}.
+
+Put $\rho=\rho_n$, $\theta=M/(nJ)$, and
+\begin{equation}\label{eq:normalization}
+ W=\frac{R^2S}{3},\qquad W_1=2\sum_\Lambda r,\qquad W_2=2\sum_\Lambda s.
+\end{equation}
+The ratio $\theta$ is the proportion of available columns used by a maximal
+minor. In particular, $\theta\leq1$ is necessary for full row rank. Direct
+summation over the triangle gives
+\begin{equation}\label{eq:radius-coefficient}
+ \frac{W_1+W_2}{W}
+ =1+\frac1K+\frac{3(K-1)}{2KS}+\frac{K-5}{2KS^2}.
+\end{equation}
+
+\input{arithmetic-import}
+
+\subsection{Combining the derivative terms}
+Legendre's formula writes $\log(j!)$ as
+$\sum_q\sum_{a\geq1}\lfloor j/q^a\rfloor\log q$. Its first-power
+terms cancel the corresponding derivative loss in $b(j)$, leaving the
+higher prime powers and split-prime contributions in $F(j)$. We use the
+remainder $H(j)=j\sigma-F(j)$ defined above,
+and choose a constant $c$ satisfying
+\begin{equation}\label{eq:column-remainder}
+ 2\sum_{(i,j)\in C}H(j)\leq Mc\qquad(|C|=M).
+\end{equation}
+This bound uses the fact that each derivative order is available at only
+$n$ nodes. Specifically, if $h_{(1)}\geq\cdots\geq h_{(J)}$ are upper
+bounds for $H(0),\ldots,H(J-1)$ arranged in decreasing order, and
+$M=nt+r$ with $0\leq r<n$, one may take
+\[
+ Mc=2n\sum_{a=1}^{t}h_{(a)}+2r h_{(t+1)}.
+\]
+The last term is omitted when $r=0$. The formulas in Appendix~B of~\cite{chung498} construct $\sigma$ and these upper bounds from prime powers and norm
+values, so the calculation does not require identifying the split primes
+at the candidate discriminant.
+
+Set $u_i=z_i/\rho$ and $\ell=\log(R/\rho)-\sigma$. Define the normalized
+matrix
+\begin{equation}\label{eq:residual-matrix}
+ B_{(r,s),(i,j)}(\ell)
+ =\frac{\fall rj}{R^j}e^{\ell j}u_i^{r-j}\bar u_i^{\,s},
+\end{equation}
+where $\fall rj=r(r-1)\cdots(r-j+1)$. Exact diagonal scaling gives
+\[
+ B_C(\ell)=\operatorname{diag}_{\Lambda}(\rho^{-r-s})\,
+ V_C\,\operatorname{diag}_C(j!e^{-\sigma j}).
+\]
+Taking squared absolute determinants and using \eqref{eq:arithmetic-interface} and
+\eqref{eq:column-remainder}, we obtain
+\begin{equation}\label{eq:comparison-before-size}
+ W\arith\leq (W_1+W_2)\log\rho+
+                \log|\det B_C(\ell)|^2+Mc.
+\end{equation}
+Since $e^{\ell j}$ scales column $(i,j)$ and $j\geq0$, replacing
+$\ell$ by an upper bound only increases $|\det B_C(\ell)|^2$. It
+therefore suffices to bound the normalized determinant uniformly over $C$.
+
+\subsection{The imported size estimate}
+We use the Meixner and Schur estimates from~\cite[Section~4]{chung498}.
+Their role is to retain the correlations between derivative columns at
+one node. We recall the quantities entering the bound so that its
+application at the new parameters is explicit.
+
+Choose $a>0$, $0<v<1$, $\beta<0$, and put $b=aR$. Weight row $(r,s)$ by
+$e^{-\lambda_{r,s}/2}$, where
+\[
+ e^{-\lambda_{r,s}}=\frac{(b)_r}{r!}v^r e^{-\beta s},
+ \qquad (b)_r=b(b+1)\cdots(b+r-1).
+\]
+Let $Y=\operatorname{diag}(e^{-\lambda_{r,s}/2})B(\ell)$, and let $G_i=Y_i^*Y_i$
+be the Gram matrix of its $J$ columns at node $i$. Fischer's inequality gives
+\begin{equation}\label{eq:fischer}
+ \log|\det B_C(\ell)|^2
+ \leq\sum_\Lambda\lambda_{r,s}
+       +\sum_i\log\det G_i[C_i,C_i],
+\end{equation}
+where $C_i$ is the set of orders selected at that node. By~\cite[Lemma~4.1]{chung498}, each principal minor
+of $G_i$ is a polynomial with nonnegative coefficients in $q=|u_i|^2$;
+therefore it increases when the node is moved radially outward.
+
+Write $x_+=\max(0,x)$. At an upper squared radius $q>0$, set
+\[
+ d_q=(\log q-\beta)_+,\qquad v_q=ve^{-d_q/K},\qquad
+ w=v_qq,\qquad \mathcal B_q=S e^{Sd_q}.
+\]
+After a diagonal unitary conjugation removing the node angle, the Gram
+matrix is bounded in the positive semidefinite order by
+\begin{equation}\label{eq:moment-matrix}
+ \mathcal G_{jk}(q)=\mathcal B_q
+ \left(\frac{e^\ell}{R\sqrt q}\right)^{j+k}
+ \sum_{r\geq0}\frac{(b)_r}{r!}w^r\fall rj\fall rk,
+ \qquad 0\leq j,k<J.
+\end{equation}
+The conjugation preserves every principal minor. Here $0<w<1$ for the
+parameters below. The negative-binomial moments in
+this formula have an explicit factorization in Meixner polynomials. This
+supplies two bounds for an arbitrary principal minor: one uses the largest
+singular values of an affine composition operator, and the other its
+complementary singular product. A third bound sums all principal minors of
+the prescribed size, using the Schur-function Cauchy identity. These are
+respectively equations (4.10), (4.11), and (4.12) of~\cite{chung498}.
+Each holds for every subset of derivative orders; no particular subset is
+assumed to maximize the determinant.
+
+Let $F_q(m)$ be the minimum of these three upper bounds for the logarithm
+of an $m$-column principal minor, allowing the finite parameter choices in
+Appendix~C of~\cite{chung498}. For a chosen $a_0>0$, take
+$\Phi(q)\geq0$ such that
+\begin{equation}\label{eq:H-occupancy}
+ F_q(m)\leq a_0Rm+R^2\Phi(q)\qquad(0\leq m\leq J).
+\end{equation}
+We divide the range of $m/R$ into $N_m$ equal intervals and establish
+the bound on each whole interval before minimizing over estimates.
+For the singular-value bounds, the sum of the $m$ largest column prices
+is bounded using $N_z$ equal intervals of $j/R\in[0,\varepsilon]$,
+where $\varepsilon=J/R$. Appendix~C of~\cite{chung498} bounds the price and the number of orders in each
+interval. Summing \eqref{eq:H-occupancy} in
+\eqref{eq:fischer} uses $\sum_i|C_i|=M$, rather than allowing every node to
+choose its worst number of columns independently.
+
+To bound the radii, put
+\[
+ \eta=\frac{\delta}{\sqrt{n\sqrt D/(2\pi)}},\qquad
+ Q(t)=\left(\frac{\sqrt t+\eta}{1+\eta}\right)^2,
+ \qquad \varepsilon=J/R.
+\]
+Then $|u_i|^2\leq Q(i/n)$. Divide $(0,1]$ into $N_t$ equal intervals and
+move the nodes in the $k$th interval to squared radius $Q(k/N_t)$.
+Each interval contains at most $n/N_t+1$ nodes. The resulting bound is
+\begin{equation}\label{eq:metric-mesh}
+ U_{\rm var}=U_{\rm row}+\frac{3a_0(S+1)}{2S}
+ +3\left(\frac{1+1/S}{2\theta\varepsilon N_t}+\frac1S\right)
+       \sum_{k=1}^{N_t}\Phi(Q(k/N_t)),
+\end{equation}
+where $U_{\rm row}$ is an upper bound for
+$W^{-1}\sum_\Lambda\lambda_{r,s}$. In particular,
+$W^{-1}\log|\det B_C(\ell)|^2\leq U_{\rm var}$ for every $C$.
+For the finite formulas in Appendix~C of~\cite{chung498},
+we require $R>3$, $aR>1$, $0<a\leq1$, $0<\varepsilon\leq1$,
+$\varepsilon(a+2\varepsilon)\leq1$, and
+\[
+ -(a+1)\log(a+1)+a\log a-\log v<0.
+\]
+The last condition gives the signed row-sum bound. For the Schur bound at
+radius $q$, put
+\[
+ \zeta=\ell+\tfrac12\log v_q-\log(1-w),\qquad z_*=a^{-2}e^{-2\zeta}.
+\]
+Its finite evaluation is used when $z_*<1$ and
+$\varepsilon(a+\varepsilon)z_*<a^2(1-z_*)^2$. These are respectively the
+moment and concavity conditions in Appendix~C of~\cite{chung498}. The other
+two bounds remain available wherever the latter conditions do not hold.
+
+\begin{proposition}[Determinant comparison]\label{prop:comparison}
+Assume the arithmetic estimates \eqref{eq:arithmetic-interface} and
+\eqref{eq:column-remainder}, and the size estimate \eqref{eq:metric-mesh}.
+If $V$ has full row rank, then
+\begin{equation}\label{eq:master}
+ \arith\leq\metric:=\frac{W_1+W_2}{W}\log\rho+U_{\rm var}
+                       +\frac{Mc+2M\log M}{W}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Full row rank supplies a nonzero minor. Apply
+\eqref{eq:comparison-before-size} and the uniform size bound to that minor.
+The nonnegative term $2M\log M/W$ retains the earlier numerical
+normalization~\cite{chung498}.
+\end{proof}
+Thus a positive lower bound for $G:=\arith-\metric$ excludes the proposed
+field. The arithmetic and size estimates depend on the actual node count
+$n$ throughout. In particular, reducing $n$ changes both the disk radius
+and the capacity bound for the derivative orders.

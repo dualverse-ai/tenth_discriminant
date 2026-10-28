@@ -19,7 +19,6 @@ Each determinant term uses every row and every selected column once. Hence
  v_q(\Delta_C)\geq\sum_\Lambda\lfloor r/q\rfloor
                   -\sum_C\lfloor j/q\rfloor.
 \end{equation}
-The right side can be negative, in which case it is merely a weak bound.
 Its usefulness emerges after summing over primes: the column loss combines
 with the factorials in the Hasse derivatives, as in \eqref{eq:F-H}.
 
@@ -55,10 +54,9 @@ Replacing $w^s$ by $A_s(w)$ in the previous basis preserves triangularity. We ob
  \geq\max(0,\floor{r/q}-\floor{j/q})
          +\sum_{a\geq1}\floor{s/q^{2a}}.
 \end{equation}
-This is a local statement for any nodes in the order; it has no rank hypothesis.
 
 The row contributions are finite sums over the triangle. Their exact
-floor-sum formulas are given in the supplementary notes, Section~\ref{supp:rows}.
+floor-sum formulas are given in Appendix~\ref{supp:rows}.
 
 \subsection{Small primes and non-inert primes}
 For an inert prime $q<K$, replacing $z^q$ by $w$ increases weighted degree. The number of replacements in a row is therefore bounded by
@@ -66,65 +64,37 @@ For an inert prime $q<K$, replacing $z^q$ by $w$ increases weighted degree. The 
  h_q(r,s)=\min\left(\floor{r/q},
           \floor{(R-1-r-Ks)/(K-q)}\right).
 \end{equation}
-There is still a substantial contribution: summing this function over the triangle yields
-\[
- 2\sum_{\Lambda}h_q(r,s)=W_2=\frac{R(S^2-1)}3.
-\]
-One way to verify the identity is to sum the sizes of its superlevel sets. The condition $h_q\geq a$ is equivalent, after writing $r=qa+r'$, to
-$r'+Ks<R-Ka$, and its number of solutions is $K(S-a)(S-a+1)/2$. Summing for $1\leq a<S$ gives the displayed value.
+There is still a substantial contribution: by \eqref{eq:local-h-sum},
+$2\sum_\Lambda h_q(r,s)=W_2=R(S^2-1)/3$.
 
-The small-prime estimate used in the computation improves this elementary bound by combining $z^q-w$, $w^q-z$, and $z^{q^2}-z$. The first factor can lose a power of $q$ only after spending at least $q$ orders of differentiation; the latter two can lose one after spending one order. Optimizing where each type is used is a finite triangular row calculation. The resulting finite lower bound is recorded in the supplementary notes, Section~\ref{app:arithmetic}, together with its cut parameter. In particular, $q=2$ is included. Working in the maximal order is essential here, since $2$ is inert when $D\equiv3\pmod8$.
+The small-prime estimate used in the computation improves this elementary bound by combining $z^q-w$, $w^q-z$, and $z^{q^2}-z$. The first factor can lose a power of $q$ only after spending at least $q$ orders of differentiation; the latter two can lose one after spending one order. Optimizing where each type is used is a finite triangular row calculation. The resulting finite lower bound is recorded in Appendix~\ref{app:local}, where the choice of the cut is explained. In particular, $q=2$ is included. Working in the maximal order is essential here, since $2$ is inert when $D\equiv3\pmod8$.
 
 The arithmetic calculation also uses primes above $(D-3)/4$, where inertness is no longer guaranteed. Class number one still supplies useful information. If $q$ splits or ramifies, an ideal of norm $q$ is principal, so
 \begin{equation}\label{eq:prime-norm}
  q=\N(x_0+y\omega)=\left(x_0+\frac y2\right)^2+\frac D4y^2,
  \qquad y\ne0.
 \end{equation}
-At a fixed norm cutoff there are only finitely many such pairs. One can therefore start with an all-prime estimate and subtract an upper bound for the contribution of possible non-inert primes, using these norm representations. This deduction uses principality; it does not test the quadratic character at a particular discriminant.
+At a fixed norm cutoff there are only finitely many such pairs. One can therefore start with an all-prime estimate and subtract an upper bound for the contribution of possible non-inert primes, using these norm representations.
 
-Counting all norm values as possible primes overestimates the loss. Unique factorization allows some of those values to be removed in advance. Products of two or three nonrational factors have composite norm, and the corresponding primitive products can be counted with their multiplicities controlled. The product counts used for this subtraction are recorded in the supplementary arithmetic notes. At the finite comparisons in Section~\ref{sec:completion}, only the two- and three-factor corrections are used. The upper bound for possible losses is decreased by a rigorously bounded contribution of these composite values. Thus this correction \emph{increases} $\arith$; it is not an additional subtraction of prime divisibility.
+Counting all norm values as possible primes overestimates the loss,
+since composite values are charged as well. Unique factorization
+identifies those values: Lemma~\ref{lem:primitive-norms} gives the number
+of primitive representatives of a composite norm, and
+Lemma~\ref{lem:complete-factor-list} shows that the required lists of
+factors are complete. Removing the charges for composite values with two
+or three prime factors increases $\arith$; these are the only composite
+corrections used in Section~\ref{sec:completion}.
 
 For orientation, the resulting arithmetic term has the form
 \begin{equation}\label{eq:arithmetic-parts}
- \arith=A_{\rm all}-L_{\rm norm}+C_2+C_3.
+ \arith=\arith_0-L_{\rm norm}+C_2+C_3.
 \end{equation}
-The first term sums inert-prime row credits as a provisional all-prime bound; $L_{\rm norm}$ pays for norm values that might be non-inert primes; $C_2$ and $C_3$ restore credits paid unnecessarily for certified composite values. Split and ramified primes also have their own local conjugate-variable contributions. These, and the derivative-order refunds, are included in the arithmetic lower bound. This matters numerically near $D=499$.
+The first term sums inert-prime row contributions as a provisional all-prime bound; $L_{\rm norm}$ pays for norm values that might be non-inert primes; $C_2$ and $C_3$ remove the loss assigned to composite norm values. Split and ramified primes also have their own local conjugate-variable contributions. These, and the retained derivative terms, are included in the arithmetic lower bound.
 
-\subsection{The arithmetic estimate used below}
-We use the following consequence of the local estimates, in a form that
-continues to hold when the number of nodes is reduced. The normalization is $\log|\Delta_C|^2/W$: all prime-sum and
-norm-loss terms in $\arith$ are divided by $W$, while $b(j)$ is the column
-debit in logarithmic units before this division.
-
-\begin{proposition}[Local arithmetic estimate]\label{prop:arithmetic}
-Let $-D$ be a fundamental discriminant with $h(-D)=1$ at one of the
-finite comparisons below $875$ in Section~\ref{sec:completion}, with the
-parameters specified there. Let $z_1,\dots,z_n$ be the $n$ nearest elements
-of $\OO_D$, and let $V$ be the matrix~\eqref{eq:jet-matrix} with
-$0\leq j<J$ and $\theta=M/(nJ)\leq1$. Define $\arith,\sigma,c,b(j)$ by
-the local arithmetic formulas in the supplementary notes,
-Section~\ref{app:arithmetic}, including the norm-product corrections
-and derivative-order refunds.
-Then~\eqref{eq:arithmetic-interface} and~\eqref{eq:column-remainder} hold for
-every set $C$ of $M$ columns with $\Delta_C\ne0$.
-\end{proposition}
-
-Here $\Delta_C$ is a minor of the original integral Hasse matrix $V$.
-The bound on $D$ will follow by comparing these local estimates with the size
-estimate of Section~\ref{sec:metric}. The preceding arguments explain the
-constructions behind the estimates. The supplementary notes give the finite formulas and their derivations. Every quantity
-depending on $n$ is evaluated at the node count in use. This includes the
-number of columns of each order, and hence the least possible sum of their
-first-power floors and the largest possible remainder sum.
-
-The higher-prime-power saving can be seen directly from Legendre's formula:
-\[
- \log(j!)=\sum_q\sum_{a\geq1}\floor{j/q^a}\log q.
-\]
-The debit $\sum_q\floor{j/q}\log q$ from \eqref{eq:basic-minor-valuation} cancels its $a=1$ part exactly. The remaining terms, together with the split-prime refunds, form $F(j)$ in \eqref{eq:F-H}. Sorting $H(0),\ldots,H(J-1)$ in decreasing order, say as $H_{(1)},\ldots,H_{(J)}$, and writing $M=nt+r$ with $0\leq r<n$, yields the exact capacity bound
-\begin{equation}\label{eq:sorted-remainder}
- \sum_C H(j)\leq n\sum_{a=1}^{t}H_{(a)}+rH_{(t+1)}.
-\end{equation}
-When $r=0$ the final term is omitted. The right side gives an admissible $Mc/2$. Grouping the floor functions into intervals on which their quotients are
-constant gives a finite evaluation of the right side. The resulting bound
-for $c$ includes the remainder at every derivative order.
+For the comparisons in Section~\ref{sec:completion}, we take $\arith$ and
+$b(j)$ from Proposition~\ref{prop:general-arithmetic}, the slope $\sigma$
+from \eqref{eq:slope-lower}, and the remainder bound $c$ from
+\eqref{eq:finite-column-constant}. These give
+\eqref{eq:arithmetic-interface} and \eqref{eq:column-remainder} at each
+chosen node count. The estimates and their hypotheses are proved in
+Appendix~\ref{app:arithmetic}.

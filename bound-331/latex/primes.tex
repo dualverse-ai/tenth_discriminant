@@ -1,0 +1,114 @@
+\section{Auxiliary primes and the choice of parameters}\label{sec:primes}
+The rank theorem requires an inert prime large enough to distinguish the
+nodes, but smaller than $R$ and with $R\leq p^2$. We obtain it by counting
+norm representations in a short interval. This uses the class number one
+hypothesis in the same way as the arithmetic estimate: every split prime
+has to be the norm of an algebraic integer.
+
+\begin{lemma}[An inert prime in an interval]\label{lem:prime-window}
+Suppose that $D>331$, $h(-D)=1$, and $D<A<B$. For $y\geq1$, put
+$c_y=1$ when $y$ is odd and $c_y=1/2$ when $y$ is even. Define
+\begin{equation}\label{eq:split-count}
+ E_D(A,B)=\sum_{y=1}^{\lfloor\sqrt{4B/D}\rfloor}
+ \left[1+c_y\left(\sqrt{B-Dy^2/4}
+              -\sqrt{\max(0,A-Dy^2/4)}\right)\right].
+\end{equation}
+If $E_D(A,B)<\pi(B)-\pi(A)$, then $(A,B]$ contains an inert prime.
+\end{lemma}
+\begin{proof}
+The elementary reduction makes $D$ prime, so every prime in $(A,B]$ is
+unramified. If such a prime $p$ splits, a principal ideal of norm $p$
+gives an element $x+y\omega$ with
+\[
+ p=x^2+xy+\frac{D+1}{4}y^2
+   =\left(x+\frac y2\right)^2+\frac D4y^2.
+\]
+Here $y\ne0$, since a rational integer has square norm. Changing the sign
+and taking the conjugate if necessary, we may assume $y>0$ and
+$x+y/2\geq0$. Therefore $y\leq\sqrt{4B/D}$, and, for a fixed $y$,
+$x+y/2$ lies between the two square roots in \eqref{eq:split-count}.
+An interval of length $L$ contains at most $1+L$ members of any translate
+of $\mathbb Z$.
+
+When $y$ is even, we can improve this count. Writing $y=2k$ gives
+\[
+ x^2+xy+\frac{D+1}{4}y^2\equiv x^2\pmod2.
+\]
+Since $p$ is odd, $x$ is odd. Its permitted values are consequently spaced
+by two, and an interval of length $L$ contains at most $1+L/2$ of them.
+Summing these bounds gives at most $E_D(A,B)$ split primes. If this is
+smaller than the number of primes in the interval, one of them must be inert.
+\end{proof}
+
+\subsection{The three parameter choices}
+The six discriminants require three choices of polynomial space and node
+count, given in Table~\ref{tab:parameters}. Throughout we set
+\begin{equation}\label{eq:parameter-formulas}
+ S=\left\lfloor\frac{6P}{5K}\right\rfloor,\qquad R=KS,\qquad
+ J=\lfloor\varepsilon_0R\rfloor.
+\end{equation}
+Here $P$ is the prime cutoff in the arithmetic estimate, and
+$\varepsilon_0$ is a rational number; the actual ratio in the size estimate
+is $\varepsilon=J/R$.
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+$D$ & $P$ & $K$ & $\varepsilon_0$ & $n$\\
+\midrule
+$419,443,467,491$ & $312\,000\,000$ & $43$ & $1/8$ & $35\,155\,200$\\
+$379$ & $312\,000\,000$ & $17$ & $16/125$ & $86\,265\,600$\\
+$347$ & $756\,000\,000$ & $17$ & $16/125$ & $208\,919\,200$\\
+\bottomrule
+\end{tabular}
+\caption{Parameters for the six determinant comparisons. Each row specifies
+$S,R,J$ through \eqref{eq:parameter-formulas}.}
+\label{tab:parameters}
+\end{table}
+
+The ratios $\theta=M/(nJ)$ in the three rows are approximately
+$0.990690$, $0.997262$, and $0.997782$. Thus these choices use only about
+$0.94\%$, $0.27\%$, and $0.22\%$ more nodes than the necessary minimum
+$M/J$. The exact rank criterion is needed at these counts: the coarser
+sufficient inequality in~\cite[Theorem 5.1]{chung498} does not hold
+uniformly over the corresponding auxiliary-prime windows.
+
+Table~\ref{tab:prime-windows} gives the intervals used to supply an inert
+prime. For the first row we use the weaker count obtained by setting all
+$c_y=1$; it already suffices. Its displayed split-prime bound is the largest
+of the four separately evaluated counts, not a count on the whole
+interval $419\leq D\leq491$.
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+$D$ & $(A,B]$ & $\pi(B)-\pi(A)$ & Split-prime bound & $2\rho_n<$\\
+\midrule
+$419,443,467,491$ & $(200\,000,228\,000]$ & $2276$ & $2181.456$ & $22\,281$\\
+$379$ & $(500\,000,515\,000]$ & $1135$ & $990.602$ & $32\,708$\\
+$347$ & $(800\,000,820\,000]$ & $1465$ & $1366.923$ & $49\,785$\\
+\bottomrule
+\end{tabular}
+\caption{Upper bounds for the number of split primes and the node diameter.
+All decimal bounds are rounded upward.}
+\label{tab:prime-windows}
+\end{table}
+
+In each row $D<A$, and the split-prime bound is smaller than the prime
+count. Lemma~\ref{lem:prime-window} therefore supplies an inert prime
+$p\in(A,B]$. The diameter bound shows that the nodes remain distinct
+modulo $p\OO_D$: a nonzero element of that ideal has modulus at least $p$,
+whereas a difference of two nodes has modulus less than $A$.
+Moreover $K<A<B<R<A^2$, so $K<p<R<p^2$.
+
+The remaining conditions in Theorem~\ref{thm:exact-rank} are the finite
+integer inequalities $n\mu_e(p)>B_e(p)$. They hold for every prime in the
+corresponding window and every $0\leq e\leq\lfloor(R-1)/p\rfloor$.
+The least differences $n\mu_e(p)-B_e(p)$ for the three rows are respectively
+\[
+ 13\,425\,248\,140,\qquad 6\,204\,049\,940,\qquad 89\,748\,485\,986.
+\]
+The sums defining these integers are evaluated directly; their complete
+ranges and a short integer-arithmetic program are in the repository.
+Thus the particular inert prime supplied by the count satisfies every
+hypothesis of the rank theorem, and $V$ has full row rank in all six cases.

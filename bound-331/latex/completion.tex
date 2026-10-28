@@ -1,0 +1,64 @@
+\section{Completion of the proof}\label{sec:completion}
+It remains to evaluate the determinant comparison at the parameters of
+Table~\ref{tab:parameters}. For the size estimate we use
+\begin{equation}\label{eq:spectral-parameters}
+ (a,v,\beta,a_0)=\left(\frac{39}{40},\frac{19}{50},-1,\frac1{200}\right),
+ \qquad (N_t,N_z,N_m)=(128,256,512).
+\end{equation}
+The last two integers are the mesh sizes for the column-order capacity
+bound and the intervals of possible $m/R$. The finite choices of affine
+composition parameters are the same as in Appendix~C of~\cite{chung498}. These values satisfy the finite hypotheses of
+Section~\ref{sec:comparison}. At each upper radial endpoint, the
+calculation checks the moment and concavity conditions before using the
+Schur bound.
+
+
+For the arithmetic estimate we retain only the two- and three-factor
+composite corrections. The cutoff for the derivative slope is
+\[
+ q_{\rm cap}=\min\{J-1,\,m_D^4-1,\,m_D\lfloor P/m_D\rfloor\},
+ \qquad m_D=(D+1)/4.
+\]
+It is $46\,799\,995$ in the first parameter family, $47\,923\,198$ at
+$D=379$, and $57\,289\,760$ at $D=347$. In each case the factor bounds
+and column capacities in the arithmetic estimate are satisfied.
+
+Table~\ref{tab:gaps} gives rigorous enclosures for the difference
+$G=\arith-\metric$ between the arithmetic lower bound and the size upper
+bound in Proposition~\ref{prop:comparison}. The calculations use directed
+rounding, and the displayed endpoints are rounded outward.
+\begin{table}[ht]
+\centering
+\begin{tabular}{rr}
+\toprule
+$D$ & Enclosure for $G$\\
+\midrule
+$347$ & $[0.00146083,\;0.00147313]$\\
+$379$ & $[0.01186524,\;0.01187031]$\\
+$419$ & $[0.00417435,\;0.00417636]$\\
+$443$ & $[0.04790491,\;0.04790692]$\\
+$467$ & $[0.11463345,\;0.11463546]$\\
+$491$ & $[0.17810049,\;0.17810250]$\\
+\bottomrule
+\end{tabular}
+\caption{The six positive comparison margins, with two- and three-factor
+composite corrections.}
+\label{tab:gaps}
+\end{table}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Suppose $h(-D)=1$ and $D>331$. The bound $D\leq498$ from~\cite{chung498}
+and the elementary reduction in Section~\ref{sec:intro} restrict $D$ to
+$347,379,419,443,467,491$. Section~\ref{sec:primes} supplies the
+auxiliary inert prime and verifies the hypotheses of
+Theorem~\ref{thm:exact-rank}, so the interpolation matrix has a nonzero
+maximal minor in each case. Proposition~\ref{prop:comparison} requires
+$G\leq0$, whereas every lower endpoint in Table~\ref{tab:gaps} is positive.
+This excludes all six possibilities.
+\end{proof}
+
+The bound $331$ shows that a sharper nonvanishing criterion allows the
+existing determinant estimates to go further. The arithmetic estimate
+still uses class number one to control non-inert primes by norm
+representations. A general argument for Landau--Siegel zeros would
+require a substitute for that input.

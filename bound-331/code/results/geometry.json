@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "method": "Exact rational arithmetic with 40-decimal outward radical bounds",
+  "contracts": [
+    {
+      "P": 312000000,
+      "K": 43,
+      "epsilon_numerator": 125,
+      "n": 35155200,
+      "prime_window": [
+        200000,
+        228000
+      ],
+      "prime_count": 2276,
+      "even_y_parity": false,
+      "geometry": [
+        {
+          "D": 419,
+          "split_count_upper": "2181.455787823803",
+          "diameter_upper": "21413.958769626468",
+          "passed": true
+        },
+        {
+          "D": 443,
+          "split_count_upper": "2122.389891556104",
+          "diameter_upper": "21714.371226468238",
+          "passed": true
+        },
+        {
+          "D": 467,
+          "split_count_upper": "2063.603311013289",
+          "diameter_upper": "22002.817911363576",
+          "passed": true
+        },
+        {
+          "D": 491,
+          "split_count_upper": "2006.981222144182",
+          "diameter_upper": "22280.355336763039",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "P": 312000000,
+      "K": 17,
+      "epsilon_numerator": 128,
+      "n": 86265600,
+      "prime_window": [
+        500000,
+        515000
+      ],
+      "prime_count": 1135,
+      "even_y_parity": true,
+      "geometry": [
+        {
+          "D": 379,
+          "split_count_upper": "990.601162146599",
+          "diameter_upper": "32707.596827896173",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "P": 756000000,
+      "K": 17,
+      "epsilon_numerator": 128,
+      "n": 208919200,
+      "prime_window": [
+        800000,
+        820000
+      ],
+      "prime_count": 1465,
+      "even_y_parity": true,
+      "geometry": [
+        {
+          "D": 347,
+          "split_count_upper": "1366.922179650452",
+          "diameter_upper": "49784.406299793305",
+          "passed": true
+        }
+      ]
+    }
+  ]
+}

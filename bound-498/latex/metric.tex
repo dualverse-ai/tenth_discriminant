@@ -1,7 +1,11 @@
 \section{An upper bound for every column selection}\label{sec:metric}
 We turn to the complex absolute value of the minor. An entrywise bound followed by Hadamard's inequality is enough for a large discriminant bound. At the smaller values of $D$ considered here, however, it loses too much information about the derivative columns at a single node. Those columns are far from orthogonal. Our estimate keeps them together, bounds their Gram matrix, and then combines the node contributions.
 
-There is a complication worth making explicit. Full row rank gives a nonsingular minor but does not tell us how many of its columns come from each node, or which derivative orders are selected. Neither the first nor the last $m$ orders need maximize an $m$-column minor. The estimates below therefore allow an arbitrary subset of orders at each node, and only use the restrictions that there are at most $J$ columns per node and $M$ columns in total.
+Full row rank gives a nonsingular minor but does not tell us how many of
+its columns come from each node, or which derivative orders are selected.
+The estimates below therefore allow an arbitrary set of orders at each
+node, using only that there are at most $J$ columns per node and $M$ in
+total.
 
 \subsection{Weights and node Gram matrices}
 Let $B(\ell)$ be the normalized matrix in \eqref{eq:residual-matrix}. Choose real numbers $\lambda_{r,s}$ and form
@@ -57,8 +61,9 @@ bounded above in the positive semidefinite order by the $J\times J$ matrix
  \sum_{r\geq0}\frac{(b)_r}{r!}w^r\fall rj\fall rk,
  \qquad 0\leq j,k<J.
 \end{equation}
-The formulas at $q=0$ are understood by continuity. In the finite radial
-partition used below all upper radii are positive. This completion changes the estimate, not the integral determinant being bounded. All its principal minors majorize the corresponding ones of $G_i$.
+Every principal minor of $\mathcal G$ majorizes the corresponding principal
+minor of $G_i$. The formulas at $q=0$ are understood by continuity. In the
+finite radial partition used below all upper radii are positive.
 
 Here is the moment calculation behind the choice of weights. Normalize $(b)_rw^r/r!$ to have total mass one. The resulting random integer $r$ satisfies
 \begin{equation}\label{eq:nb-generating}
@@ -81,7 +86,7 @@ negative-binomial measure. These are the Meixner polynomials; their formulas are
           \left(\frac w{1-w}\right)^{j-l}P_l(r).
  \label{eq:meixner-expansion}
 \end{align}
-The generating identity proves the constants directly. No limiting asymptotic formula for orthogonal polynomials is involved.
+These formulas are standard~\cite[Sections~18.19 and~18.23]{dlmf}; they can also be checked from~\eqref{eq:nb-generating}.
 
 Choose a column scale $\tau>0$ and set
 \begin{equation}\label{eq:column-prices}
@@ -102,7 +107,7 @@ on polynomials of degree less than $J$. The Hilbert space has orthonormal monomi
 which is precisely the normalized factor obtained above. This converts a large derivative Gram matrix into a problem about an affine map of the disk.
 
 \subsection{Two bounds for singular products}
-We state the two estimates used in the spectral part of the computation. We prove the first here and give the second proof in Section~\ref{supp:complementary} of the supplementary notes.
+We state the two estimates used in the spectral part of the computation. We prove the first here and give the second proof in Appendix~\ref{supp:complementary}.
 
 \begin{lemma}[Affine composition]\label{lem:composition}
 Suppose $c_0\geq0$, $d>0$ and $c_0+d<1$. Set
@@ -125,9 +130,9 @@ The disk automorphism $(z-h)/(1-hz)$, accompanied by the multiplier
 $(1-h^2)^{b/2}/(1-hz)^b$, induces a unitary operator, as is checked by substituting in the reproducing kernel. Conjugating the displayed kernel by this unitary and using the quadratic equation for $h$ gives $\Gamma^b$ times the kernel of the dilation operator $f(z)\mapsto f(\xi^2z)$. Its eigenvalues on the monomials are $\xi^{2l}$. Taking square roots gives the singular values of the original operator.
 \end{proof}
 
-Compression to polynomials of degree less than $J$ cannot increase singular values. If $m$ orders are selected at a node, let $N_m(\tau)$ be the sum of the largest $m$ numbers among $\nu_0,\ldots,\nu_{J-1}$. Restoring the column scales and the scalar mass gives the bound
+Compression to polynomials of degree less than $J$ cannot increase singular values. If $m$ orders are selected at a node, let $\nu_m^*(\tau)$ be the sum of the largest $m$ numbers among $\nu_0,\ldots,\nu_{J-1}$. Restoring the column scales and the scalar mass gives the bound
 \begin{equation}\label{eq:forward-cost}
- F_q^{\rm f}(m)=N_m(\tau)
+ F_q^{\rm f}(m)=\nu_m^*(\tau)
    +m\log\mathcal B+bm\log\frac\Gamma{1-w}
    +m(m-1)\log\xi
 \end{equation}
@@ -135,9 +140,7 @@ for its logarithmic Gram determinant. This applies to every selection of $m$ ord
 The term $m(m-1)\log\xi$ is negative and quadratic in $m$. It records the
 geometric decay of the singular values, a saving lost when all $m$ singular
 values are bounded by the largest one. This explains why selecting many
-columns at a node can improve the estimate. The other terms, including the
-capacity cost $N_m$, still have to be paid; the final calculation accounts
-for all of them together.
+columns at a node can improve the estimate.
 Conveniently, one may choose $0<\xi<1$ first and then set
 \[
  \Gamma=\frac{1+\xi^2+\sqrt{(1-\xi^2)^2+4w\xi^2}}2,\qquad
@@ -160,7 +163,7 @@ where $N=k(2J-k-1)$ for $s_0\leq1$, and $N=k(k-1)$ for $s_0\geq1$.
 \end{lemma}
 
 
-Adding $N_m(\tau)+m\log\mathcal B-bm\log(1-w)$ to \eqref{eq:complementary-cost} bounds the same node minor as \eqref{eq:forward-cost}. We can take the minimum over either estimate and over any finite collection of its parameters. Each choice gives an upper bound for the original selected minor, so minimizing does not presume that a single parameter is optimal at every node.
+Adding $\nu_m^*(\tau)+m\log\mathcal B-bm\log(1-w)$ to \eqref{eq:complementary-cost} bounds the same node minor as \eqref{eq:forward-cost}. We can take the minimum over either estimate and over any finite collection of its parameters. Each choice gives an upper bound for the original selected minor, so minimizing does not presume that a single parameter is optimal at every node.
 
 \subsection{A bound summed over all order sets}
 The preceding estimates bound a selected Gram minor through singular values.
@@ -168,7 +171,7 @@ We can also bound it by summing all principal minors of the same size: each
 term is nonnegative, so the sum bounds any one of them, regardless of which
 derivative orders occur in the nonsingular minor. The explicit moments above
 give the following estimate for this sum. Its Schur-function proof is given
-in the repository notes on spectral estimates. Let
+in Appendix~\ref{app:schur-proof}. Let
 \[
  M_{jk}(b,w)=\sum_{r\geq0}\frac{(b)_r}{r!}w^r\fall rj\fall rk,\qquad
  G_{jk}=\mathcal B\sigma_0^{j+k}M_{jk}(b,w),
@@ -228,4 +231,4 @@ For the finite comparisons below we take
  (a,v,\beta,a_0)=\left(\frac15,\frac7{10},-\frac45,\frac3{50}\right),
  \qquad (N_t,N_z,N_m)=(128,256,512).
 \end{equation}
-The latter two mesh sizes are used for column-order capacity and occupancy, respectively. Whole-cell upper bounds are taken before choosing the minimum of the three estimates; endpoints alone would not bound an entire cell. The supplementary notes, Section~\ref{app:metric}, give these finite bounds. Substitution into \eqref{eq:metric-mesh}, with directed rounding, supplies $U_{\rm var}$ in the determinant comparison. At no stage is the enormous matrix itself constructed.
+The latter two mesh sizes are used for column-order capacity and occupancy, respectively. Whole-cell upper bounds are taken before choosing the minimum of the three estimates; endpoints alone would not bound an entire cell. Appendix~\ref{app:metric} proves these finite bounds. Substitution into \eqref{eq:metric-mesh}, with directed rounding, supplies $U_{\rm var}$ in the determinant comparison.

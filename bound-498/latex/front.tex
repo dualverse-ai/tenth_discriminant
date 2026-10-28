@@ -23,9 +23,7 @@ The challenge is to obtain as small an explicit upper bound as possible for
 a hypothetical tenth discriminant, without relying on Heegner's methods or
 the known classification~\cite{tao2026}. We approach this problem through the
 determinant method developed in recent work on
-Landau--Siegel zeros~\cite{green2026,taosketch}. In particular, the bound in
-Theorem~\ref{thm:main} is obtained from determinant inequalities; we do not
-exclude the remaining discriminants by a finite test of quadratic residues.
+Landau--Siegel zeros~\cite{green2026,taosketch}. The remaining candidates are excluded by determinant inequalities.
 
 \subsection{Overview of the proof}\label{subsec:overview}
 Suppose that $h(-D)=1$ with $D>498$. We will form a matrix by evaluating
@@ -86,37 +84,21 @@ We apply these estimates as follows. Elementary norm arguments first reduce
 $D>498$ to primes congruent to $3$ modulo $8$. A uniform estimate and $101$
 adjacent interval comparisons exclude all $D\geq875$, leaving sixteen
 possible values below $875$. Fifteen are excluded by fixed determinant
-comparisons; the last is $499$. Table~\ref{tab:opening} shows the effect of
-the smaller node count there, with the polynomial space and derivative
-orders fixed. After the derivative-order contributions have been combined,
-the arithmetic term changes only slightly, whereas the size estimate
-decreases enough to make the normalized difference positive.
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{lrr}
-\toprule
- & Larger node count & Smaller node count\\
-\midrule
-Nodes $n$ & $41\,793\,600$ & $35\,394\,400$\\
-Proportion $M/(nJ)$ & $0.83333\ldots$ & $0.98399\ldots$\\
-Arithmetic minus size bound & $-0.12343\ldots$ & $+0.05119\ldots$\\
-\bottomrule
-\end{tabular}
-\caption{The comparison at $D=499$, with the polynomial space and derivative
-orders fixed (approximate values). The directed bounds are given in
-Section~\ref{sec:completion}.}
-\label{tab:opening}
-\end{table}
+comparisons. The last, $D=499$, is where the rank theorem matters: with the
+polynomial space and derivative orders fixed, reducing the node count from
+$41\,793\,600$ to $35\,394\,400$ raises the normalized difference between
+the arithmetic and size bounds from about $-0.123$ to about $+0.051$
+(Table~\ref{tab:499}).
 
 Section~\ref{sec:comparison} introduces the determinant and the inequality
 we must contradict. Sections~\ref{sec:arithmetic} and~\ref{sec:metric} develop
 its divisibility and size estimates. Section~\ref{sec:rank} proves the rank
 criterion, and Section~\ref{sec:completion} completes the numerical argument.
-The explicit arithmetic formulas, subsidiary spectral proofs, uniform
-estimates for $D\geq875$, and numerical calculations are collected in the
-accompanying repository,
-\url{https://github.com/dualverse-ai/tenth_discriminant}.
+Appendices~\ref{app:local}--\ref{app:metric} give the remaining
+arithmetic and spectral proofs. Appendices~\ref{app:resultants}--\ref{app:global}
+establish the estimates used for $D\geq875$. The code for the finite
+calculations is available in the
+\href{https://github.com/dualverse-ai/tenth_discriminant/tree/main/bound-498/code}{accompanying repository}.
 
 \section{The determinant comparison}\label{sec:comparison}
 
@@ -237,8 +219,8 @@ prime $p\geq K$,
 \end{equation}
 The row contribution, including its factor $2$, is about $W/p$, where
 $W=R^2S/3\approx2\sum_\Lambda r$. The second is a column loss that is present
-only when derivative orders reach $p$. In our application $J$ is much larger
-than $p$, so the loss is real. Section~\ref{sec:arithmetic} shows how it
+only when derivative orders reach $p$. For the smaller primes used below, $J$ is much larger than $p$, so this
+loss cannot be neglected. Section~\ref{sec:arithmetic} shows how it
 combines with the factorial sizes of the Hasse coefficients.
 
 \subsubsection*{Sizes}
@@ -249,22 +231,13 @@ inequality therefore gives
   \log|\Delta_C|^2\ \le\ \sum_{(r,s)\in\Lambda}2(r+s)\log\rho
   \;+\;\sum_{(r,s)\in\Lambda}\log\sum_{(i,j)\in C}\binom rj^2\rho^{-2j}.
 \end{equation}
-The first term is $(1+1/K+O(1/S))\,W\log\rho$. Combining
-\eqref{eq:product-formula}, \eqref{eq:model-valuation} and
-\eqref{eq:model-hadamard}, any nonzero $\Delta_C$ satisfies
-\begin{equation}\label{eq:model-inequality}
-  \sum_{\substack{p\geq K\\ p\text{ inert}}}2\Bigl(\sum_{\Lambda}
-  \Bigl\lfloor\frac rp\Bigr\rfloor-\sum_{C}\Bigl\lfloor\frac jp\Bigr\rfloor
-  \Bigr)\log p
-  \le\ \sum_{\Lambda}2(r+s)\log\rho
-  +\sum_{\Lambda}\log\sum_{C}\binom rj^2\rho^{-2j}.
-\end{equation}
-After division by $W$, the left side is roughly the sum of $(\log p)/p$ over
-inert primes $K\leq p<R$, less the column loss. Under $h(-D)=1$ this inert sum is
-bounded below by the corresponding sum over all primes, minus a loss controlled
-by counting values of the norm form, as in Section~\ref{sec:arithmetic}. The
-right side is roughly $(1+1/K)\log\rho$ plus the derivative term. The theorem
-follows when the left side is larger.
+The first term is $(1+1/K+O(1/S))\,W\log\rho$. Comparing this with the divisibility bound
+\eqref{eq:model-valuation} gives a necessary inequality for every nonzero
+minor. After division by $W$, its arithmetic side is roughly the sum of
+$(\log p)/p$ over inert primes $K\leq p<R$, less the derivative loss;
+its size bound is roughly $(1+1/K)\log\rho$, plus the derivative term.
+The class number assumption bounds the missing prime contributions through
+the norm form, as we explain in Section~\ref{sec:arithmetic}.
 
 This model already shows where the difficulty lies, and it points to the three
 refinements. First, the arithmetic credit must be computed exactly, including
@@ -386,11 +359,5 @@ A nonzero element $p\beta$ of $p\mathcal{O}_D$ has modulus
 $p\sqrt{N(\beta)}\ge p$. The difference of two distinct nodes is nonzero and
 has modulus at most $2\rho_n<p$.
 \end{proof}
-
-At $D=499$, with $n=35\,394\,400$, Lemma~\ref{lem:node-disk} gives
-$2\rho_n<22\,491.5$. This is far below every candidate auxiliary prime in
-$(160\,000,170\,000]$, so the residue hypothesis of the rank theorem holds
-whichever of those primes is inert.
-
 
 \input{comparison}

@@ -1,0 +1,377 @@
+\section{Norm representations and the arithmetic estimate}\label{app:arithmetic}
+The local estimates of Appendix~\ref{app:local} treat each prime separately.
+To sum them, we begin by assigning the inert-prime contribution to every
+prime below a cutoff. We then subtract the excess assigned to split and
+ramified primes. Under class number one, these primes are represented by
+the norm form. Counting norm values gives an upper bound for the loss;
+removing composite values improves it. This appendix makes that argument
+precise and accounts for the derivative orders in the selected minor.
+
+Throughout, $D>163$ is prime, $D\equiv3\pmod8$, and $h(-D)=1$.
+Put $m_D=(D+1)/4$ and
+\[
+ N_D(x,y)=x^2+xy+m_Dy^2
+        =(x+y/2)^2+Dy^2/4.
+\]
+An element $x+y\omega$ is primitive if $\gcd(x,y)=1$. This is equivalent
+to not being divisible in $\OO_D$ by a rational integer greater than one.
+Since the units are $\{\pm1\}$, every nonreal element has a representative
+modulo sign and conjugation with $y>0$ and $2x+y\geq0$.
+
+\subsection{Prime and composite norm values}\label{app:norm-products}
+\begin{lemma}\label{lem:primitive-norms}
+Every split prime has exactly one primitive representative with
+$y>0$ and $2x+y>0$. The only primitive representative on the imaginary
+axis is $(-1,2)$, of norm $D$. Every prime factor of a primitive norm
+is at least $m_D$.
+
+If a primitive norm has $r\geq1$ distinct split prime factors, then
+it has $2^{r-1}$ representatives modulo sign and conjugation, whether
+or not the ramified prime also divides it. The ramified prime can occur
+only to the first power.
+\end{lemma}
+\begin{proof}
+A prime ideal above a split prime $q$ is principal. A generator has norm
+$q$, and its conjugate generates the other prime ideal. The four generators
+are related by sign and conjugation, giving the stated representative.
+They cannot lie on either axis. On the imaginary axis $2x+y=0$;
+primitivity then gives $(x,y)=(-1,2)$.
+
+An inert prime dividing a norm divides the element itself in $\OO_D$,
+so cannot divide a primitive norm. Every remaining prime is the norm of
+a nonreal element, and hence is at least $m_D$ by
+Lemma~\ref{lem:small-inert}. If $q=\pi\bar\pi$ is split, a primitive
+element cannot contain both $\pi$ and $\bar\pi$. For each distinct split
+prime factor there is therefore a choice between its two conjugate prime
+factors, with the exponent already fixed by the norm. Conjugation pairs
+these $2^r$ choices. The ramified factor is associated to its conjugate,
+and its square is a rational integer times a unit. It supplies no further
+choice and cannot occur twice in a primitive element.
+\end{proof}
+
+The restriction on the prime factors gives a short way to make the
+necessary finite lists. The bound below concerns the cutoff for retained
+split-prime contributions; it need not hold at the larger cutoff used
+for the row estimate.
+\begin{lemma}\label{lem:complete-factor-list}
+Let $Q<m_D^4$. Every composite primitive norm at most $Q$ is a product
+of two or three prime factors, counted with multiplicity. If
+$F\geq Q/m_D$ and $F<m_D^4$, all of its prime factors occur among the
+primitive elements of norm at most $F$ after the reducible elements
+have been removed.
+
+To perform that removal, it suffices to form products of a primitive
+element of norm at most $\sqrt F<m_D^2$ and a primitive element of norm
+at most $F/m_D$.
+\end{lemma}
+\begin{proof}
+Each prime factor is at least $m_D$, by Lemma~\ref{lem:primitive-norms}.
+Thus four factors would have product at least $m_D^4$, and any factor
+of a composite norm at most $Q$ is at most $Q/m_D$.
+
+If a primitive element of norm at most $F$ is reducible, choose an
+irreducible factor of smallest norm. Its norm is at most $\sqrt F$,
+and the complementary factor has norm at most $F/m_D$.
+Both factors are primitive: any rational divisor of either would divide
+the original element. Conversely, a product of two nonunits is reducible.
+The indicated products therefore remove exactly the reducible elements.
+Under class number one the remaining nonunit elements have prime norm.
+\end{proof}
+
+Multiplication in these lists is ordinary multiplication in the order:
+\begin{equation}\label{eq:norm-product}
+ (x+y\omega)(x'+y'\omega)
+ =(xx'-m_Dyy')+(xy'+x'y+yy')\omega.
+\end{equation}
+After multiplication one keeps the primitive products and identifies
+representatives related by sign or conjugation. Lemma~\ref{lem:primitive-norms}
+gives their multiplicities. This provides both a complete list of composite
+values up to $Q$ and, by subtraction from all primitive norm values, an
+exact list of the split primes up to $Q$.
+
+\subsection{The loss at a non-inert prime}
+Assume $2\leq K<D/4$ and choose $P\geq\max(S,J-1)$.
+All primes below $K$ are inert. For $x\geq K$, define
+\begin{equation}\label{eq:prime-loss-weights}
+ \begin{split}
+ w(x)&=\frac{S_r(R,K,x)\log x}{KW},\\
+ e(x)&=\frac{2K}{W}\sum_{a\geq1}T(S,x^{2a}),\qquad
+ s(x)=\frac{2K}{W}\sum_{a\geq1}T(S,x^{2a-1}).
+ \end{split}
+\end{equation}
+The sums $T$ and $S_r$ are defined in Appendix~\ref{supp:rows}.
+The provisional row contribution is
+\begin{equation}\label{eq:all-prime-contribution}
+ \arith_0=\sum_{q<K}w_{\rm keep}(q)\log q
+       +\sum_{K\leq q\leq P}\bigl(w(q)+e(q)\log q\bigr),
+\end{equation}
+where all sums indexed by $q$ are over primes. Its common derivative
+loss is $\sum_{q\leq j}\lfloor j/q\rfloor\log q$.
+The cutoff includes every prime appearing in this loss and every
+nonzero conjugate-variable term.
+
+Choose a finite set $\mathcal S$ of normalized primitive representatives
+other than $(-1,2)$, all of norm at most $J-1$, and let $\mathcal Q$ be
+the set of prime norms represented in $\mathcal S$.
+By Lemma~\ref{lem:primitive-norms}, these primes are split and each is
+represented once. When $D$ varies over an interval, we keep the integer
+coordinate pairs in $\mathcal S$ fixed and require the norm bound
+throughout the interval; $\mathcal Q$ may then depend on $D$.
+We retain the first-power derivative contributions of $\mathcal Q$
+individually.
+For other split primes, a bound independent of the selected columns is
+more convenient. Write $M=nt+r$, with $0\leq r<n$, and put
+\begin{equation}\label{eq:minimum-column-sum}
+ C(x)=n\sum_{j=0}^{t-1}\lfloor j/x\rfloor+r\lfloor t/x\rfloor.
+\end{equation}
+There are $n$ columns of each order. Since $j\mapsto\lfloor j/x\rfloor$
+is nondecreasing, every selection of $M$ columns satisfies
+$\sum_C\lfloor j/x\rfloor\geq C(x)$.
+
+At a split prime, the conjugate-variable estimate retains the even-power
+contribution $e(q)\log q$ and adds $s(q)\log q$. There is also no
+first-power derivative loss. Thus, with $\iota=1$ when $q\in\mathcal Q$
+and $\iota=0$ otherwise, an upper bound for the loss from the provisional
+row contribution is
+\begin{equation}\label{eq:split-loss}
+ L(q,\iota)=
+ \left[w(q)-s(q)\log q-(1-\iota)\frac{2C(q)\log q}{W}\right]_+.
+\end{equation}
+The positive part permits us to discard any improvement beyond the
+provisional contribution. When $\iota=1$, the derivative contribution
+is instead removed from the common loss. The same contribution is
+therefore never used twice.
+
+If $D\leq P$, the ramified-prime estimate in Appendix~\ref{app:local}
+gives the loss bound
+\begin{equation}\label{eq:ramified-loss}
+ L_{\rm ram}(D)=\frac12
+ \left[w(D)+e(D)\log D-\frac{2C(D)\log D}{W}\right]_+.
+\end{equation}
+If $D>P$, this term is absent. In particular, a cutoff below $D/4$
+requires no non-inert-prime correction at all.
+
+\subsection{Summing the losses by the norm form}
+Let $\mathcal N$ contain the normalized primitive representatives of
+norm in $[m_D,P]$, excluding $(-1,2)$. For each representative $\alpha$,
+put $\iota_\alpha=1$ if $\alpha\in\mathcal S$ and $\iota_\alpha=0$
+otherwise. Define
+\[
+ L_{\rm norm}=\sum_{\alpha\in\mathcal N}L(N(\alpha),\iota_\alpha)
+             +\boldsymbol1_{D\leq P}L_{\rm ram}(D).
+\]
+Every split prime at most $P$ occurs once in this sum. Composite values
+add nonnegative terms, so $L_{\rm norm}$ is an upper bound for the
+actual loss. We may subtract any lower bound for these extra terms.
+Let $C_2$ and $C_3$ be such lower bounds, obtained from disjoint primitive
+representatives whose norms have respectively two and three prime factors.
+Their multiplicities are as in Lemma~\ref{lem:primitive-norms}.
+
+\begin{proposition}[Arithmetic estimate]\label{prop:general-arithmetic}
+Suppose $R=KS$, $1\leq J\leq R$, $M\leq nJ$,
+$2\leq K<D/4$, and $P\geq\max(S,J-1)$. Set
+\begin{equation}\label{eq:general-arithmetic-terms}
+ \arith=\arith_0-L_{\rm norm}+C_2+C_3,\qquad
+ b(j)=\sum_{q\leq j}\lfloor j/q\rfloor\log q
+           -\sum_{q\in\mathcal Q}\lfloor j/q\rfloor\log q.
+\end{equation}
+Then every nonzero maximal minor of the integral interpolation matrix
+satisfies
+\[
+ W\arith-2\sum_C b(j)\leq\log|\Delta_C|^2.
+\]
+The conclusion also holds if $L_{\rm norm}$ is replaced by an upper bound
+and $C_2,C_3$ by lower bounds. Additional composite corrections may be omitted.
+\end{proposition}
+\begin{proof}
+Apply the inert-prime estimates of Appendix~\ref{app:local} provisionally
+to all primes up to $P$. For a split prime, replace its row contribution
+and derivative loss by the actual split-prime estimate. Equations
+\eqref{eq:minimum-column-sum} and \eqref{eq:split-loss} bound the cost
+of that replacement uniformly in $C$. Equation~\eqref{eq:ramified-loss}
+does the same for the ramified prime. The product formula for
+$|\Delta_C|^2$ then gives the claimed inequality with the true prime losses.
+The norm sum bounds those losses from above, and $C_2+C_3$ subtracts
+only terms contributed by composite representatives. This proves the result.
+\end{proof}
+
+This proposition applies both to cutoffs below the guaranteed inert
+range and to cutoffs beyond it. For the latter, the row sum may include
+norms greater than $m_D^4$. Only the complete removal of composite values
+in the set selecting $\mathcal Q$ requires the smaller cutoff in
+Lemma~\ref{lem:complete-factor-list}.
+
+\subsection{Bounds over an interval of discriminants}\label{app:norm-intervals}
+The comparison on $[499,503]$ and the first family of intervals above
+$875$ use one estimate for several values of $D$. The norm form makes
+this possible because, for a fixed pair $(x,y)$,
+\begin{equation}\label{eq:norm-interval-affine}
+ N_D(x,y)=N_{D_-}(x,y)+\frac{D-D_-}{4}y^2.
+\end{equation}
+We may therefore enclose each norm by its endpoint values. The following
+observation identifies many factors without a separate test at every
+intermediate discriminant.
+\begin{lemma}\label{lem:interval-irreducibility}
+Put $m_-=(D_-+1)/4$. If a primitive pair with $y>0$ satisfies
+$N_{D_-}(x,y)<m_-^2$, then $N_D(x,y)<m_D^2$ for every $D\geq D_-$.
+Consequently it is irreducible whenever $\OO_D$ has class number one.
+\end{lemma}
+\begin{proof}
+The norm bound gives $y^2<4m_-^2/(4m_--1)<m_-+1$, so $y^2\leq m_-$.
+Writing $m_D=m_-+u$, equation~\eqref{eq:norm-interval-affine} yields
+$N_D<m_-^2+um_-\leq(m_-+u)^2$. A reducible primitive element has
+at least two prime factors, each of norm at least $m_D$.
+\end{proof}
+
+All possible primitive norm representatives are found by the finite
+conditions $N_{D_-}(x,y)\leq P$, $y>0$ and $2x+y\geq0$.
+Let $[a,b]$ enclose one such norm, restricting it to $[m_-,P]$ when
+bounding a possible prime. By \eqref{eq:local-weight-decreasing}, $w$
+is decreasing on $[3,R)$ and zero beyond; $s$ and $C$ are nonincreasing
+by their floor-sum definitions. These functions are nonnegative, so
+valid endpoint bounds are
+\begin{align}
+ L^+(a,b,\iota)&=
+ \left[w(a)-s(b)\log a-(1-\iota)\frac{2C(b)\log a}{W}\right]_+,
+ \label{eq:loss-upper}\\
+ L^-(a,b,\iota)&=
+ \left[w(b)-s(a)\log b-(1-\iota)\frac{2C(a)\log b}{W}\right]_+.
+ \label{eq:loss-lower}
+\end{align}
+At the ramified representative the analogous upper bound is
+\[
+ \frac12\left[w(a)+e(a)\log b-\frac{2C(b)\log a}{W}\right]_+.
+\]
+Summing \eqref{eq:loss-upper} over all possible representatives bounds
+the loss from above. Products known to occur throughout the interval,
+with their multiplicities, can be subtracted using \eqref{eq:loss-lower}.
+
+Products of norm intervals are handled as follows. Suppose the factors
+have norm intervals $[a_i,b_i]$, and put
+$A=\prod_i a_i$, $B=\prod_i b_i$. At each discriminant their product
+has norm in $[A,B]$, even if the order of the candidate norm values changes
+as $D$ varies. If $(X,Y)$ is its normalized representative at that
+discriminant, then $Y^2\leq\lfloor4B/D_-\rfloor$. Writing
+$\delta m=(D_+-D_-)/4$, we obtain
+\begin{equation}\label{eq:product-window-bound}
+ N_{D_+}(X,Y)\leq B+\delta m\lfloor4B/D_-\rfloor.
+\end{equation}
+This proves membership in an upper norm window whenever the right side
+is below its cutoff; any lower endpoint condition is checked in the same
+way using \eqref{eq:norm-interval-affine}. A product is subtracted only
+when this inclusion holds at every discriminant in the interval.
+
+The factor lists are complete by the argument of
+Lemma~\ref{lem:complete-factor-list}, applied at each admissible integer
+$D$ in the interval. To remove a reducible candidate of norm at most $F$,
+one factor has norm at most $\sqrt F$ and the other at most $F/m_D$.
+Their lower endpoint norms are no larger, so the finite endpoint lists
+contain them. Equation~\eqref{eq:norm-product} detects their product
+at that $D$. The initial factors below $m_-^2$ are covered by
+Lemma~\ref{lem:interval-irreducibility}. On the broad intervals used above
+$875$, $P<m_-^3$, so only two-factor products are needed. On $[499,503]$
+the retained split-prime cutoff is below $m_-^4$, so two- and three-factor
+products suffice. Corrections to the row loss use only products proved
+to stay below $P$ throughout the interval.
+
+\subsection{The derivative remainder}\label{app:column-remainder}
+Legendre's formula applied to \eqref{eq:general-arithmetic-terms} gives
+\begin{equation}\label{eq:factorial-split-remainder}
+ F(j)=\log(j!)-b(j)
+ =\sum_q\sum_{a\geq2}\lfloor j/q^a\rfloor\log q
+       +\sum_{q\in\mathcal Q}\lfloor j/q\rfloor\log q.
+\end{equation}
+Both sums are nondecreasing in $j$. Choose a nonnegative lower bound
+$\sigma$ for
+\[
+ \sigma_{\rm pp}+\sum_{q\in\mathcal Q}\frac{\log q}{q},\qquad
+ \sigma_{\rm pp}=\sum_{\substack{q,\ a\geq2\\q^a\leq J-1}}
+                                      \frac{\log q}{q^a}.
+\]
+The remaining task is to bound $H(j)=j\sigma-F(j)$ from above for every
+order $0\leq j<J$.
+
+Recall the set $\mathcal S$ defining $\mathcal Q$. Let
+$q_{\rm cap}\leq J-1$ bound the upper endpoints of its norm intervals;
+for a fixed discriminant these intervals may be singletons.
+Let $\mathcal C_{\rm out}$ list every possible composite representative
+in $\mathcal S$, and let $\mathcal C_{\rm in}$ list representatives known
+to be composite and in $\mathcal S$ throughout the interval.
+Each product has multiplicity $\mu$ and a norm interval $[A,B]$.
+The preceding factor and inclusion arguments supply these two lists.
+Possible extra products in $\mathcal C_{\rm out}$ only weaken the lower
+bounds below. Then
+\begin{align}
+ \sigma_-&=\sigma_{\rm pp}+\sum_{[a,b]\in\mathcal S}\frac{\log a}{b}
+                 -\sum_{\mathcal C_{\rm out}}\mu\frac{\log B}{A},
+ \label{eq:slope-lower}\\
+ \sigma_+&=\sigma_{\rm pp}+\sum_{[a,b]\in\mathcal S}\frac{\log b}{a}
+                 -\sum_{\mathcal C_{\rm in}}\mu\frac{\log A}{B},
+ \label{eq:slope-upper}\\
+ T_-(j)&=\sum_{[a,b]\in\mathcal S}\lfloor j/b\rfloor\log a
+                 -\sum_{\mathcal C_{\rm out}}\mu\lfloor j/A\rfloor\log B
+ \label{eq:split-floor-lower}
+\end{align}
+bound the slope from below and above, and the split-prime part of
+\eqref{eq:factorial-split-remainder} from below. These inequalities follow
+by subtracting the composite contributions from the sum over all
+representatives. The containing list is used for a lower bound, and the
+contained list for an upper bound.
+
+We use $\sigma=\sigma_-\geq0$. On a block of integer orders
+$u\leq j<v$, monotonicity of the actual function $F$ gives
+\begin{equation}\label{eq:remainder-block}
+ H(j)\leq(v-1)\sigma_-
+       -\sum_q\sum_{a\geq2}\lfloor u/q^a\rfloor\log q-T_-(u).
+\end{equation}
+Assign this upper bound to each order in the block, and sort the resulting
+$J$ values as $h_{(1)}\geq\cdots\geq h_{(J)}$. With $M=nt+r$ as before,
+\begin{equation}\label{eq:finite-column-constant}
+ c=\frac2M\left(n\sum_{i=1}^t h_{(i)}+rh_{(t+1)}\right)
+ \quad\Longrightarrow\quad 2\sum_C H(j)\leq Mc.
+\end{equation}
+When $r=0$, the last summand is omitted. This bound fills the largest
+values first, with capacity $n$ per order. Blocks of at most $32$ orders
+are used in the finite comparisons.
+
+For the unbounded range it is useful to retain only prime powers
+$q^a\leq Q$, where $Q$ is fixed. Omitting the others discards a favorable
+factorial contribution. For $d=q^a\leq Q$, put
+\[
+ b_d=n\lceil J/d\rceil,\quad
+ t_d=\min(d,\lfloor M/b_d\rfloor),\quad r_d=M-b_dt_d.
+\]
+Each residue modulo $d$ occurs at most $b_d$ times among the columns.
+Selecting residues in decreasing order therefore gives
+\begin{equation}\label{eq:power-capacity}
+ \frac2M\sum_C\sum_{\substack{q,a\geq2\\q^a\leq Q}}
+       \{j/q^a\}\log q
+ \leq2\sum_{d=q^a\leq Q}
+ \frac{b_d\bigl(t_d(d-1)-\binom{t_d}{2}\bigr)
+              +r_d\max(0,d-1-t_d)}{Md}\log q.
+\end{equation}
+The estimate treats each prime power separately, so does not require
+simultaneously realizing the largest residues for different moduli.
+
+\subsection{An inert prime in an auxiliary interval}\label{app:auxiliary-prime}
+The following count supplies the prime used in Section~\ref{sec:completion}.
+It uses the same norm representation, but requires only an upper bound
+for the number of split primes, so composite values need not be removed.
+\begin{lemma}\label{lem:auxiliary-count}
+Let $0<A<B$, $16<D_-\leq D\leq D_+$, and suppose $D\notin(A,B]$.
+Under class number one, the number of non-inert primes in $(A,B]$ is at most
+\begin{equation}\label{eq:auxiliary-count}
+ \sum_{y=1}^{\lfloor\sqrt{4B/D_-}\rfloor}
+ \left(1+\sqrt{B-D_-y^2/4}
+       -\sqrt{\max(0,A-D_+y^2/4)}\right)_+.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Such a prime is split, so has a representative
+$q=X^2+Dy^2/4$ with $X\geq0$ and $y\geq1$.
+For fixed $y$, the possible $X=x+y/2$ lie in a translate of $\ZZ$,
+and in the interval with endpoints
+$\sqrt{\max(0,A-D_+y^2/4)}$ and $\sqrt{B-D_-y^2/4}$.
+There are at most one plus its length. Also $D_-y^2/4\leq B$.
+Summing over $y$ proves the bound.
+\end{proof}

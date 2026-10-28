@@ -1,0 +1,127 @@
+\section{Introduction}\label{sec:intro}
+Let $-D<0$ be a fundamental discriminant, and write $\OO_D$ for the
+ring of integers of $\mathbb Q(\sqrt{-D})$.
+Gauss's class number one problem asks when $\OO_D$ has unique factorization,
+or equivalently when its ideal class number $h(-D)$ is one.
+Heegner~\cite{heegner}, Baker~\cite{baker} and Stark~\cite{stark} proved that
+this occurs exactly for
+\begingroup
+\abovedisplayskip=14pt
+\belowdisplayskip=14pt
+\abovedisplayshortskip=14pt
+\belowdisplayshortskip=14pt
+\[
+ D\in\{3,4,7,8,11,19,43,67,163\}.
+\]
+\endgroup
+Here we obtain a weaker bound by the determinant method, without using
+Heegner's methods or the known classification.
+
+\begin{theorem}\label{thm:main}
+Let $-D<0$ be a fundamental discriminant with $h(-D)=1$.  Then
+$D\leq331$.
+\end{theorem}
+
+The question is how small an explicit bound for a hypothetical tenth
+class-number-one discriminant can be obtained from such an argument.  This
+is the setting of the challenge~\cite{tao2026}, which uses the class
+number one problem to test recent determinant arguments concerning
+Landau--Siegel zeros~\cite{green2026,taosketch}.  Our earlier paper established
+$D\leq498$ by comparing an upper bound for the norm of an interpolation
+determinant with the prime powers forced to divide that norm~\cite{chung498}.
+The present paper keeps that determinant and its spectral size estimate.
+We sharpen the rank criterion by retaining the exact degree and vanishing
+estimates in the earlier proof.  For a fixed polynomial space and fixed
+derivative orders, this permits fewer evaluation points and improves the
+upper bound for the determinant.
+
+\subsection{Overview of the proof}\label{subsec:overview}
+Suppose that $h(-D)=1$ and $D>331$.  Every element of $\OO_D$ has the form
+$(a+b\sqrt{-D})/2$ with $a,b\in\mathbb Z$, so every non-rational element
+has norm at least $D/4$.  If a prime $p$ splits or ramifies, an ideal of
+norm $p$ must be principal.  Its generator cannot be a rational integer,
+whose norm would be a square.  Thus every prime $p<D/4$ is inert.  In
+particular, $D$ is odd, since otherwise $2$ ramifies.  Nor can $D$ be
+composite: its least prime divisor would ramify and be at most
+$\sqrt D<D/4$.  Since $-D$ is fundamental, the resulting odd prime $D$ is
+congruent to $3$ modulo $4$; it cannot be $7$ modulo $8$, since then $2$
+splits.  Hence $D$ is prime with $D\equiv3\pmod8$.
+
+The bound $D\leq498$ from~\cite{chung498} now leaves only
+\[
+  D\in\{347,379,419,443,467,491\}.
+\]
+We exclude these six values using the determinant estimates
+of~\cite{chung498} and the sharper rank criterion proved below.
+
+We form the matrix by evaluating monomials $z^rw^s$ with $r+Ks<R$,
+and their normalized $z$-derivatives, at pairs $(z,\bar z)$ with
+$z\in\OO_D$.  The parameter $K$ determines the shape of this triangular
+set of exponents.  At an inert prime $p$, conjugation agrees with
+Frobenius, so $z^p-\bar z$ is divisible by $p$.  Expressing the monomials
+in terms of powers of $z^p-w$ therefore gives prime powers dividing every
+maximal minor, with a loss depending on the selected derivative orders.
+If one of these minors is nonzero, its norm is a positive
+integer with this prescribed divisibility.  On the other hand, choosing
+the evaluation points near the origin gives an Archimedean upper bound
+for the same norm.  We obtain a contradiction when the forced divisor
+exceeds that upper bound.  The arithmetic estimate also uses larger inert primes: class number one
+lets us bound the loss from non-inert primes by counting norm values.
+The upper bound keeps the derivative columns at each node together,
+using the spectral estimates of~\cite{chung498} to account for their
+correlations.
+
+The rank criterion determines how few points can be used while ensuring
+that a nonzero maximal minor exists.  If the polynomial space has dimension
+$M$, and we take $J$ derivative orders at each of $n$ points, the necessary
+dimension inequality is $nJ\geq M$.  The sufficient inequality stated
+in~\cite{chung498} does not hold uniformly over the auxiliary-prime
+intervals used here. Its proof, however, contains more precise information.
+
+As in that proof, we rescale the polynomial rows and derivative columns
+by known powers of an auxiliary
+inert prime before reducing modulo the prime.  A relation among the reduced
+rows would give a polynomial in two variables with prescribed local
+vanishing; its second variable records the powers of $z^p-w$.  Applying a differential operator and taking a determinant of
+coefficients then produces a nonzero polynomial in one variable.  We bound
+its degree and the multiplicity of its zeros, retaining their dependence
+on the degree of the original relation in its second variable.  These
+more precise bounds show that the total multiplicity exceeds the degree,
+even when the earlier sufficient inequality does not apply.  This proves
+full row rank for the smaller node counts.
+
+We still need an auxiliary inert prime for which this rank criterion
+applies.  The required primes are larger than $D/4$, where the elementary
+argument no longer guarantees inertness.  Our chosen intervals lie above
+$D$, so their primes cannot ramify.  If a prime in one of these intervals
+were split, class number one would represent it by the norm form
+\[
+ p=x^2+xy+\frac{D+1}{4}y^2.
+\]
+Counting the possible representations bounds the number of split primes
+in the interval.  When $y$ is even, the
+norm is congruent to $x^2$ modulo $2$; an odd prime norm therefore requires
+$x$ odd, so the admissible values of $x$ are spaced by two.  We use this parity refinement
+for the two intervals needed when $K=17$.  Since the count is smaller than
+the number of primes in the interval, at least one prime there is inert.
+We also place each interval above twice the radius of the disk containing
+the nodes.  Distinct nodes then remain distinct after reduction at every
+prime in the interval, as the rank criterion requires.
+
+For $D=491,467,443,419$ we use $K=43$.  For $D=379$ and $D=347$, the
+stronger rank criterion permits $K=17$. At fixed $R$, reducing $K$ allows more powers of the conjugate
+variable, changing both the divisibility and the Gram-matrix estimate. Their combined
+comparison is more favorable at these two discriminants.  For each chosen polynomial space, the sharper criterion brings the
+number of points close to the minimum $M/J$. With these
+choices, the arithmetic lower bound exceeds the Meixner--Schur upper bound
+for each of the six candidates.  All six values are therefore excluded,
+proving Theorem~\ref{thm:main}.
+
+The rest of the paper is organized around these steps.  Section~\ref{sec:comparison}
+recalls the determinant inequality and states the imported size estimate.
+Section~\ref{sec:rank} proves the exact rank criterion.
+Section~\ref{sec:primes} supplies the auxiliary inert primes and fixes
+the three parameter families, while Section~\ref{sec:completion} gives
+the six numerical comparisons.  The accompanying calculations
+and source code are available at
+\url{https://github.com/dualverse-ai/tenth_discriminant}.

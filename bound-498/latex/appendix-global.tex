@@ -1,0 +1,415 @@
+\section{The range \texorpdfstring{$D\geq875$}{D >= 875}}\label{app:global}
+We now apply the radial estimate to the part of the proof preceding the
+finite comparisons of Section~\ref{sec:completion}. The argument has two
+parts. On an unbounded interval the arithmetic estimate grows faster
+than the size estimate, with an explicit positive difference at the left
+endpoint. Below that endpoint we keep the integer parameters fixed on
+each of finitely many adjoining intervals.
+
+\subsection{Parameters and geometry on the unbounded interval}
+Set
+\[
+ D_0=5\,760\,000,\quad X=(D-3)/4,\quad X_0=(D_0-3)/4,
+ \quad K=31,\quad c_R=23/10,\quad e=29/500.
+\]
+For $D\geq D_0$ choose
+\begin{gather*}
+ S=\lfloor c_RX/K\rfloor,\quad R=KS,\quad J=\lfloor eR\rfloor,\\
+ T=106\,838,\quad R_0=KT=3\,311\,978,\quad J_0=192\,094.
+\end{gather*}
+Thus $S\geq T$, $R\geq R_0$ and $J\geq J_0$.
+Write $J_*=J_0+1$, $M_0=R_0(T+1)/2$, and put
+\begin{align*}
+ c_-&=c_R-K/X_0,& e_-&=e-1/R_0,\\
+ r_0&=\frac{4\sqrt{1.02K/e_-}}{\sqrt{2\pi T\sqrt{D_0}}}
+            +\frac{1+\sqrt{1+4/D_0}}T,&
+ \gamma_0&=1+r_0+800e/T.
+\end{align*}
+These give $\gamma_0<1.002779879<1.02$.
+Choose $n$ by rounding $(1+r_0)RS/J$ strictly upward to a multiple of
+$800$. Then
+\begin{equation}\label{eq:global-node-bounds}
+ \frac{RS}{J}<n\leq\gamma_0\frac{RS}{J}.
+\end{equation}
+The disk bound gives $M_y\leq4\rho/\sqrt D+1$, and substitution of
+$n\leq1.02RS/J$ shows $M_y/S\leq r_0$. The selected $n$ therefore
+satisfies $nJ>R(S+M_y)$. Indeed, the definition of $n$ implies $n\leq\gamma_0RS/J<1.02RS/J$, which
+justifies the radius estimate used to bound $M_y$.
+
+For later use put
+\begin{align*}
+ \theta_-&=398891129/800000000,&\theta_+&=(1+1/T)/2,\\
+ \nu_-&=c_-/(Ke),&\nu_+&=\gamma_0c_R/(Ke_-),\\
+ \eta_+&=\frac{\sqrt{D_0+4}/4}
+                  {\sqrt{\nu_-X_0\sqrt{D_0}/(2\pi)}},\\
+ C_-&=\tfrac12\log(\nu_-/\pi),&
+ C_+&=\tfrac12\log\left(\nu_+\sqrt{1+3/(4X_0)}/\pi\right)
+                                      +\log(1+\eta_+).
+\end{align*}
+Equation~\eqref{eq:global-node-bounds} gives
+\begin{equation}\label{eq:global-geometry}
+ \theta_-\leq\theta\leq\theta_+,\quad
+ \nu_-X\leq n\leq\nu_+X,\quad \eta\leq\eta_+,
+ \quad \tfrac34\log X+C_-\leq\log\rho\leq\tfrac34\log X+C_+.
+\end{equation}
+For the first inequality use $\theta_-<1/(2\gamma_0)$.
+For the third, the square of the bound for $\eta$ is a constant times
+$(D+4)/((D-3)\sqrt D)$, which decreases for $D>4$.
+The last inequality follows by writing $D=4X+3$ in the disk formula.
+In particular $\eta_+<0.022619737$.
+The remaining resultant hypothesis holds as well: $J<R$, and
+\[
+ \frac{2\rho+1}{R}
+ \leq\frac{2e^{C_+}}{c_-}X^{-1/4}+\frac1{c_-X}<1.
+\]
+The right side decreases and is less than one at $X_0$.
+Thus $\max(J,M_x)\leq R+KM_y$, and the resultant criterion supplies
+a nonzero maximal minor throughout this interval.
+
+\subsection{A uniform arithmetic lower bound}
+Only primes at most $X$ are used in this part of the argument. They are
+all inert by Lemma~\ref{lem:small-inert}. We give the lower bound
+explicitly, including its dependence on the anchor $T$, so that its
+validity as $D$ increases is visible.
+
+For an integer $q\geq4$, put
+\[
+ E_T(q)=\left[\frac1{Kq}-\frac3{2R_0}+
+             \frac3{2R_0q}-\frac{q}{2\sqrt3KT^3}\right]_+.
+\]
+The floor-sum estimate for $T(S,q)$ gives
+$2KT(S,q)/W\geq E_T(q)$ when $S\geq T$.
+One can obtain it by expanding the quadratic sum
+\eqref{eq:T-floor}; the only signed periodic term is bounded using
+$|t(1-t)(1-2t)|\leq1/(6\sqrt3)$, $0\leq t\leq1$.
+For $4\leq q\leq S$, the positive term $q/(2R_0^2)$ absorbs the
+Bernoulli remainder in the displayed expression; for $q>S$ the sum is zero.
+Dropping the remaining nonnegative terms gives the displayed expression.
+It increases when $T$ increases, since its terms depending on $T$ are
+$-3(1-1/q)/(2KT)-q/(2\sqrt3KT^3)$.
+
+For a prime $p<K$, write $a_p=K-p$ and define
+\[
+ W_p^{(0)}=\frac{1-T^{-2}}K+
+                      \sum_{p^{2l}\leq T}E_T(p^{2l}),
+ \qquad C(v)=v^2(3-2v),\quad e_* =J_*/R_0.
+\]
+For each $v\in\{0,1/200,\ldots,1\}$, put
+\[
+ v_-=(v-1/T)_+,\qquad q_v=\frac{a_p}{K}v\min(1,v+1/T).
+\]
+Define the corresponding row gains and column loss by
+\begin{align*}
+ A_p(v)&=\frac{a_p}{Kp^2}[C(v_-)-3/T]_+
+          +\frac{a_p}{Kp^3}[1-C(v)-6/T]_+\\
+ &\quad+\min\left(0,\frac{3a_p(K+p-1-2(p^2-1))}{2K^2p^2T}\right)
+                  -\frac{3a_pp^2}{2K^2T^2},\\
+ B_p(v)&=\left[\frac{a_p}{K^2}
+     \left\{\left(\frac1p-\frac1{p^2-1}\right)v_-^3-\frac3{2T}\right\}
+                                                        \right]_+,\\
+ C_p(v)&=3(1+1/T)q_v(1-q_v\theta_-/2)\frac{p-1}{p}e_*\\
+ &\quad+\boldsymbol1_{v>0}
+       \frac{3(1+1/T)\lfloor p^2/4\rfloor}
+                  {2p\theta_-(J_0/R_0)R_0^2}.
+\end{align*}
+The resulting small-prime weight is
+\[
+ W_p=W_p^{(0)}+
+       \max\left(0,\max_v\{[A_p(v)+B_p(v)]_+-C_p(v)\}\right).
+\]
+These are lower bounds for the small-prime row weights in
+\eqref{eq:wkeep}. To see the direction of each estimate, take
+$L=\lfloor vS\rfloor$ there, so that $v-1/S\leq L/S\leq v$.
+The sums of $t(S-t)$ in the two parts of the triangle, after
+normalization, have limiting values $C(v)$ and $1-C(v)$; summing
+$t$ and $t^2$ bounds their errors by $3/S$ on either part.
+The constant term of the strip estimate contributes at least its
+negative part. The incomplete-strip loss is at most
+$3a_pp^2/(2K^2S^2)$. For the extra odd-power sum, integral comparison
+of the floors gives the lower bound in $B_p$.
+Finally, the proportion of selected rows is at most $q_v$ and
+$q(1-q\theta/2)$ increases for $0\leq q\leq1$; the column estimate
+therefore gives $C_p$. Replacing $S$ by $T$ and $\theta$ by $\theta_-$ only weakens these bounds.
+For the final incomplete-column remainder, the denominator is bounded using
+$JR\geq J_0R_0$, which follows directly from
+$J\geq J_0$ and $R\geq R_0$.
+
+Before replacing $S$ by $T$, the corresponding lower gains increase with
+$S$, while the losses decrease: $(v-1/S)_+$ increases,
+$(a_p/K)v\min(1,v+1/S)$ decreases, and $C$ is increasing on $[0,1]$.
+Thus each fixed choice of $v$ gives a uniform lower bound. Taking the
+maximum over the grid preserves this bound; any additional tower terms
+are nonnegative.
+
+Write $L_0=\log X_0$, $u_-=1/c_R$, $u_+=1/c_-$, and
+\[
+ E_M=-\gamma_{\rm Euler}-\sum_p\frac{\log p}{p(p-1)}.
+\]
+The explicit estimates of Rosser and Schoenfeld
+\cite[Theorems 4 and 6]{rosserschoenfeld}, followed by partial summation,
+give, for $x\geq X_0$,
+\begin{align}
+ \sum_{p\leq x}\frac{\log p}{p}
+       &\geq\log x+E_M-\frac1{2\log x},\notag\\
+ \vartheta(x)&\leq x\left(1+\frac1{2\log x}\right),\notag\\
+ \sum_{K\leq p\leq x}p\log p
+       &\geq\frac{x^2}{2}
+         \left(1-\frac3{2\log x}-\frac1{3\log^2x}\right)-160000.
+                                                    \label{eq:global-prime-sums}
+\end{align}
+For the last inequality, integrate the bound for $\vartheta$ from $563$
+and use
+\[
+ \frac{d}{dt}\left(\frac{t^2}{2\log t}
+                         +\frac{t^2}{3\log^2t}\right)
+ \geq\frac{t}{\log t}\qquad(t\geq563).
+\]
+The constant $160000$ also covers the omitted initial interval.
+
+The large-prime row weight has the lower bound
+\[
+ \frac{S_r(R,K,p)}{KW}
+ \geq\frac1p-\frac3{2R}+\frac{3K}{2Rp}
+            +\frac{p}{2R^2}-\frac{3K}{2R^2}
+            -\frac{p^2}{12\sqrt3R^3}.
+\]
+The two terms containing $3K$ have nonnegative sum when $p\leq X<R$.
+Also $p^2\leq Xp$. Applying \eqref{eq:global-prime-sums} therefore
+shows that the normalized arithmetic term is at least
+\begin{equation}\label{eq:global-arithmetic-growth}
+ A_0+\log(X/X_0),
+\end{equation}
+where
+\begin{align}
+ A_0={}&\sum_{p<K}W_p\log p
+    +\sum_{\substack{p\geq K, l\geq1\\p^{2l}\leq T}}
+                                     E_T(p^{2l})\log p\notag\\
+ &+L_0+E_M-\frac1{2L_0}-\sum_{p<K}\frac{\log p}{p}
+       -\frac3{2c_-}\left(1+\frac1{2L_0}\right)\notag\\
+ &+\left(\frac{u_-^2}{2}-\frac{u_+^3}{12\sqrt3}\right)
+       \left\{\frac12\left(1-\frac3{2L_0}-\frac1{3L_0^2}\right)
+                       -\frac{160000}{X_0^2}\right\}.
+                                                    \label{eq:global-A0}
+\end{align}
+The coefficient on the final line is positive. As $X$ increases, its
+braced lower bound increases; the negative logarithmic errors decrease
+in modulus. This proves the asserted uniformity in
+\eqref{eq:global-arithmetic-growth}. Evaluation gives
+\begin{equation}\label{eq:global-A0-value}
+ A_0>10.8131594547983.
+\end{equation}
+
+\subsection{Uniform bounds for the derivative and radial terms}
+Retain only prime powers $q=p^a\leq1000$, $a\geq2$, and put
+\[
+ \sigma=\sum_{p^a\leq1000,\ a\geq2}\frac{\log p}{p^a},
+ \quad\ell_- =\tfrac14\log X_0+\log c_- -C_+-\sigma,
+ \quad\ell_+ =\tfrac14\log X_0+\log c_R-C_- -\sigma.
+\]
+By \eqref{eq:global-geometry}, the actual slope is between
+$\ell_-+\frac14\log(X/X_0)$ and
+$\ell_++\frac14\log(X/X_0)$. Discarding further factorial savings
+gives a valid upper bound for the determinant.
+
+Each residue modulo $q$ can occur in at most $n\lceil J/q\rceil$
+selected columns. Dividing by $M$ bounds this capacity by
+$a_q=(1+q/J_0)/(\theta_-q)$.
+Put $b_q=\min(q,\lfloor1/a_q\rfloor)$ and
+$r_q=(1-b_qa_q)_+$. Filling the largest remainders first proves that
+\begin{equation}\label{eq:global-column-remainder}
+ c_j=2\sum_{q=p^a\leq1000,\ a\geq2}\frac{\log p}{q}
+ \left\{a_q\left(b_q(q-1)-\frac{b_q(b_q-1)}2\right)
+                       +r_q(q-1-b_q)_+\right\}
+       <60.016864219225
+\end{equation}
+is an admissible bound for the column remainder.
+
+For the factorial saving, use $3200$ intervals $[u,v]$ of equal length
+in $[0,1]$. On each interval take
+\[
+ a=(1-\theta_+(1-u)^2)e_-,\quad
+ b=\min(1,(1+1/T)v+1/R_0),\quad
+ \alpha=[(1-u)^2-(1-v)^2-1/M_0]_+.
+\]
+The number of quantiles in this interval is at least $\alpha M$.
+The monotonicities following \eqref{eq:radial-rearrangement}, with
+$\ell=\ell_-$, therefore give
+\begin{equation}\label{eq:global-factorial-saving}
+ S_{\rm der}=3\sum_{[u,v]}\alpha h(b,a)
+                       >0.1803971924811329636.
+\end{equation}
+All the inequalities used here improve with $R,S,J$ at their stated
+lower bounds; no new derivative orders or prime powers are assumed
+to have the same residues as those at the endpoint.
+
+We next put the convex estimate on a fixed domain. Set $N=800$,
+$b_0=480$, and $n_0=1\,842\,400$, which is a lower bound for $n$ by
+\eqref{eq:global-node-bounds}. In \eqref{eq:radial-bin-weights} use
+$\eta_+$ and $n_0$, and denote the resulting numbers by $L_b^0$.
+Take
+\[
+ \overline L_0=\tfrac12\log(N/(b_0+1)),\qquad
+ u_0=(J_*+2)/R_0,
+\]
+and let $\Delta_0$ be \eqref{eq:radial-Delta} evaluated at $(R_0,T,J_*)$.
+For every $D\geq D_0$ the actual threshold $(J+2)/R$ is at most
+$u_0$. Also $\Delta\leq\Delta_0$: substitute
+$(J+1)/R\leq e+1/R_0$ in its quadratic expression, whose derivative
+is positive above $1/(2K)$, and compare with $J_*/R_0$.
+The resulting strict bound absorbs the omitted negative term $-1/R^2$.
+
+Choose $120$ integers
+\[
+ m_r=\lfloor.02J_0\rfloor+
+ \left\lfloor\frac{r(\lfloor.46J_0\rfloor-\lfloor.02J_0\rfloor)}{119}
+                                                      \right\rfloor,
+ \quad 0\leq r<120,
+\]
+and put $\tau_r=m_r/J_0$. Retain the initial segment on which
+\[
+ G_r=1-\frac{\tau_r+1/J_0}{\theta_-}>0,
+ \quad a_r=1-\sqrt{1-G_r}-(1-\tau_r)J_*/R_0>0,
+ \quad\nu_r=\ell_-+\log a_r>0.
+\]
+Use successive differences of these decreasing $\nu_r$, with the next
+value after the last retained cut equal to zero, and reduce the cuts
+to $\widetilde\tau_r=(\theta_-/\theta_+)\tau_r$.
+These choices give lower staircase levels for the cuts
+$\lceil\tau_rJ(D)\rceil$ at every $D\geq D_0$; the extra $1/J_0$
+accounts for rounding the cuts upward.
+
+In \eqref{eq:radial-functional} replace $\theta$ by $\theta_-$,
+the radial coefficients by $L_b^0$, the threshold in $\Phi$ by $u_0$,
+and the quadratic coefficient $3\varepsilon/(2\theta)$ by
+$3(J_0-1)/(2R_0\theta_-)$. Use the cuts
+$\widetilde\tau_r$ and the preceding staircase levels, and replace
+the negative correction by $-\overline L_0\Delta_0$.
+Call the resulting function $\mathcal F_0$.
+For any actual occupancy vector $w$, put
+$\widetilde w=(\theta_-/\theta)w$. Then
+$\widetilde w\in\mathcal P_{\theta_-}$ and its cumulative fractions
+$G_b$ are unchanged. Moreover,
+\[
+ \frac{\varepsilon}{\theta}w_b^2
+ =\frac{\varepsilon\theta}{\theta_-^2}\widetilde w_b^2
+ \geq\frac{J_0-1}{R_0\theta_-}\widetilde w_b^2.
+\]
+The same calculation applies to the positive-part squares, since their
+rescaled cuts are at least $\widetilde\tau_r$.
+The radial weights and their successive differences decrease when either
+$\eta$ or the shift $1/n$ increases; this follows by differentiating
+the logarithm in \eqref{eq:radial-bin-weights}.
+Finally $\overline L_0$ is an upper bound for the clipping weight.
+Each of these replacements therefore weakens the lower bound, and
+\begin{equation}\label{eq:global-functional-comparison}
+ \mathcal F_D(w)\geq\mathcal F_0(\widetilde w).
+\end{equation}
+
+The supporting-plane formula \eqref{eq:radial-supporting-plane}, applied
+to $\mathcal F_0$, gives
+\begin{equation}\label{eq:global-convex-value}
+ \min_{\mathcal P_{\theta_-}}\mathcal F_0
+                          >0.0825081841978627281=:F_*.
+\end{equation}
+The supporting-plane evaluation uses only the explicit function above and
+the finite linear minimization in~\eqref{eq:radial-supporting-plane}; the
+repository code records the parameter values and evaluates it with
+outward-rounded arithmetic.
+
+\subsection{The resulting contradiction}
+Put
+\[
+ A=1+\frac1K+\frac{3(K-1)}{2KT}+\frac{K-5}{2KT^2},\qquad
+ B=\frac{3(T+1)J_*}{R_0T}(1-\theta_-/2)
+                     +\frac{3\theta_+J_*}{R_0^2T}.
+\]
+These bound $(W_1+W_2)/W$ and $\gamma$ in
+\eqref{eq:radial-derivative-coupled} from above.
+Combining the radial determinant bound with the arithmetic column
+remainder gives the Archimedean upper bound
+\begin{equation}\label{eq:global-size-growth}
+ U_0+\tfrac34(A+B)\log(X/X_0),
+\end{equation}
+where
+\begin{align}
+ U_0={}&A(\tfrac34\log X_0+C_+)+B\ell_+-F_*-S_{\rm der}\notag\\
+ &+\frac{3(T+1)c_j}{2R_0T}
+                         +\frac{3(T+1)\log M_0}{R_0T}
+       <10.8128420196003.                  \label{eq:global-U0}
+\end{align}
+The coefficient of $c_j$ decreases with $S$. So does the last term:
+$((S+1)/S^2)\log(KS(S+1)/2)$ has negative derivative for $S\geq T$,
+as follows by logarithmic differentiation and $\log(KS(S+1)/2)>2$.
+The geometry grows by at most $3A\log(X/X_0)/4$, while the derivative
+slope grows by at most $B\log(X/X_0)/4$.
+The larger coefficient in \eqref{eq:global-size-growth} is thus valid.
+
+Subtracting \eqref{eq:global-size-growth} from
+\eqref{eq:global-arithmetic-growth} yields
+\begin{equation}\label{eq:tail-positive}
+ G_{\rm tail}(D)>0.00031743+0.127829\log(X/X_0)>0.
+\end{equation}
+Here $A_0-U_0>0.0003174351980$ and
+$1-3(A+B)/4>0.1278297612987827$.
+The nonzero minor supplied above must satisfy the opposite determinant
+inequality. This excludes every $D\geq D_0$.
+
+\subsection{The finite interval below \texorpdfstring{$D_0$}{D0}}
+For $875\leq D\leq D_0$, keep $P,K,S,R,J,n$ fixed on each closed
+interval $[d_-,d_+]$. The lattice radius is enclosed using its endpoint
+values. Choose $n$ to be a multiple of $800$ satisfying the resultant
+conditions with the upper radius and the lower value of $D$.
+The arithmetic estimates use norm representations when $P>(d_--3)/4$;
+otherwise every retained prime is inert.
+
+In all cases use $N=800$ radial groups, $3200$ groups for the factorial
+saving, and $120$ cuts in \eqref{eq:radial-derivative-coupled}.
+The latter run from $\max(1,\lfloor.02J\rfloor)$ to
+\[
+ \max\left(\max(1,\lfloor.02J\rfloor)+1,
+       \min(\lfloor M/n\rfloor-1,\lfloor.495J\rfloor)\right),
+\]
+equally spaced with integer rounding, retaining the initial segment
+where the stated positivity conditions hold. Take $b_0=480$.
+The prime-power cutoff is $J-1$.
+
+The intervals using norm representations have the parameter families
+in Table~\ref{tab:global-hybrid-parameters}; there
+$S=\lfloor c_RP/K\rfloor$, $R=KS$, $J=\lfloor eR\rfloor$.
+Their slope windows have cutoff at most $750000$ in the first row and
+$140000$ thereafter. The prime-product bounds in Appendix~\ref{app:arithmetic}
+apply on each constituent interval.
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{lrrrr}
+\toprule
+Range & $P$ & $K$ & $c_R$ & $e$\\
+\midrule
+$[875,1167]$ & $8\,999\,999$ & $23$ & $7/5$ & $7/125$\\
+$[1167,1359]$ & $1\,699\,999$ & $23$ & $8/5$ & $27/500$\\
+$[1359,1871]$ & $1\,699\,999$ & $23$ & $9/5$ & $27/500$\\
+$[1871,6959]$ & $1\,699\,999$ & $25$ & $2$ & $7/125$\\
+$[6959,319591]$ & $1\,699\,999$ & $29$ & $11/5$ & $29/500$\\
+$[319591,3968539]$ & $1\,699\,999$ & $31$ & $23/10$ & $29/500$\\
+\bottomrule
+\end{tabular}
+\caption{Parameter families for the norm-form comparisons. Each range is
+subdivided into closed intervals on which all integer parameters are fixed.}
+\label{tab:global-hybrid-parameters}
+\end{table}
+
+For the remaining intervals take $K=31$, $c_R=23/10$, $e=29/500$, and
+$P=\lfloor(d_--3)/4\rfloor$. Between $3968539$ and $4894699$ the prime
+sums are evaluated directly. Above $4894699$ use the explicit bounds of
+\cite[Theorems 4, 6 and 18]{rosserschoenfeld}; the additional estimate
+$\vartheta(x)<x$ is used only for $x\leq10^8$, within its stated range.
+On each interval the radial function is bounded below with the upper
+value of $\eta$, while the negative clipping term uses the lower value.
+The derivative scale likewise uses the appropriate endpoint in each
+term. These substitutions bound the entire interval.
+
+The adjoining intervals cover $[875,D_0]$, and their lower bounds are
+summarized in Table~\ref{tab:coverage}. Each is positive. Together with
+\eqref{eq:tail-positive}, this excludes every $D\geq875$.
+The interval endpoints and the numerical calculations are available with the
+\href{https://github.com/dualverse-ai/tenth_discriminant/tree/main/bound-498/code}{accompanying code}.

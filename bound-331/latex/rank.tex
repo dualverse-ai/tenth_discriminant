@@ -1,0 +1,218 @@
+\section{An exact rank criterion}\label{sec:rank}
+The determinant comparison requires the matrix $V$ to have full row rank.
+The necessary dimension inequality $nJ\geq M$ does not by itself establish
+this. We use the same reduction at an inert prime as in the earlier bound,
+but retain the individual degree and multiplicity estimates throughout the
+argument. This gives a stronger sufficient criterion at the parameters needed
+here.
+
+The obstruction to direct reduction is the identity
+$\bar z=z^p$ modulo an inert prime $p$. Thus $z^p-w$ vanishes at every
+reduced node, and some of the rows become dependent. Dividing out known
+powers of $p$ before reducing preserves more information. A relation among
+the resulting rows would produce a polynomial with prescribed vanishing
+along several curves. We will construct from it a nonzero polynomial in
+one variable, and show that its zeros have total multiplicity greater than
+its degree.
+
+\begin{theorem}[Exact rank criterion]\label{thm:exact-rank}
+Let $K\geq2$ and $S\geq1$ be integers, put $R=KS$, and let $1\leq J\leq R$.
+Suppose that $p$ is inert in $\OO_D$, that
+\[
+ K<p<R\leq p^2,
+\]
+and that the nodes $z_1,\ldots,z_n\in\OO_D$ have distinct residues modulo
+$p\OO_D$.
+Set $d=\lfloor(R-1)/p\rfloor$, and define
+\begin{equation}\label{eq:rank-caps}
+ \begin{split}
+ D_m&=p\left\lfloor\frac{R-mp-1}{K}\right\rfloor
+             +\bigl((R-mp-1)\bmod K\bigr)\qquad(0\leq m\leq d),\\
+ B_e&=\sum_{m=0}^e(D_m-m)\qquad(0\leq e\leq d).
+ \end{split}
+\end{equation}
+For $l\geq0$ put $L_l=\min(p,\max(0,J-lp))$, and let
+\begin{equation}\label{eq:rank-multiplicity}
+ \mu_e=\sum_{l=0}^e\max(0,L_l-e+l)\qquad(0\leq e\leq d).
+\end{equation}
+If
+\begin{equation}\label{eq:exact-rank-ineq}
+ n\mu_e>B_e\qquad(0\leq e\leq d),
+\end{equation}
+then the matrix \eqref{eq:jet-matrix} formed with these nodes has full
+row rank.
+\end{theorem}
+
+Here $D_m$ is the largest degree of a coefficient polynomial arising from
+layer $m$ of the reduced relation. The quantity $B_e$ bounds the degree of
+the one-variable polynomial constructed from a relation of degree $e$ in
+the second variable, while $\mu_e$ bounds its order of vanishing at each
+node. Keeping these quantities separately for every $e$ avoids the losses
+in the earlier sufficient criterion.
+
+\subsection{A relation after reduction modulo an inert prime}
+Put $g=z^p-w$. The polynomials
+\begin{equation}\label{eq:g-basis}
+ g^m z^a w^s,\qquad
+ 0\leq m\leq d,\quad 0\leq a<p,\quad a+Ks<R-mp,
+\end{equation}
+form an integral basis of the space spanned by the triangular support
+$z^rw^s$, $r+Ks<R$. Indeed, writing $r=mp+a$ identifies their leading
+monomials with the original basis. Every other term replaces a factor
+$z^p$ by $-w$, decreasing the weighted degree by $p-K>0$.
+The change of basis is therefore unitriangular.
+
+At node $i$ write
+\[
+ g(z_i+t,\bar z_i)=pU_i(t)+t^p,\qquad
+ U_i(t)=\frac{(z_i+t)^p-t^p-\bar z_i}{p}\in\OO_D[t].
+\]
+The constant coefficient is integral because $p$ is inert, and the remaining
+coefficients are integral because $p$ divides $\binom pv$ for $0<v<p$.
+Divide each row in layer $m$ by $p^m$, and multiply each column of derivative
+order $j=lp+v$, $0\leq v<p$, by $p^l$. Denote the resulting matrix by
+$\widetilde V$. Its entries are still integral: a term using $t^{pq}$ in
+the expansion of $(pU_i+t^p)^m$ can contribute to order $j$ only if $q\leq l$,
+and its coefficient after rescaling contains $p^{l-q}$.
+Only $q=l$ can survive reduction modulo $p$.
+
+Write $k=\OO_D/p\OO_D$, which is a field, and put
+$\xi_i=z_i\bmod p$ and $u_i(z)=(U_i\bmod p)(z-\xi_i)$.
+For $l\leq m$ the reduced entry is
+\begin{equation}\label{eq:scaled-entry}
+ \binom ml[t^v]\bigl(u_i(\xi_i+t)^{m-l}(\xi_i+t)^a\xi_i^{ps}\bigr);
+\end{equation}
+for $l>m$ it is zero. The basis change and the scalings are invertible in
+characteristic zero. Consequently, full row rank of $\widetilde V\bmod p$
+will imply full row rank of $V$. These scalings are used only for this
+purpose; the size and divisibility estimates concern the original matrix.
+
+Suppose that the reduced rows satisfy a nontrivial relation, with
+coefficients $c_{m,a,s}\in k$. Define
+\begin{equation}\label{eq:rank-F}
+ F(z,u)=\sum_{m=0}^d H_m(z)u^m,\qquad
+ H_m(z)=\sum_{a,s}c_{m,a,s}z^{a+ps}.
+\end{equation}
+The exponents $a+ps$ within a layer are distinct because $0\leq a<p$.
+Thus $F\ne0$. Let $e=\deg_u F\leq d<p$, where the last inequality follows from
+$R\leq p^2$.
+For $t=R-mp-1$, the maximum of $a+ps$ subject to
+$a+Ks\leq t$ and $0\leq a<p$ is attained at
+$s=\lfloor t/K\rfloor$, $a=t\bmod K$, since $p>K$.
+It follows that
+\begin{equation}\label{eq:rank-degree}
+ \deg H_m\leq D_m.
+\end{equation}
+We will also use $D_m-D_{m+1}\geq p$ for $m<d$.
+To see this without manipulating the floors, take a monomial attaining
+$D_{m+1}$ and increase $s$ by one. Its weighted degree increases by $K<p$,
+so it is admissible in layer $m$, and its degree $a+ps$ increases by $p$.
+
+There are $L_l$ derivative orders $j=lp+v$ with $0\leq j<J$.
+Since $(\xi_i+t)^{ps}\equiv\xi_i^{ps}\pmod{t^p}$ in characteristic $p$,
+we may replace $\xi_i^{ps}$ in \eqref{eq:scaled-entry} by
+$(\xi_i+t)^{ps}$ when extracting coefficients of order less than $L_l$.
+The row relation therefore gives
+\begin{equation}\label{eq:local-hasse-vanish}
+ \ord_{z=\xi_i}\bigl((\partial_u^{[l]}F)(z,u_i(z))\bigr)\geq L_l
+ \qquad(1\leq i\leq n,\ 0\leq l\leq e).
+\end{equation}
+Here $\partial_u^{[l]}$ is the Hasse derivative, defined by
+$\partial_u^{[l]}u^m=\binom ml u^{m-l}$.
+
+\subsection{A nonzero polynomial of controlled degree}
+Differentiating the identity defining $U_i$ before reducing modulo $p$ gives
+\begin{equation}\label{eq:ui-prime}
+ u_i'(z)=z^{p-1}-(z-\xi_i)^{p-1}.
+\end{equation}
+Thus differentiation along the different curves $u=u_i(z)$ agrees, up to
+a term vanishing to order $p-1$ at the relevant node, with the common operator
+\[
+ \mathcal D=\partial_z+z^{p-1}\partial_u.
+\]
+On $k(z)[u]$ this operator satisfies
+\begin{equation}\label{eq:Dp-identity}
+ \mathcal D^p=-\partial_u.
+\end{equation}
+Indeed, the $p$th iterate of a derivation in characteristic $p$ is a
+derivation. It sends $z$ to zero and $u$ to $(p-1)!=-1$, which determines
+its action on $k(z)[u]$.
+
+We claim that $F,\mathcal DF,\ldots,\mathcal D^eF$ are linearly independent
+over $k(z)$. Otherwise, since $F\ne0$, let $1\leq r\leq e$ be the first index at
+which a dependence occurs. The span of $F,\ldots,\mathcal D^{r-1}F$ is then stable
+under $\mathcal D$, including when $\mathcal D$ differentiates rational
+coefficients. By \eqref{eq:Dp-identity} it is also stable under $\partial_u$.
+It must therefore contain $F,\partial_uF,\ldots,\partial_u^eF$.
+These are independent: since $e<p$, they have distinct degrees
+$e,e-1,\ldots,0$ in $u$, with nonzero leading coefficients.
+This contradicts the dimension $r\leq e$.
+
+Consequently the coefficient determinant
+\begin{equation}\label{eq:WF-def}
+ W_F(z)=\det\bigl([u^m]\mathcal D^jF\bigr)_{0\leq j,m\leq e}
+\end{equation}
+is a nonzero polynomial. The identity
+\[
+ [u^m]\mathcal DG=([u^m]G)' +(m+1)z^{p-1}[u^{m+1}]G
+\]
+and $D_m-D_{m+1}\geq p$ give, by induction on $j$,
+\[
+ \deg\bigl([u^m]\mathcal D^jF\bigr)\leq D_m-j.
+\]
+Terms with $m>e$ are zero, and a negative degree bound means the
+corresponding entry is zero. Each determinant term uses every row and every
+column exactly once, so
+\begin{equation}\label{eq:WF-degree}
+ \deg W_F\leq\sum_{m=0}^eD_m-\sum_{j=0}^ej=B_e.
+\end{equation}
+
+\subsection{The multiplicity at each node}
+Fix $i$. Expressing each row polynomial of \eqref{eq:WF-def} in powers of
+$u-u_i(z)$ makes a unitriangular change of columns. It preserves the
+determinant and replaces its entries by
+\[
+ T^{(i)}_{j,l}(z)=(\partial_u^{[l]}\mathcal D^jF)(z,u_i(z)).
+\]
+We first show that
+\begin{equation}\label{eq:local-entry-order}
+ \ord_{\xi_i}T^{(i)}_{j,l}\geq\max(0,L_l-j).
+\end{equation}
+Let $\mathcal D_i=\partial_z+u_i'(z)\partial_u$.
+By \eqref{eq:ui-prime},
+$\mathcal D-\mathcal D_i=(z-\xi_i)^{p-1}\partial_u$.
+Repeated application lowers the order of this error by at most one at each
+step; hence, for every polynomial $G$ and $0\leq j<p$,
+\[
+ \mathcal D^jG-\mathcal D_i^jG
+       \in(z-\xi_i)^{p-j}k[z,u].
+\]
+Both operators commute with the Hasse derivatives in $u$.
+After substituting $u=u_i(z)$, the entry $T^{(i)}_{j,l}$ therefore agrees,
+modulo $(z-\xi_i)^{p-j}$, with the $j$th ordinary derivative of
+$(\partial_u^{[l]}F)(z,u_i(z))$.
+Equation~\eqref{eq:local-hasse-vanish} bounds its order from below by $L_l-j$ when
+this is positive. Since $L_l\leq p$, the error has at least the same
+order, proving \eqref{eq:local-entry-order}.
+
+To use all these bounds together, consider a term in the determinant
+expansion. Its order is at least
+$\sum_{l=0}^e(L_l-j_l)_+$, where the $j_l$ are a permutation of
+$0,\ldots,e$. For $a\geq b$ and $x\geq y$ one has
+\[
+ (a-x)_++(b-y)_+\leq(a-y)_++(b-x)_+.
+\]
+Thus pairing the largest $L_l$ with the largest row index minimizes this
+sum. Since $L_0\geq\cdots\geq L_e$, its minimum is
+$\sum_{l=0}^e(L_l-e+l)_+=\mu_e$.
+Every determinant term has at least this order, and so does their sum:
+\[
+ \ord_{\xi_i}W_F\geq\mu_e.
+\]
+Since $W_F$ is nonzero and the residues are distinct, \eqref{eq:WF-degree} gives
+\begingroup\postdisplaypenalty=10000
+\[
+ n\mu_e\leq\deg W_F\leq B_e,
+\]
+\endgroup
+contrary to \eqref{eq:exact-rank-ineq}. This proves Theorem~\ref{thm:exact-rank}.

@@ -1,0 +1,85 @@
+\subsection{The arithmetic estimate}\label{subsec:primes-import}
+We use the local divisibility formulas of the earlier paper, with all
+quantities evaluated at the present parameters. Their general derivation is
+given in Appendices~A and~B of~\cite{chung498}.
+We record the hypotheses and the meaning of the resulting terms, since the
+finite comparisons in that paper use different parameters.
+
+Suppose throughout this subsection that $D>163$ is prime,
+$D\equiv3\pmod8$, and $h(-D)=1$. Put $m_D=(D+1)/4$.
+Let $P$ be the prime cutoff in the arithmetic sums. The parameters used
+here satisfy
+\begin{equation}\label{eq:arithmetic-hypotheses}
+ \begin{gathered}
+ 2\leq K<D/4,\quad R=KS,\quad 1\leq J\leq R,\quad M\leq nJ,\\
+ P\geq\max(S,J-1),\qquad
+ F_{\max}:=\lfloor P/m_D\rfloor<m_D^4.
+ \end{gathered}
+\end{equation}
+The local divisibility estimates give a number $\arith$ and a derivative
+loss $b(j)$ such that every nonzero maximal minor satisfies
+\begin{equation}\label{eq:arithmetic-interface}
+ W\arith-2\sum_C b(j)\leq\log|\det V_C|^2.
+\end{equation}
+We recall their construction to specify how the estimates apply at the
+present parameters. An element is \emph{primitive} if it is not divisible
+in $\OO_D$ by a rational integer greater than one.
+
+All primes below $K$ are then inert. The small-prime estimates apply without
+exception, and the cutoff $P$ includes the derivative debits, the ramified
+prime, and the primes contributing to the conjugate-variable estimates.
+Summing the local row bounds gives
+\begin{equation}\label{eq:arithmetic-parts}
+ \arith=\arith_0-L_{\rm norm}+C_2+C_3.
+\end{equation}
+Here $\arith_0$ provisionally treats primes up to $P$ as inert.
+Class number one represents every non-inert prime as the norm of an
+algebraic integer. Summing over primitive norm representatives therefore
+gives an upper bound $L_{\rm norm}$ for the necessary correction, retaining
+the split and ramified local contributions. This sum also includes composite
+norm values. The nonnegative terms $C_2,C_3$ correct this overestimate for
+products of two or three prime factors, with the representation
+multiplicities supplied by unique factorization. Omitting other composite
+corrections only weakens the lower bound.
+
+Some split-prime column contributions are retained individually. Let
+$\mathcal P_s(D)$ be the split primes at most $q_{\rm cap}$, where the
+cutoff satisfies
+\begin{equation}\label{eq:slope-cutoff}
+ q_{\rm cap}\leq\min(J-1,F_{\max}m_D,m_D^4-1).
+\end{equation}
+Define the remaining derivative loss and its factorial remainder by
+\begin{equation}\label{eq:arithmetic-debit}
+ \begin{split}
+ b(j)&=\sum_{q\leq j}\lfloor j/q\rfloor\log q
+       -\sum_{q\in\mathcal P_s(D)}\lfloor j/q\rfloor\log q,\\
+ F(j)&=\log(j!)-b(j)
+       =\sum_q\sum_{a\geq2}\lfloor j/q^a\rfloor\log q
+        +\sum_{q\in\mathcal P_s(D)}\lfloor j/q\rfloor\log q.
+ \end{split}
+\end{equation}
+Sums indexed by $q$ are over primes. The split-prime contributions outside this
+window are bounded uniformly over column selections and already included
+in \eqref{eq:arithmetic-parts}.
+
+The prime sums in the window are bounded using norm representatives and
+composite products. Every prime factor of a primitive norm is at least
+$m_D$. Thus a composite primitive norm in \eqref{eq:slope-cutoff} has at most
+three prime factors, counted with multiplicity, and each factor is at
+most $F_{\max}$. To obtain the factor list up to $F_{\max}$, the finite enumeration
+first removes reducible primitive elements. A reducible
+primitive element of norm at most $F_{\max}<m_D^4$ has an irreducible factor
+of norm at most $\sqrt{F_{\max}}<m_D^2$, and a remaining factor of norm at
+most $F_{\max}/m_D$. Appendix~B of~\cite{chung498} proves that these ranges construct the complete factor list. Consequently the subtraction includes every
+composite in the window, even for $P>m_D^4$.
+
+Using Appendix~B of~\cite{chung498}, we choose a nonnegative lower bound $\sigma$ for
+\[
+ \sum_{\substack{q,\ a\geq2\\q^a\leq J-1}}\frac{\log q}{q^a}
+       +\sum_{q\in\mathcal P_s(D)}\frac{\log q}{q},
+\]
+and upper bounds $h_j$ for $H(j)=j\sigma-F(j)$.
+These bounds determine $c$ by the capacity calculation below.
+The explicit finite weights, slope bounds and remainder estimates are
+those in Appendix~B of~\cite{chung498}. The hypotheses above hold for all three parameter
+families below.

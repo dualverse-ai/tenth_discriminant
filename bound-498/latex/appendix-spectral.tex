@@ -1,0 +1,528 @@
+\section{Additional spectral estimates}\label{app:spectral}\label{app:metric}
+The estimates in Section~\ref{sec:metric} reduce the size of a selected
+minor to three bounds for a node Gram matrix. We first prove the
+complementary singular-product bound and the Schur bound. We then give
+finite estimates for the row weights and the three node bounds. All
+parameters remain free, so the same estimates apply when the polynomial
+space or the number of evaluation points changes.
+
+\subsection{The complementary singular product}\label{supp:complementary}
+The forward estimate uses an affine map taking the disk into itself.
+For a finite polynomial space, an expanding affine map is also available.
+To estimate its largest singular values, we pass to the inverse map and
+estimate the complementary product.
+
+\begin{proof}[Proof of Lemma~\ref{lem:complementary}]
+The matrix $T_J$ is triangular, with diagonal entries $1,d,\ldots,d^{J-1}$.
+Consequently
+\[
+ \det(T_J^*T_J)=d^{J(J-1)}.
+\]
+The product of its largest $m$ squared singular values is this determinant
+times the product of the largest $k=J-m$ squared singular values of
+$T_J^{-1}$. The inverse is composition by $(z-c_0)/d$.
+
+Put $D_{s_0}=\operatorname{diag}(s_0^j)_{0\leq j<J}$, with $G_0,s_0$
+as in the lemma. Then $T_J^{-1}D_{s_0}$ is composition by
+\[
+ \psi(z)=-\frac{c_0r_0}{G_0}+\frac{r_0}{G_0}z.
+\]
+This map is a strict disk contraction. Indeed, $G_0$ is the larger root
+of
+\[
+ X^2-(1+r_0^2)X+(1-c_0^2)r_0^2=0.
+\]
+The left side at $X=(1+c_0)r_0$ equals
+$-(1+c_0)r_0(1-r_0)^2<0$, so $G_0>(1+c_0)r_0$.
+Changing the sign of the translation does not change singular values,
+by the unitary reflection $f(z)\mapsto f(-z)$.
+Lemma~\ref{lem:composition}, applied to $\psi$, gives squared singular
+values $G_0^b r_0^{2l}$, $l\geq0$, for the infinite composition operator.
+Compression to polynomials of degree less than $J$ cannot increase them.
+
+For matrices $X,Y$, the norm inequality
+$\|\bigwedge^k(XY)\|\leq
+\|\bigwedge^kX\|\,\|\bigwedge^kY\|$ bounds the product of the largest
+$k$ singular values of a product. Apply it to
+\[
+ T_J^{-1}=(T_J^{-1}D_{s_0})D_{s_0}^{-1}.
+\]
+The first factor contributes at most $G_0^{bk}r_0^{k(k-1)}$ to the
+squared singular product. If $s_0\leq1$, the largest $k$ diagonal
+entries of $D_{s_0}^{-1}$ have indices $J-k,\ldots,J-1$; if $s_0\geq1$,
+they have indices $0,\ldots,k-1$. Their squared products are respectively
+$s_0^{-k(2J-k-1)}$ and $s_0^{-k(k-1)}$. Multiplying these bounds and
+taking logarithms gives \eqref{eq:complementary-cost}.
+\end{proof}
+
+\subsection{The Schur estimate}\label{app:schur-proof}
+The Schur bound sums all principal minors of a given size. Its proof has
+two parts. The Meixner factorization first compares each minor with a
+gamma moment determinant. Schur polynomials describe how that determinant
+depends on the selected orders, and the Cauchy identity sums this
+dependence over all selections.
+
+We use the following standard notation. A partition of length at most
+$m$ is an integer sequence $\lambda_1\geq\cdots\geq\lambda_m\geq0$;
+write $|\lambda|=\sum_i\lambda_i$. Its Schur polynomial is
+\[
+ s_\lambda(x_1,\ldots,x_m)
+ =\frac{\det[x_j^{\lambda_i+m-i}]_{i,j=1}^m}
+        {\det[x_j^{m-i}]_{i,j=1}^m}.
+\]
+The quotient extends to a symmetric polynomial when some variables
+coincide. At $1^m=(1,\ldots,1)$ it has value
+\begin{equation}\label{eq:schur-dimension}
+ s_\lambda(1^m)
+ =\prod_{1\leq i<j\leq m}
+       \frac{\lambda_i-\lambda_j+j-i}{j-i}.
+\end{equation}
+We will use the Littlewood--Richardson product rule and the Cauchy
+identity in their usual Schur specializations; see~\cite{fulton} and
+\cite[Section~2]{forresterwarnaar}.
+
+\begin{lemma}[Gamma moments]\label{lem:gamma-schur}
+Let $b>0$ and $m\geq1$, let $0\leq j_0<\cdots<j_{m-1}$, and put
+$D_T=\det[(b)_{j_i+j_k}]_{i,k=0}^{m-1}$. Then
+\begin{equation}\label{eq:gamma-minor-bound}
+ D_T\leq
+ \left(\prod_{0\leq i<k<m}\frac{j_k-j_i}{k-i}\right)^2
+ \prod_{i=0}^{m-1}i!(b)_{2j_i-i}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let $\mathrm d\mu_b(x)=x^{b-1}e^{-x}\mathrm dx/\Gamma(b)$ on
+$(0,\infty)$. Its $r$th moment is $(b)_r$. Expanding both determinants
+and integrating term by term gives Andreief's identity in the form
+\[
+ D_T=\frac1{m!}\int_{(0,\infty)^m}
+          \bigl(\det[x_k^{j_i}]_{i,k=0}^{m-1}\bigr)^2
+          \prod_{k=0}^{m-1}\mathrm d\mu_b(x_k).
+\]
+Set $\lambda_{m-i}=j_i-i$. The alternant formula shows that
+$\det[x_k^{j_i}]$ is the Vandermonde determinant times $s_\lambda(x)$,
+up to a sign. For the consecutive orders $0,\ldots,m-1$, the moment
+determinant is
+\[
+ D_0=\det[(b)_{i+k}]_{i,k=0}^{m-1}
+     =\prod_{i=0}^{m-1}i!(b)_i.
+\]
+To see the last equality, factor $(b)_i$ from row $i$. The remaining
+entry $(b+i)_k$ is monic of degree $k$ in $b+i$, so its determinant is
+the Vandermonde product $\prod_{i=0}^{m-1}i!$.
+
+Write $\Delta(x)=\prod_{i<k}(x_k-x_i)$. Normalize the density
+$\Delta(x)^2\prod_k\mathrm d\mu_b(x_k)$ to have mass one, and denote
+expectation for it by $\mathbb E$. The preceding calculation gives
+$D_T=D_0\mathbb E[s_\lambda(X)^2]$. For any partition $\nu$ of length
+at most $m$, a second use of Andreief gives
+\begin{equation}\label{eq:gamma-schur-average}
+ \mathbb E[s_\nu(X)]
+ =s_\nu(1^m)\prod_{i=1}^m(b+m-i)_{\nu_i}.
+\end{equation}
+To evaluate it, Andreief writes the expectation as
+\[
+ \mathbb E[s_\nu(X)]
+ =\frac{\det[(b)_{\nu_i+m-i+m-j}]_{i,j=1}^m}{D_0}.
+\]
+Factor $(b)_{\nu_i+m-i}$ from row $i$. The remaining entries are the
+monic polynomials $(b+\nu_i+m-i)_{m-j}$. Dividing their Vandermonde
+determinant by the one for $\nu=0$ gives
+$s_\nu(1^m)$ by \eqref{eq:schur-dimension}; the ratios of the row
+factors give the rising factorials in \eqref{eq:gamma-schur-average}.
+
+The Littlewood--Richardson rule writes
+$s_\lambda^2=\sum_\nu c_{\lambda\lambda}^{\nu}s_\nu$, with
+nonnegative coefficients. Every occurring $\nu$ has size $2|\lambda|$
+and is dominated by $2\lambda$: for every $r$,
+$\sum_{i\leq r}\nu_i\leq2\sum_{i\leq r}\lambda_i$.
+Terms with more than $m$ parts vanish in $m$ variables.
+The decreasing vector $(b+m-i+2\lambda_i)_{i=1}^m$ therefore
+majorizes $(b+m-i+\nu_i)_{i=1}^m$. Convexity of $\log\Gamma$ yields
+\[
+ \prod_{i=1}^m(b+m-i)_{\nu_i}
+ \leq\prod_{i=1}^m(b+m-i)_{2\lambda_i}.
+\]
+Apply \eqref{eq:gamma-schur-average} to the product expansion and
+evaluate that expansion at $1^m$. We obtain
+\[
+ D_T\leq D_0s_\lambda(1^m)^2
+                    \prod_{i=1}^m(b+m-i)_{2\lambda_i}.
+\]
+Substituting $\lambda_{m-i}=j_i-i$ and using
+\eqref{eq:schur-dimension} gives \eqref{eq:gamma-minor-bound}.
+\end{proof}
+
+\begin{proof}[Proof of \eqref{eq:schur}]
+The case $m=0$ is immediate, so assume $m\geq1$. Use the notation
+$M_{jk}(b,w)$, $\mathcal B$, $\sigma_0$, $c_*$ and $z_*$ from
+Section~\ref{sec:metric}. The Meixner identities
+\eqref{eq:meixner-norm}--\eqref{eq:meixner-expansion} give
+\begin{equation}\label{eq:positive-meixner}
+ M_{jk}(b,w)
+ =(1-w)^{-b-j-k}(b)_j(b)_k
+ \sum_{l=0}^{\min(j,k)}
+ \frac{\fall jl\fall kl}{l!(b)_l}w^{j+k-l}.
+\end{equation}
+These are finite consequences of the generating identity
+\eqref{eq:nb-generating}; the standard Meixner formulas are also recorded
+in~\cite[Sections~18.19 and~18.23]{dlmf}.
+
+Fix $T=\{j_0<\cdots<j_{m-1}\}$, write $s=\sum_{j\in T}j$, and put
+$V_{lj}=\fall jl/\sqrt{l!(b)_l}$ for $0\leq l,j<J$.
+Cauchy--Binet applied to \eqref{eq:positive-meixner} gives
+\begin{equation}\label{eq:meixner-minor-positive}
+ (1-w)^{bm+2s}\det M[T,T]
+ =\prod_{j\in T}(b)_j^2
+   \sum_{\substack{L\subseteq\{0,\ldots,J-1\}\\|L|=m}}
+      \det(V_{L,T})^2w^{2s-\sum_{l\in L}l}.
+\end{equation}
+A nonzero term matches each $l\in L$ to an order $j\geq l$.
+Thus $\sum_{l\in L}l\leq s$. After taking out $w^s$, the remaining
+polynomial has nonnegative coefficients and is at most its value at
+$w=1$. The finite Vandermonde identity is
+\[
+ (b)_j(b)_k\sum_l\frac{\fall jl\fall kl}{l!(b)_l}=(b)_{j+k}.
+\]
+For example, it follows by comparing the coefficient of $x^j$ in
+$(1-x)^{-b-k}=(1-x)^{-b}(1+x/(1-x))^k$.
+Consequently \eqref{eq:meixner-minor-positive}, with the column and
+mass factors restored, gives
+\begin{equation}\label{eq:schur-gamma-reduction}
+ \det G[T,T]\leq\mathcal B^m(1-w)^{-bm}c_*^{2s}D_T.
+\end{equation}
+
+Write $a_*=J-m$ and $s_*=ma_*+m(m-1)/2$, and set
+$d_i=a_*+i-j_i$ for $0\leq i<m$. The inequalities on the $j_i$ imply
+\[
+ a_*\geq d_0\geq\cdots\geq d_{m-1}\geq0.
+\]
+Thus $d$ is a partition, $s=s_*-|d|$, and the dimension factor in
+\eqref{eq:gamma-minor-bound} is $s_d(1^m)$.
+The ratio $(b)_{2j_i-i}/(b)_{2a_*+i}$ removes $2d_i$ factors, all
+at least $b$. Combining Lemma~\ref{lem:gamma-schur} with
+\eqref{eq:schur-gamma-reduction} therefore gives
+\[
+ \frac{\det G[T,T]}
+ {\mathcal B^m(1-w)^{-bm}c_*^{2s_*}
+                         \prod_{i=0}^{m-1}i!(b)_{2a_*+i}}
+ \leq s_d(1^m)^2 z_*^{|d|}.
+\]
+The assumption $bc_*>1$ says $0<z_*<1$. Sum over the order sets $T$
+and enlarge the sum to all partitions of length at most $m$.
+The Schur Cauchy identity, specialized to two lists of $m$ variables
+all equal to $\sqrt{z_*}$, gives
+\[
+ \sum_d s_d(1^m)^2z_*^{|d|}=(1-z_*)^{-m^2}.
+\]
+This is precisely the remaining factor in \eqref{eq:schur}.
+\end{proof}
+
+\subsection{The signed row sum}
+We now estimate the exact formulas at finite $R$ and $S$. Throughout,
+$R=KS$, $1\leq J\leq R$, and the weights are
+\eqref{eq:row-weights}, with $a>0$, $0<v<1$, and $\beta<0$.
+The estimates below keep the row sum separate, since it can be negative.
+
+Write $L(x)=x\log x$, with $L(0)=0$, and define
+\[
+ f(x)=L(x)-L(a+x)+L(a)-x\log v,
+ \qquad C_v=-a\log(1-v).
+\]
+\begin{lemma}\label{lem:spectral-row-finite}
+Suppose $aR>1$ and $f(1)<0$. Then
+\begin{equation}\label{eq:row-finite}
+ \frac1W\sum_\Lambda\lambda_{r,s}\leq
+ 3\int_0^1(1-x)f(x)\,\mathrm dx+\frac{9C_v}{R}
+ +\frac\beta{2K}(1-S^{-2})
+ +\frac{3(1+S^{-1})}{2R}\delta_R,
+\end{equation}
+where
+\[
+ \delta_R=\log(R+1)+1+\log\frac{a+1}{a-1/R}.
+\]
+\end{lemma}
+\begin{proof}
+Integral comparison gives, for $r\geq0$ and $b>1$,
+\[
+ \log(r!)\leq r\log r-r+\log(r+1)+1,
+ \qquad
+ \log((b)_r)\geq\int_0^r\log(b+t)\,\mathrm dt
+                        -\log\frac{b+r}{b-1}.
+\]
+For the second inequality, compare the sum with the integral over
+$[-1,r-1]$ and bound the two endpoint intervals. Substituting $b=aR$
+in the row weights yields
+$\lambda_{r,s}\leq Rf(r/R)+\beta s+\delta_R$.
+
+The function $f$ is convex, $f(0)=0$, and its minimum on $[0,\infty)$
+is $-C_v$. Thus $f\leq0$ on $[0,1]$ and its total variation there is
+at most $2C_v$. The function $(1-x)f(x)$ has total variation at most
+$3C_v$: apply the product bound for variation, using $|f|\leq C_v$.
+There are $S-\lfloor r/K\rfloor\geq S(1-r/R)$ rows with first
+exponent $r$. Since $f$ is nonpositive, their contribution is at most
+$RS(1-r/R)f(r/R)$. The left Riemann sum differs from the integral
+by at most $3C_v/R$, giving the first two terms of
+\eqref{eq:row-finite} after division by $W=R^2S/3$.
+
+Finally,
+$\sum_\Lambda s=KS(S^2-1)/6$ and
+$|\Lambda|=R(S+1)/2$. Summing $\beta s+\delta_R$ gives the last two
+terms of \eqref{eq:row-finite}.
+\end{proof}
+The integral in \eqref{eq:row-finite} is elementary; it involves only
+integrals of $x\log x$ and $x^2\log x$, after translation by $a$.
+
+\subsection{Column capacities and the forward estimate}
+Put $\varepsilon=J/R$. For a fixed upper squared radius $0<q\leq1$
+and a column scale $\tau>0$, define
+\[
+ g_\tau(x)=L(x)+L(a+x)-L(a)
+                  +2x(\ell-\log\tau-1),
+ \qquad E_{\rm col}=\frac{\log(R+1)+1}{R}.
+\]
+The price \eqref{eq:column-prices} satisfies
+\begin{equation}\label{eq:column-finite-error}
+ \frac{\nu_j}{R}\leq g_\tau(j/R)+E_{\rm col}.
+\end{equation}
+Indeed, use the factorial upper bound above and
+$\log((aR)_j)\leq\int_0^j\log(aR+x)\,\mathrm dx$.
+The terms containing $\log R$ cancel those in the column scale, and
+$j+1\leq J\leq R$ bounds the factorial remainder.
+
+The sum of the largest $m$ column prices can be bounded without deciding
+which orders occur. Partition $[0,\varepsilon]$ into $N_z$ equal bins.
+For a bin $I=[u,v]$, give it the upper cost
+$\gamma_I=\max\{0,g_\tau(u),g_\tau(v)\}$ and capacity
+\[
+ c_z=\frac{\varepsilon}{N_z}+\frac1R.
+\]
+The function $g_\tau$ is convex, so $\gamma_I$ bounds it throughout
+$I$. Each bin contains at most $Rc_z$ of the possible points $j/R$.
+Assign boundary points to just one neighboring bin, and define
+\[
+ C_{q,\tau}(t)
+ =\max\left\{\sum_I\gamma_I u_I:
+                0\leq u_I\leq c_z,\quad\sum_Iu_I=t\right\}.
+\]
+This function is nondecreasing and piecewise linear. Filling bins in
+decreasing order of $\gamma_I$ evaluates it. Every selection of $m$
+orders gives a feasible choice at $t=m/R$; hence
+\[
+ \frac{\nu_m^*(\tau)}{R^2}\leq C_{q,\tau}(t)+tE_{\rm col}.
+\]
+The replacement of negative bin costs by zero ensures monotonicity and
+only enlarges the upper bound.
+
+Retain $\delta_q,v_q,w,\mathcal B$ from
+\eqref{eq:moment-matrix}. For the forward choice $0<\xi<1$, take
+$\Gamma,\tau$ as in Section~\ref{sec:metric}, and set
+\[
+ d_{q,\xi}=a\log\frac\Gamma{1-w}+\frac{\delta_q}{K}
+             +\frac{\log R}{R}+E_{\rm col}-\frac{\log\xi}{R}.
+\]
+Since $\log\mathcal B/R\leq\log R/R+\delta_q/K$, the forward
+bound \eqref{eq:forward-cost} gives
+\begin{equation}\label{eq:forward-finite}
+ \frac{F_q^{\rm f}(m)}{R^2}
+ \leq C_{q,\tau}(t)+d_{q,\xi}t+t^2\log\xi.
+\end{equation}
+The last term in $d_{q,\xi}$ retains the difference between
+$m(m-1)$ and $m^2$.
+
+To use \eqref{eq:H-occupancy}, we need a bound throughout an interval
+of possible values of $t$, rather than only at its endpoints. On a cell
+$[l,h]\subseteq[0,\varepsilon]$, a bound for
+$F_q^{\rm f}(m)/R^2-a_0t$ is
+\begin{equation}\label{eq:forward-cell}
+ C_{q,\tau}(h)
+ +\max\{(d_{q,\xi}-a_0)l,(d_{q,\xi}-a_0)h\}
+ +l^2\log\xi.
+\end{equation}
+The three terms follow respectively from the monotonicity of
+$C_{q,\tau}$, the sign of the linear coefficient, and $\log\xi<0$.
+
+\subsection{Finite form of the complementary estimate}
+For $\kappa>0$, put
+\[
+ d=\frac{\kappa}{1+\sqrt w},\qquad c_0=d\sqrt w,
+ \qquad \tau=\frac{d(1-w)}{\sqrt{v_q}}.
+\]
+These are compatible with the affine map \eqref{eq:affine-map}.
+Choose $0<r_0<1$ and use $G_0,s_0$ from
+Lemma~\ref{lem:complementary}. Define
+\begin{align*}
+ c_1&=-a\log G_0-\varepsilon
+                  (2\log r_0-\log s_0-|\log s_0|),\\
+ c_2&=\log r_0-|\log s_0|<0,\\
+ e_q&=-a\log(1-w)+\frac{\delta_q}{K}
+          +\frac{\log R}{R}+E_{\rm col}
+          +\frac{\max(0,-\log d)}{R}.
+\end{align*}
+The complementary bound for the node minor, divided by $R^2$, is at most
+\begin{equation}\label{eq:complement-finite}
+ C_{q,\tau}(t)+\varepsilon(a+\varepsilon)\log G_0
+                          +(c_1+e_q)t+c_2t^2.
+\end{equation}
+To verify the finite term, substitute $J=\varepsilon R$, $m=tR$ and
+$k=(\varepsilon-t)R$ into \eqref{eq:complementary-cost}. Using
+$\log s_0=\log d+\log r_0-\log G_0$, both branches become
+\[
+ \varepsilon(a+\varepsilon)\log G_0+c_1t+c_2t^2
+       -\frac{t\log d+(\varepsilon-t)\log G_0}{R}.
+\]
+Here $G_0\geq1$ and $0\leq t\leq\varepsilon$, so the last term is at
+most $t\max(0,-\log d)/R$. Restoring the mass and column prices gives
+\eqref{eq:complement-finite}.
+
+On a cell $[l,h]$, subtract $a_0t$ and use
+\begin{equation}\label{eq:complement-cell}
+ \begin{split}
+ C_{q,\tau}(h)+\varepsilon(a+\varepsilon)\log G_0
+ &+\max\{(c_1+e_q-a_0)l,(c_1+e_q-a_0)h\}\\
+ &+c_2l^2.
+ \end{split}
+\end{equation}
+As in the forward estimate, every term bounds the whole cell.
+
+\subsection{The finite error in the Schur estimate}
+At a positive upper squared radius $q$, put
+\[
+ \zeta=\ell+\tfrac12\log v_q-\log(1-w),\qquad
+ z_*=a^{-2}e^{-2\zeta},\qquad
+ I(x)=\tfrac12x^2\log x-\tfrac14x^2,
+\]
+with $I(0)=0$. In \eqref{eq:schur}, the parameters of the completed
+Gram matrix satisfy $c_*=e^\zeta/R$ and $bc_*=ae^\zeta$.
+Define
+\begin{align}
+ g_\varepsilon(t)={}&t\bigl(\delta_q/K-a\log(1-w)\bigr)
+          +(2\varepsilon t-t^2)(\zeta-1)+I(t)\notag\\
+ &+I(a+2\varepsilon-t)-I(a+2\varepsilon-2t)
+               -ta\log a-t^2\log(1-z_*).
+ \label{eq:schur-finite}
+\end{align}
+
+\begin{proposition}\label{prop:schur-finite-error}
+Suppose $R>3$, $0<a\leq1$, $0<\varepsilon=J/R\leq1$,
+$\varepsilon(a+2\varepsilon)\leq1$, and $ae^\zeta>1$.
+For $0\leq m\leq J$ and $t=m/R$, the logarithm of the right side of
+\eqref{eq:schur}, divided by $R^2$, is at most
+\begin{equation}\label{eq:schur-error}
+ g_\varepsilon(t)+E_0,\qquad
+ E_0=\frac{\varepsilon}{R}
+           (2\log R+2-\log\varepsilon-\log a).
+\end{equation}
+\end{proposition}
+\begin{proof}
+The assertion is immediate for $m=0$. For $m\geq1$, put $a_*=J-m$,
+as in \eqref{eq:schur}. In the product there, use
+\[
+ \log(i!)\leq i\log i-i+\log(i+1)+1,\qquad
+ \log((aR)_n)\leq\int_0^n\log(aR+x)\,\mathrm dx.
+\]
+For $i=0,\ldots,m-1$, set $x_i=i/R$ and take $n=2a_*+i$.
+The terms containing $\log R$ have total coefficient
+$\sum_i(2a_*+2i)=2s_*$, and cancel those in
+$c_*^{2s_*}=\exp(2s_*(\zeta-\log R))$.
+The remaining sum, divided by $R^2$, is the left Riemann sum
+$R^{-1}\sum_{i=0}^{m-1}f_t(x_i)$, where
+\[
+ \begin{split}
+ f_t(x)={}&x\log x+(a+2\varepsilon-2t+x)
+                         \log(a+2\varepsilon-2t+x)\\
+          &-a\log a-2\varepsilon+2t-2x.
+ \end{split}
+\]
+
+The other finite terms have simple upper bounds. Since $a\leq1$ and
+$ae^\zeta>1$, we have $\zeta>0$. Thus replacing
+$2s_*/R^2=2\varepsilon t-t^2-t/R$ by $2\varepsilon t-t^2$ drops the
+nonpositive term $-t\zeta/R$. The factor $\mathcal B^m$ contributes
+$t\delta_q/K+t\log S/R$, whose second term is at most
+$\varepsilon\log R/R$. Since $i+1\leq J\leq R$, the factorial
+remainders contribute at most $\varepsilon(\log R+1)/R$.
+
+It remains to estimate the Riemann sum. For $0<x\leq t$,
+\[
+ f_t'(x)=\log\bigl(x(a+2\varepsilon-2t+x)\bigr)\leq0,
+\]
+because $x\leq t\leq\varepsilon$ and
+$\varepsilon(a+2\varepsilon)\leq1$. Its total variation is at most
+\[
+ -\int_0^t(\log x+\log a)\,\mathrm dx
+ =t(1-\log t-\log a)
+ \leq\varepsilon(1-\log\varepsilon-\log a).
+\]
+The last inequality follows by differentiation, since $at\leq1$.
+For a decreasing function, the left Riemann sum exceeds the integral
+by at most its variation divided by $R$. Finally, direct integration
+gives
+\[
+ \begin{split}
+ \int_0^t f_t(x)\,\mathrm dx
+ ={}&I(t)+I(a+2\varepsilon-t)-I(a+2\varepsilon-2t)\\
+    &-ta\log a-2\varepsilon t+t^2.
+ \end{split}
+\]
+Combining this integral with the mass, $c_*^{2s_*}$, and
+$(1-z_*)^{-m^2}$ gives \eqref{eq:schur-finite}. The three error bounds
+sum to $E_0$, proving \eqref{eq:schur-error}.
+\end{proof}
+
+To obtain a bound on a whole cell, we use concavity. Differentiating
+\eqref{eq:schur-finite} twice gives, for $t>0$,
+\[
+ g_\varepsilon''(t)=
+ \log\frac{t(a+2\varepsilon-t)}
+ {e^{2\zeta}(a+2\varepsilon-2t)^4(1-z_*)^2}.
+\]
+In particular, the sufficient condition
+\begin{equation}\label{eq:schur-concavity}
+ \varepsilon(a+\varepsilon)z_*<a^2(1-z_*)^2
+\end{equation}
+makes $g_\varepsilon$ concave on $[0,\varepsilon]$. Indeed, the
+numerator is at most $\varepsilon(a+\varepsilon)$, the fourth power
+in the denominator is at least $a^4$, and
+$e^{2\zeta}=1/(a^2z_*)$.
+For a cell with midpoint $t_0>0$ and half-width $h_0$, its tangent
+therefore gives the upper bound
+\begin{equation}\label{eq:schur-cell}
+ g_\varepsilon(t_0)-a_0t_0
+        +h_0|g_\varepsilon'(t_0)-a_0|+E_0
+\end{equation}
+for $g_\varepsilon(t)-a_0t+E_0$ throughout the cell. This also applies
+to the first cell, whose left endpoint is zero, by continuity.
+
+\subsection{Combining the finite estimates}
+Partition $[0,\varepsilon]$ into $N_m$ cells. At each positive upper
+radius $q$, the forward and complementary formulas give bounds on every
+cell. Include \eqref{eq:schur-cell} whenever the hypotheses of
+Proposition~\ref{prop:schur-finite-error} and
+\eqref{eq:schur-concavity} hold. For each cell, take the minimum over
+the available bounds and their parameter choices. Let $\Phi(q)$ be
+the maximum of these cell bounds and zero. Each chosen bound holds
+throughout its cell. Taking $F_q(m)$ to be the minimum of the
+corresponding exact node bounds, we obtain
+\[
+ F_q(m)\leq a_0Rm+R^2\Phi(q)\qquad(0\leq m\leq J).
+\]
+Thus $\Phi$ satisfies \eqref{eq:H-occupancy}. Radial monotonicity
+(Lemma~\ref{lem:radial}) and the node count in
+\eqref{eq:metric-mesh} now give the upper bound for the full minor.
+The signed row sum is supplied by \eqref{eq:row-finite}.
+
+For the finite comparisons, the additional parameter choices are
+\[
+ \kappa\in\{5/2,3,4,6,10\},
+\]
+\begin{multline*}
+ \xi,r_0\in\{1/100,3/100,3/50,1/10,3/20,1/5,3/10,2/5,\\
+                 1/2,3/5,7/10,4/5,9/10,19/20,99/100,9999/10000\}.
+\end{multline*}
+The estimates themselves apply to any finite collections satisfying
+$\kappa>0$ and $0<\xi,r_0<1$. They may also use an upper bound for
+$\ell$: each fixed principal minor is multiplied by
+$e^{2\ell\sum_{j\in T}j}$, so increasing $\ell$ enlarges it.
+All radial upper endpoints are positive; the original node minors at
+$q=0$ are covered by Lemma~\ref{lem:radial}.
