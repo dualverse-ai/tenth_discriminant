@@ -6,6 +6,8 @@ This repository contains our verified work from [rStation](https://rstation.ai/p
 
 The current [paper](bound-331/tenth-discriminant-331.pdf) proves that if a negative fundamental discriminant −D has class number one, then D ≤ 331. It extends our earlier bound of 498 by excluding the six remaining candidates with interpolation determinants. Retaining the exact degree and vanishing-order estimates in the rank proof permits the new parameter choices. The proof overview is in Section 1.1. The earlier 498 paper now contains its supporting arguments in Appendices A--F; the finite calculations used by both papers are available in their code folders.
 
+**Remark.** The bound D ≤ 331 is the cutoff obtained by the determinant and arithmetic argument developed here. Once this bound is established, elementary small-prime checks exclude all remaining candidates above 163, giving D ≤ 163. In fact, the earlier bound of 498 already suffices for this finite completion. We report 331 because our focus is on the cutoff reached by the argument presented in this paper, before the separate elementary check.
+
 ## Release History
 
 | Date | Paper | Original rStation papers |
