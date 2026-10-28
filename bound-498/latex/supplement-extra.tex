@@ -1,0 +1,64 @@
+\section{Finite row sums}\label{supp:rows}
+The row sums can be evaluated without listing the $M$ monomials. For example, let
+\[
+ T(N,m)=\sum_{s=0}^{N-1}(N-s)\floor{s/m},
+ \qquad Q=\floor{(N-1)/m}.
+\]
+Counting each multiple of $m$ once gives the exact formula
+\begin{equation}\label{eq:T-floor}
+ T(N,m)=\frac12\sum_{a=1}^{Q}(N-am)(N-am+1).
+\end{equation}
+Thus the tower contribution summed over the triangle is
+$K\sum_{a\geq1}T(S,q^{2a})$. The sums terminate when $q^{2a}>S$.
+A similar count in the $r$ direction gives, with $Q=\floor{R/q}$,
+\begin{equation}\label{eq:Sr}
+ S_r(R,K,q)=\sum_{a=1}^{Q}(R-aq)(R+K-aq),
+ \qquad
+ 2\sum_{\Lambda}\floor{r/q}\geq\frac{S_r(R,K,q)}K.
+\end{equation}
+For each $r$, the number of permitted $s$ is
+$S-\lfloor r/K\rfloor=(R-r+(r\bmod K))/K$. Summing this count above
+each threshold $r=aq$, in complete blocks of $K$ and one remainder block,
+gives the inequality.
+The difference between $2K\sum_\Lambda\floor{r/q}$ and $S_r$ is
+$\sum_{a=1}^{Q}c_a(K-c_a)$, where $c_a=aq\bmod K$; all these terms are nonnegative. Formula~\eqref{eq:Sr} is a quadratic polynomial in $q$ on each interval where $Q$ is constant. This makes the large prime sums practical to evaluate with integer arithmetic.
+
+
+
+\section{Complementary singular products}\label{supp:complementary}
+Proof of Lemma~\ref{lem:complementary}.
+\begin{proof}
+The matrix $T_J$ is triangular with diagonal entries $d^j$. Its full squared singular product is therefore $d^{J(J-1)}$. The largest $m$ squared singular product equals this determinant times the largest $k$ squared singular product of $T_J^{-1}$.
+
+The inverse is composition by $(z-c_0)/d$. Multiplying it on the right by $D_{s_0}=\operatorname{diag}(s_0^j)$ gives composition by
+$-c_0r_0/G_0+(r_0/G_0)z$, a strict disk contraction. The negative translation has the same singular
+values as its positive counterpart, by the unitary reflection $z\mapsto-z$.
+Lemma~\ref{lem:composition} gives squared singular values $G_0^b r_0^{2l}$ for its infinite extension. The norm inequality for the $k$th exterior power of a product bounds the singular product of
+$T_J^{-1}=(T_J^{-1}D_{s_0})D_{s_0}^{-1}$ by the product of the two bounds. The largest $k$ entries of $D_{s_0}^{-1}$ occur at indices $J-k,\ldots,J-1$ if $s_0\leq1$ and at $0,\ldots,k-1$ if $s_0\geq1$. Their squared products contribute exactly $-N\log s_0$.
+\end{proof}
+
+\section{Parameters for the finite comparisons}\label{supp:parameters}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+\toprule
+$P$ & $S$ & $R$ & $J$ & $n$\\
+\midrule
+$36\,000\,000$ & $1\,004\,651$ & $43\,199\,993$ & $5\,399\,999$ & $4\,822\,400$\\
+$169\,000\,000$ & $4\,716\,279$ & $202\,799\,997$ & $25\,349\,999$ & $22\,638\,400$\\
+$312\,000\,000$ & $8\,706\,976$ & $374\,399\,968$ & $46\,799\,996$ & $41\,793\,600$\\
+$312\,000\,000$ & $8\,706\,976$ & $374\,399\,968$ & $46\,799\,996$ & $35\,394\,400$\\
+\bottomrule
+\end{tabular}
+\caption{Parameters for all determinant comparisons below $875$. The last
+line is used on $[499,503]$; the other lines at the individual discriminants
+listed in Table~\ref{tab:candidates}.}
+\label{tab:parameters}
+\end{table}
+
+
+
+At $D=499$, the exact difference in \eqref{eq:uniform-rank-check} is
+\begin{equation}\label{eq:exact-rank-margin}
+ \frac{7\,771\,956\,952\,074\,657\,551}{10\,750\,000}>7.22\times10^{11}.
+\end{equation}

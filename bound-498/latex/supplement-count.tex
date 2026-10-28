@@ -1,0 +1,31 @@
+\section{An inert prime in the auxiliary interval}\label{supp:prime}
+The auxiliary primes used by the rank argument lie far above $D/4$, where
+Lemma~\ref{lem:small-inert} says nothing. There, class number one still
+constrains the non-inert primes. Each one is the norm of a non-rational
+integer, and such norms are sparse.
+
+\begin{lemma}[Non-inert primes in an interval]\label{lem:noninert-count}
+Let $0<A<B$ and $16<D_-\le D_+$. Suppose that $D\in[D_-,D_+]$, $D\notin(A,B]$
+and $h(-D)=1$. Put $Y=\lfloor\sqrt{4B/D_-}\rfloor$. Then the number of primes in
+$(A,B]$ that are not inert in $F_D$ is at most
+\begin{equation}\label{eq:noninert-bound}
+  \sum_{y=1}^{Y}\Bigl[\,1+\sqrt{B-D_-y^2/4}
+  -\sqrt{\max\bigl(0,\,A-D_+y^2/4\bigr)}\,\Bigr]_+ ,
+\end{equation}
+where $[x]_+=\max(0,x)$.
+\end{lemma}
+
+\begin{proof}
+Since $D$ is prime by Lemma~\ref{lem:reduction} and $D\notin(A,B]$, a non-inert
+prime $p\in(A,B]$ is split. As in the proof of Lemma~\ref{lem:small-inert}, it
+equals $N(\alpha)$ for some non-rational $\alpha$. After replacing $\alpha$ by
+$\pm\alpha$ or $\pm\overline\alpha$, we may write
+$p=X^2+Dy^2/4$ with $X=x/2\ge0$ and $y\ge1$. For fixed $y$, the admissible $X$
+lie in a translate of $\mathbb{Z}$, because $x\equiv yD\pmod2$. They also lie in
+an interval contained in
+$\bigl[\sqrt{\max(0,A-D_+y^2/4)},\ \sqrt{B-D_-y^2/4}\,\bigr]$, which contains at
+most $1+\sqrt{B-D_-y^2/4}-\sqrt{\max(0,A-D_+y^2/4)}$ such points. A
+representation requires $Dy^2/4\le B$, so $y\le Y$. Each pair determines one norm value, so different primes require different
+pairs. This gives~\eqref{eq:noninert-bound}. The bound
+also counts composite norms, so it is an overestimate.
+\end{proof}

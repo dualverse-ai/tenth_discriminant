@@ -1,0 +1,94 @@
+\subsection{The inequality to be proved}
+\label{subsec:central}
+We now give the comparison in a form that separates the algebra from the numerical estimates. The notation introduced here will be used throughout the paper. Write
+\begin{equation}\label{eq:normalization}
+ W=\frac{R^2S}{3},\qquad
+ W_1=2\sum_{(r,s)\in\Lambda}r,\qquad
+ W_2=2\sum_{(r,s)\in\Lambda}s.
+\end{equation}
+The factor $W$ is a convenient normalization: the main logarithmic terms in both estimates have size $W\log D$. Direct summation gives
+\begin{equation}\label{eq:radius-coefficient}
+ \frac{W_1+W_2}{W}
+ =1+\frac1K+\frac{3(K-1)}{2KS}+\frac{K-5}{2KS^2}.
+\end{equation}
+We retain the two finite-size terms. In particular, the coefficient of $\log\rho$ is not replaced by its limit $1+1/K$ in the numerical comparisons.
+
+Choose $M$ columns $C$ for which the square submatrix $V_C$ is nonsingular, and put $\Delta_C=\det V_C$. The rank argument will supply such a choice; it will not specify the columns. The arithmetic estimates therefore have to hold for every possible choice $C$. They take the form
+\begin{equation}\label{eq:arithmetic-interface}
+ W\arith-2\sum_{(i,j)\in C} b(j)\ \leq\ \log|\Delta_C|^2.
+\end{equation}
+Here $\arith$ is a column-independent lower bound assembled from local divisibilities, and $b(j)$ is the debit for using a derivative of order $j$. Both depend on the chosen parameters. Section~\ref{sec:arithmetic} describes their construction and states the local estimate used below.
+
+The main part of $b(j)$ is the first-prime-power sum
+$\sum_q\lfloor j/q\rfloor\log q$. Legendre's formula shows that subtracting
+it from $\log(j!)$ leaves higher-prime-power savings, with additional
+refunds from the treatment of non-inert primes. This remaining function is
+nearly linear in $j$; we subtract a slope and bound its finite remainder. Set
+\begingroup\postdisplaypenalty=10000
+\begin{equation}\label{eq:F-H}
+ F(j)=\log(j!)-b(j),\qquad H(j)=j\sigma-F(j),
+\end{equation}
+\endgroup
+where $\sigma$ is a slope chosen in the arithmetic calculation. Let $c$ be any bound such that
+\begin{equation}\label{eq:column-remainder}
+ 2\sum_{(i,j)\in C}H(j)\leq Mc
+ \quad\hbox{for every }|C|=M.
+\end{equation}
+There are only $n$ columns of any one order $j$, so this is a finite selection problem with a capacity constraint. It need not be bounded by the much cruder $2M\max_jH(j)$.
+
+Let $\rho$ contain all the nodes, put $u_i=z_i/\rho$, and define
+\begin{equation}\label{eq:residual-matrix}
+ B_{(r,s),(i,j)}(\ell)
+ =\frac{\fall rj}{R^j}e^{\ell j}u_i^{r-j}\bar u_i^{s},
+ \qquad \ell=\log(R/\rho)-\sigma.
+\end{equation}
+Here $\fall rj=r(r-1)\cdots(r-j+1)$ is the falling factorial, with
+$\fall r0=1$; the entry is zero when $j>r$. The exact relation to the integral matrix is
+\begin{equation}\label{eq:diagonal-scaling}
+ B_C(\ell)
+ =\operatorname{diag}_{\Lambda}(\rho^{-r-s})\,
+ V_C\,
+ \operatorname{diag}_{C}\bigl(j!(\rho/R)^je^{\ell j}\bigr).
+\end{equation}
+Taking squared absolute determinants, substituting \eqref{eq:F-H}, and then using \eqref{eq:arithmetic-interface} gives
+\[
+ W\arith\leq (W_1+W_2)\log\rho
+       +\log|\det B_C(\ell)|^2+2\sum_C H(j).
+\]
+This calculation explains the normalization: the factorials are cancelled exactly, rather than estimated twice.
+
+\begin{proposition}[Determinant comparison]\label{prop:comparison}
+Suppose that $V$ has full row rank, that \eqref{eq:arithmetic-interface} and \eqref{eq:column-remainder} hold, and that
+\[
+ \frac1W\log|\det B_C(\ell)|^2\leq U_{\rm var}
+ \qquad (|C|=M)
+\]
+holds uniformly over all column selections. Then
+\begin{equation}\label{eq:master}
+ \arith\leq \frac{W_1+W_2}{W}\log\rho
+                  +U_{\rm var}+\frac{Mc}{W}.
+\end{equation}
+In particular, a strictly larger arithmetic lower bound is impossible.
+\end{proposition}
+\begin{proof}
+Choose a nonsingular minor and apply the preceding identities. All bounds are uniform in the choice, so no information about which minor is nonsingular is needed.
+\end{proof}
+
+The earlier entrywise estimates pay a factor at most $M!$ for expanding a
+determinant. Our numerical comparisons retain the resulting
+nonnegative allowance $2M\log M/W$, even when Fischer's inequality makes
+this allowance unnecessary. At the parameters for $499$ it is less than $3\times10^{-7}$, much smaller
+than the final gap. We retain it so that the reported values can be
+reproduced directly. Thus define
+\begin{equation}\label{eq:metric-total}
+ \metric=\frac{W_1+W_2}{W}\log\rho+U_{\rm var}
+             +\frac{Mc+2M\log M}{W},
+ \qquad G=\arith-\metric.
+\end{equation}
+A positive lower bound for $G$ rules out the proposed field. There are three separate tasks: prove full rank, establish the local arithmetic estimates, and bound the same minor at the complex embedding. The auxiliary-prime scalings used to prove rank in Section~\ref{sec:rank} do not enter \eqref{eq:diagonal-scaling}; after nonvanishing has been established, all size and divisibility estimates concern the original integral minor $\Delta_C$.
+
+It is already possible to see why the number of nodes matters. The disk estimate gives $\rho\asymp n^{1/2}D^{1/4}$ once its boundary error is small. Reducing $n$ therefore lowers the common term in \eqref{eq:metric-total} by approximately
+\[
+ \frac12\left(1+\frac1K\right)\log\frac{n_{\rm old}}{n_{\rm new}}.
+\]
+At the two node counts in Table~\ref{tab:opening}, this is about $0.085$. The remaining terms also change: there are fewer copies of each derivative order, and the proportion $\theta=M/(nJ)$ of available columns that must be selected increases. We call this proportion the \emph{occupancy}. Section~\ref{sec:metric} exploits these restrictions. In the actual calculation the combined gain is enough to change the sign of $G$.

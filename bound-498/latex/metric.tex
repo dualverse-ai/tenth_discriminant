@@ -1,0 +1,231 @@
+\section{An upper bound for every column selection}\label{sec:metric}
+We turn to the complex absolute value of the minor. An entrywise bound followed by Hadamard's inequality is enough for a large discriminant bound. At the smaller values of $D$ considered here, however, it loses too much information about the derivative columns at a single node. Those columns are far from orthogonal. Our estimate keeps them together, bounds their Gram matrix, and then combines the node contributions.
+
+There is a complication worth making explicit. Full row rank gives a nonsingular minor but does not tell us how many of its columns come from each node, or which derivative orders are selected. Neither the first nor the last $m$ orders need maximize an $m$-column minor. The estimates below therefore allow an arbitrary subset of orders at each node, and only use the restrictions that there are at most $J$ columns per node and $M$ columns in total.
+
+\subsection{Weights and node Gram matrices}
+Let $B(\ell)$ be the normalized matrix in \eqref{eq:residual-matrix}. Choose real numbers $\lambda_{r,s}$ and form
+\[
+ Y=\operatorname{diag}_{\Lambda}(e^{-\lambda_{r,s}/2})B(\ell).
+\]
+Denote by $Y_i$ the block of $J$ columns at node $i$, and write $G_i=Y_i^*Y_i$. If $C_i$ is the set of orders selected at that node, Fischer's inequality gives
+\begin{equation}\label{eq:fischer}
+ \log|\det B_C(\ell)|^2
+ \leq\sum_\Lambda\lambda_{r,s}
+       +\sum_{i=1}^n\log\det G_i[C_i,C_i].
+\end{equation}
+Indeed, $Y_C^*Y_C$ is a positive semidefinite Gram matrix, and its determinant is at most the product of the determinants of its diagonal blocks. The weights are free parameters, but their total cost $\sum\lambda_{r,s}$ must be restored. Some weights have negative logarithmic cost; this signed sum will be estimated separately.
+
+\begin{lemma}[Radial monotonicity]\label{lem:radial}
+For fixed row weights and a fixed set of derivative orders, each principal minor of a node Gram matrix is a polynomial with nonnegative coefficients in $q=|u_i|^2$.
+\end{lemma}
+\begin{proof}
+Write $u_i=\sqrt q\,e^{\mathrm i\phi}$. The phase of an entry of $Y_i$ is $e^{\mathrm i(r-s-j)\phi}$, so it is removed by diagonal unitary transformations on the rows and columns. By Cauchy--Binet, the principal Gram minor is a sum of squared minors of $Y_i$. For a row set $E$ and order set $T$ of equal size, such a squared minor has the form
+\[
+ e^{-\sum_E\lambda_{r,s}}
+ \prod_{j\in T}\frac{e^{2\ell j}}{R^{2j}}
+ \bigl(\det[\fall rj]_{E,T}\bigr)^2
+ q^{\sum_E(r+s)-\sum_Tj}.
+\]
+If the determinant is nonzero, at least one term in its expansion is nonzero. That term matches each $j$ to a row with $r\geq j$, so the exponent of $q$ is nonnegative. All coefficients are nonnegative, proving the claim; the value at $q=0$ follows by continuity.
+\end{proof}
+
+Thus a node can be moved outward to a radius bound before estimating its selected Gram minor. This assertion concerns principal minors, not monotonicity of individual eigenvalues. It is exactly the form needed to replace the ordered nodes by a finite set of radial bounds.
+
+\subsection{Why negative-binomial weights help}
+Fix parameters $a>0$, $0<v<1$ and $\beta<0$, and let $b=aR$. We use
+\begin{equation}\label{eq:row-weights}
+ e^{-\lambda_{r,s}}=\frac{(b)_r}{r!}v^r e^{-\beta s},
+\end{equation}
+where $(b)_r=b(b+1)\cdots(b+r-1)$. These are negative-binomial weights in the $r$ variable. They are useful because their moments against falling factorials can be computed explicitly.
+
+The triangle allows a better estimate than completing the rows to a rectangle. Write $x_+=\max(0,x)$. At a node of squared radius $q>0$, put
+\[
+ \delta_q=(\log q-\beta)_+,\qquad v_q=v e^{-\delta_q/K},
+ \qquad w=v_qq,\qquad \mathcal B=S e^{S\delta_q}.
+\]
+For a fixed $r<R$, the permitted $s$ satisfy $0\leq s<S-r/K$. Hence
+\begin{equation}\label{eq:triangular-tilt}
+ \sum_{0\leq s<S-r/K}(qe^{-\beta})^s
+ \leq S e^{(S-r/K)\delta_q}.
+\end{equation}
+Multiplication by $e^{-r\delta_q/K}$ replaces $v$ by $v_q$. We may then extend the $r$ sum to all nonnegative integers: the added row outer products are positive semidefinite. After removing the node angle by diagonal unitary conjugation, $G_i$ is
+bounded above in the positive semidefinite order by the $J\times J$ matrix
+\begin{equation}\label{eq:moment-matrix}
+ \mathcal G_{jk}
+ =\mathcal B\left(\frac{e^\ell}{R\sqrt q}\right)^{j+k}
+ \sum_{r\geq0}\frac{(b)_r}{r!}w^r\fall rj\fall rk,
+ \qquad 0\leq j,k<J.
+\end{equation}
+The formulas at $q=0$ are understood by continuity. In the finite radial
+partition used below all upper radii are positive. This completion changes the estimate, not the integral determinant being bounded. All its principal minors majorize the corresponding ones of $G_i$.
+
+Here is the moment calculation behind the choice of weights. Normalize $(b)_rw^r/r!$ to have total mass one. The resulting random integer $r$ satisfies
+\begin{equation}\label{eq:nb-generating}
+ \mathbb E[(1+x)^r(1+y)^r]
+ =\left(\frac{1-w}{1-w(1+x)(1+y)}\right)^b.
+\end{equation}
+Factoring the denominator as
+\begingroup\postdisplaypenalty=10000
+\[
+ (1-w)\bigl((1-\alpha x)(1-\alpha y)-\delta_0xy\bigr),
+ \qquad \alpha=\frac w{1-w},\quad
+ \delta_0=\frac w{(1-w)^2},
+\]
+\endgroup
+and expanding in $x$ and $y$ gives a triangular orthogonal factorization. Let $P_l$ be the monic polynomials orthogonal for this normalized
+negative-binomial measure. These are the Meixner polynomials; their formulas are
+\begin{align}
+ \|P_l\|^2&=l!(b)_l\frac{w^l}{(1-w)^{2l}},\label{eq:meixner-norm}\\
+ \fall rj&=\sum_{l=0}^j\binom jl(b+l)_{j-l}
+          \left(\frac w{1-w}\right)^{j-l}P_l(r).
+ \label{eq:meixner-expansion}
+\end{align}
+The generating identity proves the constants directly. No limiting asymptotic formula for orthogonal polynomials is involved.
+
+Choose a column scale $\tau>0$ and set
+\begin{equation}\label{eq:column-prices}
+ \nu_j=\log(j!)+\log((b)_j)+2j(\ell-\log(R\tau)).
+\end{equation}
+After dividing column $j$ by $e^{\nu_j/2}$, the factorization
+\eqref{eq:meixner-norm}--\eqref{eq:meixner-expansion} identifies the completed matrix factor with
+$\sqrt{\mathcal B(1-w)^{-b}}$ times the matrix of composition by
+\begin{equation}\label{eq:affine-map}
+ \phi(z)=c_0+dz,\qquad
+ c_0=\frac{\tau v_q\sqrt q}{1-w},\qquad
+ d=\frac{\tau\sqrt{v_q}}{1-w},
+\end{equation}
+on polynomials of degree less than $J$. The Hilbert space has orthonormal monomials $\sqrt{(b)_j/j!}\,z^j$, or equivalently reproducing kernel $(1-z\bar w)^{-b}$. For example, the coefficient in row $l$, column $j$ of composition is
+\[
+ \binom jl\sqrt{\frac{(b)_j l!}{j!(b)_l}}c_0^{j-l}d^l,
+\]
+which is precisely the normalized factor obtained above. This converts a large derivative Gram matrix into a problem about an affine map of the disk.
+
+\subsection{Two bounds for singular products}
+We state the two estimates used in the spectral part of the computation. We prove the first here and give the second proof in Section~\ref{supp:complementary} of the supplementary notes.
+
+\begin{lemma}[Affine composition]\label{lem:composition}
+Suppose $c_0\geq0$, $d>0$ and $c_0+d<1$. Set
+\[
+ U=c_0d,\quad V=d^2,\quad Z=1-c_0^2,\qquad
+ h=\frac{2U}{Z-V+\sqrt{(1-(c_0+d)^2)(1-(c_0-d)^2)}},
+\]
+\[
+ \Gamma=(Z-Uh)^{-1},\qquad \xi^2=\frac{V+Uh}{Z-Uh}.
+\]
+The squared singular values of composition by $c_0+dz$ on the space with kernel $(1-z\bar w)^{-b}$ are $\Gamma^b\xi^{2l}$, $l\geq0$.
+\end{lemma}
+\begin{proof}
+One has $0\leq h<1$, $0<\xi<1$, and
+$Uh^2-(Z-V)h+U=0$. The kernel of the product of the composition operator with its adjoint is
+\[
+ [Z-U(z+\bar w)-Vz\bar w]^{-b}.
+\]
+The disk automorphism $(z-h)/(1-hz)$, accompanied by the multiplier
+$(1-h^2)^{b/2}/(1-hz)^b$, induces a unitary operator, as is checked by substituting in the reproducing kernel. Conjugating the displayed kernel by this unitary and using the quadratic equation for $h$ gives $\Gamma^b$ times the kernel of the dilation operator $f(z)\mapsto f(\xi^2z)$. Its eigenvalues on the monomials are $\xi^{2l}$. Taking square roots gives the singular values of the original operator.
+\end{proof}
+
+Compression to polynomials of degree less than $J$ cannot increase singular values. If $m$ orders are selected at a node, let $N_m(\tau)$ be the sum of the largest $m$ numbers among $\nu_0,\ldots,\nu_{J-1}$. Restoring the column scales and the scalar mass gives the bound
+\begin{equation}\label{eq:forward-cost}
+ F_q^{\rm f}(m)=N_m(\tau)
+   +m\log\mathcal B+bm\log\frac\Gamma{1-w}
+   +m(m-1)\log\xi
+\end{equation}
+for its logarithmic Gram determinant. This applies to every selection of $m$ orders.
+The term $m(m-1)\log\xi$ is negative and quadratic in $m$. It records the
+geometric decay of the singular values, a saving lost when all $m$ singular
+values are bounded by the largest one. This explains why selecting many
+columns at a node can improve the estimate. The other terms, including the
+capacity cost $N_m$, still have to be paid; the final calculation accounts
+for all of them together.
+Conveniently, one may choose $0<\xi<1$ first and then set
+\[
+ \Gamma=\frac{1+\xi^2+\sqrt{(1-\xi^2)^2+4w\xi^2}}2,\qquad
+ \tau=\frac{\xi(1-w)}{\Gamma\sqrt{v_q}}.
+\]
+These choices automatically give a contracting map in \eqref{eq:affine-map}.
+
+Near $m=J$, it can be better to estimate the complementary singular product. This allows an expanding finite affine map as well.
+\begin{lemma}[Complementary singular product]\label{lem:complementary}
+Let $T_J$ be composition by $c_0+dz$ on polynomials of degree less than $J$, where $c_0\geq0$ and $d>0$. Put $k=J-m$. For $0<r_0<1$, define
+\[
+ G_0=\frac{1+r_0^2+\sqrt{(1-r_0^2)^2+4c_0^2r_0^2}}2,\qquad
+ s_0=\frac{dr_0}{G_0}.
+\]
+The logarithm of the product of the largest $m$ squared singular values of $T_J$ is at most
+\begin{equation}\label{eq:complementary-cost}
+ J(J-1)\log d+kb\log G_0+k(k-1)\log r_0-N\log s_0,
+\end{equation}
+where $N=k(2J-k-1)$ for $s_0\leq1$, and $N=k(k-1)$ for $s_0\geq1$.
+\end{lemma}
+
+
+Adding $N_m(\tau)+m\log\mathcal B-bm\log(1-w)$ to \eqref{eq:complementary-cost} bounds the same node minor as \eqref{eq:forward-cost}. We can take the minimum over either estimate and over any finite collection of its parameters. Each choice gives an upper bound for the original selected minor, so minimizing does not presume that a single parameter is optimal at every node.
+
+\subsection{A bound summed over all order sets}
+The preceding estimates bound a selected Gram minor through singular values.
+We can also bound it by summing all principal minors of the same size: each
+term is nonnegative, so the sum bounds any one of them, regardless of which
+derivative orders occur in the nonsingular minor. The explicit moments above
+give the following estimate for this sum. Its Schur-function proof is given
+in the repository notes on spectral estimates. Let
+\[
+ M_{jk}(b,w)=\sum_{r\geq0}\frac{(b)_r}{r!}w^r\fall rj\fall rk,\qquad
+ G_{jk}=\mathcal B\sigma_0^{j+k}M_{jk}(b,w),
+\]
+where $b,\mathcal B,\sigma_0>0$ and $0<w<1$. Put
+$c_* =\sigma_0\sqrt w/(1-w)$ and $z_*=(bc_*)^{-2}$.
+If $bc_*>1$, then, for $0\leq m\leq J$, with $a_*=J-m$ and
+$s_*=ma_*+m(m-1)/2$,
+\begin{equation}\label{eq:schur}
+ \sum_{\substack{T\subseteq\{0,\ldots,J-1\}\\|T|=m}}
+ \det G[T,T]
+ \leq \mathcal B^m(1-w)^{-bm}c_*^{2s_*}
+       \prod_{i=0}^{m-1}i!(b)_{2a_*+i}\,(1-z_*)^{-m^2}.
+\end{equation}
+The empty product is one. In our application $G=\mathcal G$ from
+\eqref{eq:moment-matrix}, with $\sigma_0=e^\ell/(R\sqrt q)$. Taking the
+logarithm of the right side of \eqref{eq:schur} therefore gives a third
+upper bound for every selected node minor.
+
+The reason Schur functions appear can be described without using them in the rest of the proof. The Meixner factorization and Cauchy--Binet first bound a selected minor by a gamma moment determinant. If its order set is $j_0<\cdots<j_{m-1}$, its deviation from consecutive orders is a partition. The gamma determinant is bounded by the consecutive-order value times the square of the corresponding Schur dimension. Summing these dimensions over all partitions uses the Cauchy identity and produces $(1-z_*)^{-m^2}$. It is the sum over all order sets, rather than an assertion that one consecutive set is largest, that makes \eqref{eq:schur} valid. The numerical estimate takes its minimum with the two singular-product bounds.
+
+\subsection{Combining nodes with an occupancy constraint}
+Let $F_q(m)$ be any common upper bound for the logarithmic determinant of an $m$-column minor at squared radius $q$, obtained as above. For a real parameter $a_0>0$, choose $\Phi(q)\geq0$ such that
+\begin{equation}\label{eq:H-occupancy}
+ F_q(m)\leq a_0Rm+R^2\Phi(q)\qquad(0\leq m\leq J).
+\end{equation}
+Any function $\Phi$ satisfying this inequality will suffice. Summing over nodes and using $\sum_i|C_i|=M$, \eqref{eq:fischer} gives
+\begin{equation}\label{eq:occupancy-exact}
+ \frac1W\log|\det B_C(\ell)|^2
+ \leq U_{\rm row}+\frac{3a_0(S+1)}{2S}
+                   +\frac3S\sum_{i=1}^n\Phi(q_i),
+ \qquad U_{\rm row}=\frac1W\sum_\Lambda\lambda_{r,s}.
+\end{equation}
+This elementary use of a common slope incorporates the total number of selected columns. Bounding each node independently at its worst occupancy would discard that information.
+
+The disk estimate supplies
+\[
+ q_i\leq Q(i/n),\qquad
+ Q(t)=\left(\frac{\sqrt t+\eta}{1+\eta}\right)^2,\qquad
+ \eta=\frac{\sqrt{D+4}/4}{\sqrt{n\sqrt D/(2\pi)}}.
+\]
+Partition $i/n$ into $N_t$ intervals. For the $k$th interval, first move all
+its nodes outward to squared radius $Q(k/N_t)$ using Lemma~\ref{lem:radial},
+and then apply \eqref{eq:H-occupancy} at that radius. This needs no monotonicity
+assumption on the chosen function $\Phi$. Each interval contains at most
+$n/N_t+1$ nodes. Substituting $n=R(S+1)/(2\theta J)$ gives
+\begin{equation}\label{eq:metric-mesh}
+ U_{\rm var}=U_{\rm row}+\frac{3a_0(S+1)}{2S}
+   +3\left(\frac{1+1/S}{2\theta(J/R)N_t}+\frac1S\right)
+       \sum_{k=1}^{N_t}\Phi(Q(k/N_t)),
+ \qquad \theta=\frac{M}{nJ}.
+\end{equation}
+The nonnegativity of $\Phi$ justifies using upper bounds for the node counts. The signed row sum $U_{\rm row}$ remains outside that estimate.
+
+For the finite comparisons below we take
+\begin{equation}\label{eq:spectral-parameters}
+ (a,v,\beta,a_0)=\left(\frac15,\frac7{10},-\frac45,\frac3{50}\right),
+ \qquad (N_t,N_z,N_m)=(128,256,512).
+\end{equation}
+The latter two mesh sizes are used for column-order capacity and occupancy, respectively. Whole-cell upper bounds are taken before choosing the minimum of the three estimates; endpoints alone would not bound an entire cell. The supplementary notes, Section~\ref{app:metric}, give these finite bounds. Substitution into \eqref{eq:metric-mesh}, with directed rounding, supplies $U_{\rm var}$ in the determinant comparison. At no stage is the enormous matrix itself constructed.

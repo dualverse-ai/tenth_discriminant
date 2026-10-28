@@ -1,0 +1,255 @@
+{
+  "passed": true,
+  "prime_interval": [
+    150000,
+    170000
+  ],
+  "prime_count": 1649,
+  "admissible_candidates": [
+    523,
+    547,
+    563,
+    571,
+    587,
+    619,
+    643,
+    659,
+    683,
+    691,
+    739,
+    787,
+    811,
+    827,
+    859
+  ],
+  "mixed_rank_499": {
+    "P": 312000000,
+    "K": 43,
+    "S": 8706976,
+    "R": 374399968,
+    "J": 46799996,
+    "M": 1629945955088368,
+    "n": 35394400,
+    "degree_checks": 3867213,
+    "minimum_margin": 23702027808,
+    "argmin": [
+      150053,
+      2495
+    ],
+    "minimum_sufficient_n": 35393886
+  },
+  "old_node_counts_with_mixed_rank": [
+    {
+      "P": 36000000,
+      "K": 43,
+      "S": 1004651,
+      "R": 43199993,
+      "J": 5399999,
+      "M": 21700479683718,
+      "n": 4822400,
+      "degree_checks": 446942,
+      "minimum_margin": 572666317708,
+      "argmin": [
+        150001,
+        0
+      ],
+      "minimum_sufficient_n": 4040224
+    },
+    {
+      "P": 169000000,
+      "K": 43,
+      "S": 4716279,
+      "R": 202799997,
+      "J": 25349999,
+      "M": 478230784925580,
+      "n": 22638400,
+      "degree_checks": 2095110,
+      "minimum_margin": 2688336222080,
+      "argmin": [
+        150001,
+        0
+      ],
+      "minimum_sufficient_n": 19039900
+    },
+    {
+      "P": 312000000,
+      "K": 43,
+      "S": 8706976,
+      "R": 374399968,
+      "J": 46799996,
+      "M": 1629945955088368,
+      "n": 41793600,
+      "degree_checks": 3867213,
+      "minimum_margin": 4963026836583,
+      "argmin": [
+        150001,
+        0
+      ],
+      "minimum_sufficient_n": 35393886
+    }
+  ],
+  "norm_bounds": [
+    {
+      "D_interval": [
+        499,
+        503
+      ],
+      "non_inert_upper_numerator": 1453129358501252,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 50655,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        523,
+        523
+      ],
+      "non_inert_upper_numerator": 1407458687848709,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 50655,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        547,
+        547
+      ],
+      "non_inert_upper_numerator": 1370317657392191,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 51744,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        563,
+        563
+      ],
+      "non_inert_upper_numerator": 1340135626543405,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 51744,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        571,
+        571
+      ],
+      "non_inert_upper_numerator": 1334087159852738,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 51744,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        587,
+        587
+      ],
+      "non_inert_upper_numerator": 1331763497116109,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 52813,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        619,
+        619
+      ],
+      "non_inert_upper_numerator": 1283941439101777,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 52813,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        643,
+        643
+      ],
+      "non_inert_upper_numerator": 1259511816252607,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 53858,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        659,
+        659
+      ],
+      "non_inert_upper_numerator": 1240977803511328,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 53858,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        683,
+        683
+      ],
+      "non_inert_upper_numerator": 1224251574318027,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 54883,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        691,
+        691
+      ],
+      "non_inert_upper_numerator": 1215814868527176,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 54883,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        739,
+        739
+      ],
+      "non_inert_upper_numerator": 1176514988425522,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 55892,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        787,
+        787
+      ],
+      "non_inert_upper_numerator": 1143463667679352,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 56881,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        811,
+        811
+      ],
+      "non_inert_upper_numerator": 1091022081212502,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 56881,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        827,
+        827
+      ],
+      "non_inert_upper_numerator": 1124079639716154,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 56881,
+      "diameter_upper_denominator": 2
+    },
+    {
+      "D_interval": [
+        859,
+        859
+      ],
+      "non_inert_upper_numerator": 1085098722158088,
+      "denominator": 1000000000000,
+      "diameter_upper_numerator": 57854,
+      "diameter_upper_denominator": 2
+    }
+  ],
+  "seconds": 7.274148110998794,
+  "scope": "Independent integer reconstruction of auxiliary-prime count, degree and multiplicity inequalities. Published determinant arithmetic and metric costs are not reimplemented."
+}

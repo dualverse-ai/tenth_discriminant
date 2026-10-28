@@ -1,0 +1,250 @@
+\section{The numerical comparisons and the bound 498}\label{sec:completion}
+We now assemble the proof. The finite calculations evaluate the inequalities
+already described; they do not construct a matrix with $M$ rows. There are two
+parts to the numerical argument. A uniform estimate, supplemented by adjacent
+interval comparisons, excludes every $D\geq875$. Below $875$ the elementary
+reduction leaves sixteen possible values, each of which is excluded by a
+separate determinant comparison. We describe the coverage first, then give
+the parameters and the decisive calculation at $499$.
+
+\subsection{The range \texorpdfstring{$D\geq875$}{D >= 875}}
+For this range we use the arithmetic and radial estimates in the
+supplementary notes, Section~\ref{app:global}, together with a resultant
+rank criterion. The latter counts intersections
+with the horizontal and vertical rows of the lattice. If $M_x$ bounds the number of nodes on any one horizontal lattice row
+and $M_y$ bounds the number of such rows meeting the disk,
+its sufficient conditions are
+\[
+ nJ>R(S+M_y),\qquad \max(J,M_x)\leq R+KM_y.
+\]
+They are verified with the disk bound, using
+$M_x\leq2\rho+1$ and $M_y\leq4\rho/\sqrt D+1$.
+The auxiliary-prime rank theorem of Section~\ref{sec:rank} is needed only
+for the smaller finite comparisons below.
+
+The infinite range is controlled by an inequality with a positive logarithmic
+coefficient. Set $D_0=5\,760\,000$, $X=(D-3)/4$, and $X_0=(D_0-3)/4$.
+With
+\[
+ K=31,\qquad S=\left\lfloor\frac{23X}{10K}\right\rfloor,
+ \quad R=KS,\quad J=\left\lfloor\frac{29R}{500}\right\rfloor,
+\]
+and the node count chosen in the supplementary notes, Section~\ref{app:global}, the arithmetic
+and size estimates imply
+\begin{equation}\label{eq:tail-gap}
+ G_{\rm tail}(D)
+ >0.00031743+0.127829\log(X/X_0)\qquad(D\geq D_0).
+\end{equation}
+Here $G_{\rm tail}$ is the lower estimate for the normalized arithmetic-minus-size
+difference using the radial bound in the supplementary notes.
+The uniform estimates there give \eqref{eq:tail-gap}.
+The nonzero determinant comparison requires $G_{\rm tail}(D)\leq0$, so
+this positive lower bound is a contradiction. It is an estimate on a whole ray: positivity at the left
+endpoint is accompanied by a proved positive coefficient for subsequent
+logarithmic growth.
+
+The interval between $875$ and $D_0$ is covered as follows. The gap bounds in
+Table~\ref{tab:coverage} are rounded downward from the smallest
+lower endpoint in each family. Each comparison uses a closed interval, and
+successive intervals share an endpoint.
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrr}
+\toprule
+Range & Number of intervals & Lower gap bound\\
+\midrule
+$[875,3\,968\,539]$ & 28 & $0.00397338$\\
+$[3\,968\,539,4\,894\,699]$ & 37 & $0.00032629$\\
+$[4\,894\,699,5\,760\,000]$ & 36 & $0.00040940$\\
+\bottomrule
+\end{tabular}
+\caption{The finite part of the original determinant bound $875$. The first
+family uses norm-form estimates, the second exact finite prime sums, and the
+third explicit prime-sum bounds of Rosser and Schoenfeld.}
+\label{tab:coverage}
+\end{table}
+
+The complete interval schedule is included in the repository. Thus \eqref{eq:tail-gap} and
+Table~\ref{tab:coverage} exclude all $D\geq875$ under the class-number-one
+hypothesis. No finite test of quadratic residues is used in this step.
+
+\subsection{Parameters and rank for the remaining comparisons}
+By Lemma~\ref{lem:reduction}, the values still possible above $498$ are $499$
+and the fifteen primes in Table~\ref{tab:candidates}. For these comparisons
+we use $K=43$ and a prime cutoff $P$. The other parameters are
+\[
+ S=\left\lfloor\frac{6P}{5K}\right\rfloor,
+ \qquad R=KS,\qquad J=\lfloor R/8\rfloor,
+ \qquad M=R(S+1)/2.
+\]
+For $D=499$ we take $P=312\,000\,000$ and $n=35\,394\,400$.
+The remaining node counts are listed in the repository notes, Table~\ref{tab:parameters}.
+
+At $499$, the scales relevant to the rank argument are
+\[
+ 2\rho_n<22\,492<160\,000<p,\qquad
+ p\leq170\,000<R=374\,399\,968<160\,000^2<p^2.
+\]
+Thus an auxiliary prime can be large enough to separate the nodes while
+remaining small compared with the polynomial degree.
+
+We first prove nonvanishing. There are $814$ primes in
+$(A,B]=(160\,000,170\,000]$. A non-inert prime here is split and therefore has the form
+$p=X^2+Dy^2/4$, with $y\geq1$ and $X\geq0$ in a translate of
+$\mathbb Z$. For $D\in[D_-,D_+]$ and each $y$, the interval of possible $X$ has length at most
+$\sqrt{B-D_-y^2/4}-\sqrt{\max(0,A-D_+y^2/4)}$. Adding one to each length
+and summing over $1\leq y\leq\lfloor\sqrt{4B/D_-}\rfloor$ bounds the
+number of non-inert primes. This gives fewer than $765$, both on $[499,503]$
+and at each value in Table~\ref{tab:candidates}. Hence at least one of these primes is inert.
+The count is a finite sum of square roots, enclosed by rational bounds.
+
+All node diameters are less than $28\,928$, using
+Lemma~\ref{lem:node-disk}; this deliberately loose common bound is much
+smaller than $A$. The residues are therefore distinct for every candidate
+auxiliary prime. The remaining rank conditions hold uniformly for
+$A<p\leq B$: one checks $K<A<R$, $R<A^2$, $J\leq R$, $n\geq2S$, and
+\begin{equation}\label{eq:uniform-rank-check}
+ n\left(J-\frac{RJ}{A^2}-\frac RA\right)-\frac{(R+B)^2}{2K}>0.
+\end{equation}
+At the smaller node count the difference in \eqref{eq:uniform-rank-check}
+exceeds $7.22\times10^{11}$.
+The reason for narrowing the prime interval can now be seen quantitatively.
+Writing $\theta=M/(nJ)$, inequality~\eqref{eq:uniform-rank-check} is equivalent to
+\[
+ \theta<\frac{(1+1/S)(1-R/A^2-R/(AJ))}{(1+B/R)^2}.
+\]
+At the parameters for $499$, the right side is approximately $0.984431$
+when $A=160\,000$, just above the actual occupancy $0.983995$. With
+$A=150\,000$ it is approximately $0.982414$, which is too small.
+The narrower interval improves the sufficient rank estimate while still
+containing more primes than the norm form can account for as non-inert.
+
+At the other three parameter choices the respective differences exceed
+$4.12\times10^{12}$, $9.02\times10^{13}$ and $2.95\times10^{14}$.
+Theorem~\ref{thm:simple-rank} therefore proves full row rank in every case.
+
+\subsection{The fifteen comparisons above 499}
+We now evaluate Proposition~\ref{prop:comparison}, with the local arithmetic
+estimates of Proposition~\ref{prop:arithmetic} and the spectral bound
+\eqref{eq:metric-mesh}. The spectral parameters and mesh sizes are fixed as
+in \eqref{eq:spectral-parameters}. Table~\ref{tab:candidates} gives the result;
+each displayed lower bound is rounded downward. The full enclosures are included in the repository.
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrr@{\qquad}rrr}
+\toprule
+$D$ & $P/10^6$ & Lower gap bound & $D$ & $P/10^6$ & Lower gap bound\\
+\midrule
+523&312&0.01913120 &683&36&0.24689369\\
+547&312&0.06770128 &691&36&0.25866104\\
+563&169&0.09816857 &739&36&0.33084083\\
+571&169&0.10589325 &787&36&0.39774315\\
+587&36&0.08275416 &811&36&0.42960657\\
+619&36&0.13882635 &827&36&0.45047644\\
+643&36&0.17968979 &859&36&0.48970182\\
+659&36&0.20911703 &&&\\
+\bottomrule
+\end{tabular}
+\caption{Positive lower bounds for $G=\arith-\metric$ at all fifteen primes
+$D\equiv3\pmod8$ in $(499,875)$.}
+\label{tab:candidates}
+\end{table}
+Each entry is positive and contradicts \eqref{eq:master}. Thus every value in
+the table is excluded.
+
+\subsection{The decisive comparison at 499}
+At $D=499$ we retain $P=312\,000\,000$, $K=43$ and the same $R,S,J$ as in
+the preceding comparison, but reduce the node count to $n=35\,394\,400$.
+The arithmetic and size calculations are performed on the whole interval
+$[499,503]$, using the same parameters throughout. Only $499$ needs to be excluded: $503\equiv7\pmod8$ is already
+impossible by Lemma~\ref{lem:reduction}.
+
+Table~\ref{tab:499} separates the three contributions to the comparison.
+The common term is
+\[
+ U_{\rm common}=\frac{W_1+W_2}{W}\log\rho+
+                     \frac{Mc+2M\log M}{W},
+\]
+so that $G=\arith-U_{\rm common}-U_{\rm var}$.
+The displayed arithmetic numbers are lower bounds and the size numbers are
+upper bounds, rounded in the safe direction. The second column is a control:
+it repeats the calculation with the earlier node count and all other
+parameters fixed.
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrr}
+\toprule
+ & Earlier node count & Smaller node count\\
+\midrule
+$n$ & $41\,793\,600$ & $35\,394\,400$\\
+$\theta=M/(nJ)$, approximately & $0.83333113$ & $0.98399487$\\
+Arithmetic lower bound $\arith$ & $9.99153787$ & $9.99493844$\\
+Upper bound for $U_{\rm common}$ & $9.71143220$ & $9.62002864$\\
+Upper bound for $U_{\rm var}$ & $0.40353803$ & $0.32371122$\\
+\bottomrule
+\end{tabular}
+\caption{The comparison on $[499,503]$ with $M=1\,629\,945\,955\,088\,368$.
+Only the occupancy row uses approximate decimals; the other decimal entries
+are one-sided bounds.}
+\label{tab:499}
+\end{table}
+
+The arithmetic decomposition \eqref{eq:arithmetic-parts} at the smaller
+node count is, approximately,
+\[
+ \arith\approx15.49500-6.91595+1.37599+0.03990\approx9.99494.
+\]
+The last two contributions are the two- and three-factor corrections.
+Together they restore about $1.416$ to the arithmetic lower bound, far more
+than the final margin; even the three-factor term, about $0.040$, is
+comparable to that margin.
+
+The change in the gap is about $0.1746$. Of this, $0.0914$ comes from the
+common term, $0.0798$ from the variable spectral term, and $0.0034$ from the
+arithmetic lower bound. The common-term improvement is close to the radius
+estimate $0.085$ in Section~\ref{subsec:central}. The variable term benefits
+from the higher occupancy and the changed residual scale $\ell$. These are
+approximate differences for interpretation; the directed comparison is the
+one below.
+
+The complete directed calculation gives the following enclosure for the
+computed gap bound at the smaller node count, rounded outward here:
+\begin{equation}\label{eq:499-gap}
+ G\in[0.05119859,\;0.05120060].
+\end{equation}
+In particular $G>0.05119859$, contradicting the determinant comparison.
+For the earlier node count the corresponding enclosure is
+\[
+ [-0.12343235,\;-0.12343034].
+\]
+Thus the same arithmetic and spectral estimates yield a contradiction once
+the stronger rank theorem allows a smaller disk and more columns per node.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Suppose that $h(-D)=1$ and $D>498$. Lemma~\ref{lem:reduction} makes $D$ a
+prime congruent to $3$ modulo $8$. Equation~\eqref{eq:tail-gap} and
+Table~\ref{tab:coverage} exclude $D\geq875$. Table~\ref{tab:candidates}
+excludes all the remaining possibilities greater than $499$, and
+\eqref{eq:499-gap} excludes $499$ itself. These cases exhaust all $D>498$.
+\end{proof}
+
+\subsection{What this says about the challenge}
+The bound $498$ gives an explicit answer within the determinant approach
+to the challenge in~\cite{tao2026}. It combines extra divisibility from the triangular
+polynomial space, a size estimate that keeps the derivative columns at a
+node together, and a nonvanishing theorem close to the dimension count.
+The last step is especially visible in Table~\ref{tab:499}: an improvement
+in rank changes no local divisibility identity, yet it makes the final
+comparison positive.
+
+At $499$, the occupancy is already about $0.984$, so the number of nodes
+is only about $1.6\%$ above the dimension-count minimum $M/J$. There is
+therefore little room to reduce the radius further by improving rank alone:
+in the radius approximation of Section~\ref{subsec:central}, reaching the
+dimension count exactly would save only about $0.008$ in the common term.
+Sharper arithmetic or spectral estimates are natural candidates for further
+progress.
+
+The class number one hypothesis is used to turn non-inert prime ideals into
+representations by the norm form. A comparable estimate for general
+Landau--Siegel zeros would require a substitute for this arithmetic input.

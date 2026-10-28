@@ -1,0 +1,396 @@
+\section{Introduction}\label{sec:intro}
+Let $-D<0$ be a fundamental discriminant, let $F_D=\mathbb Q(\sqrt{-D})$,
+and write $\OO_D$ for its ring of integers. Gauss's class number one problem
+asks when $\OO_D$ has unique factorization, or equivalently when its ideal
+class number $h(-D)$ is one. Heegner~\cite{heegner}, Baker~\cite{baker} and
+Stark~\cite{stark} proved that this occurs exactly for
+\begingroup
+\abovedisplayskip=14pt
+\belowdisplayskip=14pt
+\abovedisplayshortskip=14pt
+\belowdisplayshortskip=14pt
+\[
+ D\in\{3,4,7,8,11,19,43,67,163\}.
+\]
+\endgroup
+Here we prove a weaker bound by a different method.
+
+\begin{theorem}\label{thm:main}
+Let $-D<0$ be a fundamental discriminant with $h(-D)=1$. Then $D\leq498$.
+\end{theorem}
+
+The challenge is to obtain as small an explicit upper bound as possible for
+a hypothetical tenth discriminant, without relying on Heegner's methods or
+the known classification~\cite{tao2026}. We approach this problem through the
+determinant method developed in recent work on
+Landau--Siegel zeros~\cite{green2026,taosketch}. In particular, the bound in
+Theorem~\ref{thm:main} is obtained from determinant inequalities; we do not
+exclude the remaining discriminants by a finite test of quadratic residues.
+
+\subsection{Overview of the proof}\label{subsec:overview}
+Suppose that $h(-D)=1$ with $D>498$. We will form a matrix by evaluating
+polynomials in $(z,w)$ and their $z$-derivatives at pairs $(z,\bar z)$ with
+$z\in\OO_D$. If this
+matrix has full row rank, it has a nonzero square minor $\Delta$. Since its
+entries lie in $\OO_D$, the norm $N=\Delta\bar\Delta=|\Delta|^2$ is a positive
+integer. We will bound $N$ from above using the absolute values of the
+entries, and show that it is divisible by an integer larger than this upper
+bound. This contradiction will exclude the proposed value of $D$. The
+choice of polynomials and evaluation points must therefore serve both
+estimates while ensuring that the matrix has full row rank.
+
+To see how the class number assumption enters, suppose that a prime $p$ is
+not inert. There is then an ideal of norm $p$, which must be principal because
+$h(-D)=1$. Its generator has norm $p$ and cannot be a rational integer. But
+every non-rational element of $\OO_D$ has norm at least $D/4$, so every prime
+$p<D/4$ must be inert. At such a prime, conjugation agrees with Frobenius
+modulo $p$, giving $z^p\equiv\bar z\pmod{p\OO_D}$. Thus the polynomial
+$z^p-w$ takes values divisible by $p$ at every point $(z,\bar z)$ with
+$z\in\OO_D$. By expressing the rows of our matrix in terms of powers of
+$z^p-w$, we obtain prime powers dividing $N$.
+
+This change of basis must remain within the chosen polynomial space. We use
+the monomials $z^rw^s$ with $r+Ks<R$, where $K$ and $R$ are parameters. For
+$p\geq K$, replacing $z^p$ by $w$ does not increase $r+Ks$, so the triangular
+space of exponents permits all the required row operations. Taking several derivatives at each point gives more columns from the same
+set of lattice points. Differentiation reduces the resulting divisibility,
+but by an amount that can be bounded explicitly in terms of the derivative
+order. We also use inert primes above
+$D/4$: the same norm argument bounds the number of non-inert primes in an
+interval by the number of elements of $\OO_D$ whose norms lie there.
+
+For the upper bound, we choose the $n$ lattice points of $\OO_D$ nearest to
+the origin. Reducing $n$ reduces the radius of the disk containing them and
+hence the bounds on the polynomial values. The estimates must also account
+for the derivative columns at each point. These columns are far from
+orthogonal, so bounding each separately loses too much at the smaller
+values of $D$. Instead, we estimate their Gram matrix, retaining the saving
+from these correlations before combining the contributions of the
+different points.
+
+It remains to determine how few points we can use without losing full row
+rank. If the polynomial space has dimension $M$ and we take $J$ derivative
+orders at each point, there are $nJ$ columns, so necessarily $nJ\geq M$.
+We prove a sufficient condition close to this necessary one. Direct
+reduction modulo an auxiliary inert prime $p$ loses information because
+$z^p-w$ vanishes at every reduced node. We therefore rescale both the
+polynomial rows and the derivative columns using their known divisibility,
+obtaining an integral matrix whose reduction retains this information.
+A hypothetical row relation then gives a polynomial in two variables with
+prescribed local vanishing. Applying a differential operator and taking a
+determinant of coefficients produces a nonzero polynomial in one variable
+whose zeros, counted with multiplicity, exceed its degree. This contradiction
+permits a smaller $n$ and therefore improves the upper bound for $N$.
+
+We apply these estimates as follows. Elementary norm arguments first reduce
+$D>498$ to primes congruent to $3$ modulo $8$. A uniform estimate and $101$
+adjacent interval comparisons exclude all $D\geq875$, leaving sixteen
+possible values below $875$. Fifteen are excluded by fixed determinant
+comparisons; the last is $499$. Table~\ref{tab:opening} shows the effect of
+the smaller node count there, with the polynomial space and derivative
+orders fixed. After the derivative-order contributions have been combined,
+the arithmetic term changes only slightly, whereas the size estimate
+decreases enough to make the normalized difference positive.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrr}
+\toprule
+ & Larger node count & Smaller node count\\
+\midrule
+Nodes $n$ & $41\,793\,600$ & $35\,394\,400$\\
+Proportion $M/(nJ)$ & $0.83333\ldots$ & $0.98399\ldots$\\
+Arithmetic minus size bound & $-0.12343\ldots$ & $+0.05119\ldots$\\
+\bottomrule
+\end{tabular}
+\caption{The comparison at $D=499$, with the polynomial space and derivative
+orders fixed (approximate values). The directed bounds are given in
+Section~\ref{sec:completion}.}
+\label{tab:opening}
+\end{table}
+
+Section~\ref{sec:comparison} introduces the determinant and the inequality
+we must contradict. Sections~\ref{sec:arithmetic} and~\ref{sec:metric} develop
+its divisibility and size estimates. Section~\ref{sec:rank} proves the rank
+criterion, and Section~\ref{sec:completion} completes the numerical argument.
+The explicit arithmetic formulas, subsidiary spectral proofs, uniform
+estimates for $D\geq875$, and numerical calculations are collected in the
+accompanying repository,
+\url{https://github.com/dualverse-ai/tenth_discriminant}.
+
+\section{The determinant comparison}\label{sec:comparison}
+
+\subsection{A model: an integer that is small and highly divisible}
+\label{subsec:model}
+
+Every nonzero integer $N$ satisfies
+\begin{equation}\label{eq:product-formula}
+  \log|N|=\sum_p v_p(N)\log p .
+\end{equation}
+Our integer will be $N=|\Delta|^2$ for a nonzero algebraic integer $\Delta\in
+\mathcal{O}_D$, which is the norm of $\Delta$ and hence a positive rational
+integer. The strategy is to bound $\log N$ from above by Archimedean
+estimates, to bound $v_p(N)$ from below at many primes, and to show that the
+two bounds are incompatible when $h(-D)=1$. This subsection illustrates the comparison using elementary estimates. The rest of the paper sharpens each of its
+three ingredients.
+
+\subsubsection*{The matrix}
+We work with polynomials in two independent variables $z$ and $w$. The variable
+$w$ will be specialized to the complex conjugate of the value of $z$, but it is
+treated as independent of $z$ throughout. For $P\in\mathbb{Z}[z,w]$ define the
+Hasse derivatives in $z$, with $w$ held fixed, by
+\[
+  P(z+t,w)=\sum_{j\ge0}\bigl(\partial_z^{[j]}P\bigr)(z,w)\,t^j,
+  \qquad
+  \partial_z^{[j]}\bigl(z^rw^s\bigr)=\binom rj z^{r-j}w^s .
+\]
+Hasse derivatives keep integer coefficients; ordinary derivatives would
+introduce a factor $j!$. Fix a positive integer $J$. Let $z_1,\dots,z_n\in\mathcal{O}_D$ be
+distinct \emph{nodes}, and let $\Lambda\subset\mathbb{Z}_{\ge0}^2$ be a finite
+set of exponents. The \emph{jet matrix} has rows indexed by $(r,s)\in\Lambda$,
+columns indexed by pairs $(i,j)$ with $1\le i\le n$ and $0\le j<J$, and entries
+\begin{equation}\label{eq:jet-matrix}
+  V_{(r,s),(i,j)}
+  =\bigl(\partial_z^{[j]}z^rw^s\bigr)(z_i,\overline{z_i})
+  =\binom rjz_i^{\,r-j}\,\overline{z_i}^{\,s}\in\mathcal{O}_D .
+\end{equation}
+For a set $C$ of $|\Lambda|$ columns, write $\Delta_C$ for the corresponding
+maximal minor. More generally, the row of any polynomial $P$ in the span of the
+monomials $z^rw^s$, $(r,s)\in\Lambda$, is the vector of its jets
+$(\partial_z^{[j]}P)(z_i,\overline{z_i})$. Integral unitriangular
+changes of the spanning polynomials leave every $\Delta_C$ unchanged.
+
+\subsubsection*{One Frobenius calculation}
+The divisibility comes from the behaviour of conjugation modulo an inert prime.
+
+\begin{lemma}\label{lem:frobenius}
+Let $p$ be a prime that is inert in $F_D$, and let $z\in
+\mathcal{O}_D$. Then $z^p\equiv\overline z\pmod{p\mathcal{O}_D}$.
+Consequently, if $g=z^p-w$, then
+\[
+  g(z+t,\overline z)=pU(t)+t^p
+\]
+for a polynomial $U\in\mathcal{O}_D[t]$ of degree less than $p$, and for all
+integers $m,j\ge0$,
+\begin{equation}\label{eq:layer-divisibility}
+  p^{\lfloor j/p\rfloor}\,[t^j]\,g(z+t,\overline z)^m\in
+  p^m\mathcal{O}_D .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The quotient $\OO_D/p\OO_D$ is the field of $p^2$ elements. Conjugation
+induces its nontrivial automorphism, which is the $p$th-power map. This gives
+$z^p\equiv\bar z\pmod{p\OO_D}$, including when $p=2$. Next,
+\[
+  (z+t)^p-\overline z
+  =(z^p-\overline z)+\sum_{k=1}^{p-1}\binom pkz^{p-k}t^k+t^p,
+\]
+and every term except $t^p$ is divisible by $p$. Finally,
+$(pU+t^p)^m=\sum_{q=0}^m\binom mq p^{m-q}U^{m-q}t^{pq}$, and a term contributes
+to $t^j$ only if $q\le\lfloor j/p\rfloor$. Each such term is divisible by
+$p^{m-\lfloor j/p\rfloor}$, which proves~\eqref{eq:layer-divisibility}.
+\end{proof}
+
+Geometrically, the lemma says that, $p$-adically, every point
+$(z,\overline z)$ lies close to the curve $z^p=w$~\cite{taosketch}.
+The polynomial $g$ is small at every node, and its $z$-derivatives are small
+too, since $\partial_z g=pz^{p-1}$. This is why the jets differentiate only in
+$z$: a derivative in $w$ would not preserve the divisibility.
+
+\subsubsection*{Where the triangle comes from}
+To use Lemma~\ref{lem:frobenius}, write each row exponent as $r=mp+a$ with
+$0\le a<p$ and replace the monomial $z^rw^s$ by
+\begin{equation}\label{eq:frobenius-basis}
+  g^m z^aw^s=z^rw^s+\sum_{i=1}^m(-1)^i\binom mi z^{r-pi}w^{s+i}.
+\end{equation}
+By the Leibniz rule and~\eqref{eq:layer-divisibility}, every jet of
+$g^mz^aw^s$ of order $j$, multiplied by $p^{\lfloor j/p\rfloor}$, lies in
+$p^m\mathcal{O}_D$. The change of basis~\eqref{eq:frobenius-basis} is
+unitriangular for the ordering by $z$-degree, but only if every exponent
+$(r-pi,s+i)$ on the right is again in $\Lambda$. The support must therefore be
+closed under the Frobenius substitution $z^p\mapsto w$.
+
+The rectangle $\{r<R,\ s<S\}$ used by Green is not closed under this
+substitution: it is stopped by the ceiling $s<S$. There the substitution can be
+applied only $\min(\lfloor r/p\rfloor,S-1-s)$ times, and the $p$-adic credit of
+the row is truncated accordingly~\cite[Lemma~5.1]{green2026}. The remedy is to
+grade the monomials so that the substitution never raises the degree. Fix integers $K\geq2$ and $S\geq1$. Give $z$
+weight $1$ and $w$ weight $K$, and take
+\begin{equation}\label{eq:triangle}
+  \Lambda=\{(r,s)\in\mathbb{Z}_{\ge0}^2:\ r+Ks<R\},\qquad R=KS,\qquad
+  M=|\Lambda|=\frac{R(S+1)}{2}.
+\end{equation}
+The substitution $z^p\mapsto w$ changes the weight by $K-p$, so it never leaves
+$\Lambda$ when $p\ge K$. Every row then receives its full credit
+$\lfloor r/p\rfloor$. Primes $p<K$ receive truncated credit, and that boundary
+is treated in Section~\ref{sec:arithmetic}.
+
+Scaling column $(i,j)$ by $p^{\lfloor j/p\rfloor}$ multiplies $\Delta_C$ by
+$p^{\sum_{(i,j)\in C}\lfloor j/p\rfloor}$. Since $p\mathcal{O}_D$ is prime and
+$v_p(|\Delta_C|^2)=2v_{p\mathcal{O}_D}(\Delta_C)$, we obtain, for every inert
+prime $p\geq K$,
+\begin{equation}\label{eq:model-valuation}
+  v_p\bigl(|\Delta_C|^2\bigr)\ \ge\
+  2\sum_{(r,s)\in\Lambda}\Bigl\lfloor\frac rp\Bigr\rfloor
+  \;-\;2\sum_{(i,j)\in C}\Bigl\lfloor\frac jp\Bigr\rfloor .
+\end{equation}
+The row contribution, including its factor $2$, is about $W/p$, where
+$W=R^2S/3\approx2\sum_\Lambda r$. The second is a column loss that is present
+only when derivative orders reach $p$. In our application $J$ is much larger
+than $p$, so the loss is real. Section~\ref{sec:arithmetic} shows how it
+combines with the factorial sizes of the Hasse coefficients.
+
+\subsubsection*{Sizes}
+If every node satisfies $|z_i|\le\rho$ with $\rho\ge1$, then each entry
+of row $(r,s)$ has absolute value at most $\binom rj\rho^{r+s-j}$. Hadamard's
+inequality therefore gives
+\begin{equation}\label{eq:model-hadamard}
+  \log|\Delta_C|^2\ \le\ \sum_{(r,s)\in\Lambda}2(r+s)\log\rho
+  \;+\;\sum_{(r,s)\in\Lambda}\log\sum_{(i,j)\in C}\binom rj^2\rho^{-2j}.
+\end{equation}
+The first term is $(1+1/K+O(1/S))\,W\log\rho$. Combining
+\eqref{eq:product-formula}, \eqref{eq:model-valuation} and
+\eqref{eq:model-hadamard}, any nonzero $\Delta_C$ satisfies
+\begin{equation}\label{eq:model-inequality}
+  \sum_{\substack{p\geq K\\ p\text{ inert}}}2\Bigl(\sum_{\Lambda}
+  \Bigl\lfloor\frac rp\Bigr\rfloor-\sum_{C}\Bigl\lfloor\frac jp\Bigr\rfloor
+  \Bigr)\log p
+  \le\ \sum_{\Lambda}2(r+s)\log\rho
+  +\sum_{\Lambda}\log\sum_{C}\binom rj^2\rho^{-2j}.
+\end{equation}
+After division by $W$, the left side is roughly the sum of $(\log p)/p$ over
+inert primes $K\leq p<R$, less the column loss. Under $h(-D)=1$ this inert sum is
+bounded below by the corresponding sum over all primes, minus a loss controlled
+by counting values of the norm form, as in Section~\ref{sec:arithmetic}. The
+right side is roughly $(1+1/K)\log\rho$ plus the derivative term. The theorem
+follows when the left side is larger.
+
+This model already shows where the difficulty lies, and it points to the three
+refinements. First, the arithmetic credit must be computed exactly, including
+small primes, prime powers, and the loss from non-inert primes, bounded through
+the norm form (Section~\ref{sec:arithmetic}). Second, Hadamard's inequality treats the
+entries of each node block as unrelated and discards their cancellation. The
+spectral estimates of Section~\ref{sec:metric} recover part of it. Because the
+nonzero minor is not identified, those estimates must hold for every column set
+$C$. Third, $\rho$ is governed by the node count. The $n$ nearest lattice points
+lie in a disk of radius about $\sqrt{n\sqrt D/(2\pi)}$
+(Lemma~\ref{lem:node-disk}), and $n\ge M/J$ is forced.
+
+\subsection{Arithmetic of class number one}\label{subsec:arith}
+
+Every element of $\mathcal{O}_D$ has the form $\alpha=(x+y\sqrt{-D})/2$ with
+$x,y\in\mathbb{Z}$ and $x\equiv yD\pmod 2$, and its norm is
+\begin{equation}\label{eq:norm}
+  N(\alpha)=|\alpha|^2=\frac{x^2+Dy^2}{4}.
+\end{equation}
+The elementary reductions below follow from one observation about norms.
+
+\begin{lemma}[Norm obstruction]\label{lem:norm-obstruction}
+If $\alpha\in\mathcal{O}_D\setminus\mathbb{Z}$, then $N(\alpha)\ge D/4$. If
+$\alpha\in\mathbb{Z}$, then $N(\alpha)$ is a square.
+\end{lemma}
+
+\begin{proof}
+If $\alpha\notin\mathbb{Z}$ then $y\ne0$ in~\eqref{eq:norm}, so $N(\alpha)\ge
+Dy^2/4\ge D/4$. If $\alpha\in\mathbb{Z}$ then $N(\alpha)=\alpha^2$.
+\end{proof}
+
+\begin{lemma}\label{lem:small-inert}
+Suppose $h(-D)=1$. Then every prime $p<D/4$ is inert in $F_D$.
+\end{lemma}
+
+\begin{proof}
+If $p$ is split or ramified, there is a prime ideal of norm $p$. It is
+principal, generated by some $\alpha$ with $N(\alpha)=p$. Since $p$ is not a
+square, $\alpha\notin\mathbb{Z}$, and Lemma~\ref{lem:norm-obstruction} gives
+$p\ge D/4$.
+\end{proof}
+
+\begin{lemma}[Reduction]\label{lem:reduction}
+Suppose $h(-D)=1$ and $D>16$. Then $D$ is a prime and $D\equiv3\pmod 8$.
+\end{lemma}
+
+\begin{proof}
+The ramified primes are the prime divisors of $D$, so by
+Lemma~\ref{lem:small-inert} every prime divisor of $D$ is at least $D/4$. If
+$D$ is even, then $2$ ramifies and $2<D/4$, which is impossible. Hence $D$ is
+odd, and since $-D$ is a fundamental discriminant, $D$ is squarefree with
+$D\equiv3\pmod4$. If $D$ were composite, its least prime factor $q$ would
+satisfy $q\le\sqrt D<D/4$, again impossible. So $D$ is prime. Finally, if
+$D\equiv7\pmod8$ then $-D\equiv1\pmod 8$ and $2$ splits, contradicting
+Lemma~\ref{lem:small-inert}. Therefore $D\equiv3\pmod8$.
+\end{proof}
+
+For the proof of Theorem~\ref{thm:main} we assume
+$D>498$ from now on, so $D$ is a prime congruent to $3$ modulo $8$, and both $2$
+and every odd prime below $D/4$ are inert. Since $D\equiv3\pmod4$, the
+integer cutoff $p<D/4$ is equivalently $p\leq(D-3)/4$. We write
+$\omega=(1+\sqrt{-D})/2$, so that $\OO_D=\ZZ[\omega]$. In these coordinates
+$\N(x_0+y\omega)=(x_0+y/2)^2+Dy^2/4$; it is the same norm form as
+\eqref{eq:norm}, with $x=2x_0+y$.
+
+\subsection{Nearest nodes}\label{subsec:geometry}
+
+Our nodes are the lattice points of $\mathcal{O}_D\subset\mathbb{C}$ nearest to
+the origin. Let $z_1,z_2,\dots$ be the elements of $\mathcal{O}_D$
+listed with $|z_1|\le|z_2|\le\cdots$, with ties broken arbitrarily.
+By~\eqref{eq:norm}, $\mathcal{O}_D$ is the union of the horizontal rows
+\[
+  \Bigl\{\tfrac{x}{2}+\tfrac{y}{2}\sqrt{-D}:\ x\equiv yD\ (\mathrm{mod}\ 2)\Bigr\},
+  \qquad y\in\mathbb{Z}.
+\]
+The rows are spaced $\sqrt D/2$ apart vertically, and within each row the
+points form a translate of $\mathbb{Z}$. The covolume of $\mathcal{O}_D$ is
+therefore $\sqrt D/2$.
+
+\begin{lemma}[Nearest-node disk]\label{lem:node-disk}
+Put $\delta=\sqrt{D+4}/4$. For every $i\ge1$,
+\begin{equation}\label{eq:node-disk}
+  |z_i|\ \le\ \rho_i:=\sqrt{\frac{i\sqrt D}{2\pi}}+\delta .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Every point of the plane is within vertical distance $\sqrt D/4$ of a
+lattice row, and within horizontal distance $1/2$ of a point on that row.
+Thus the lattice has covering radius at most $\delta$.
+For $z\in\mathcal{O}_D$, let $V(z)$ be its Voronoi cell, the set of
+points of $\mathbb{C}$ at least as close to $z$ as to any other lattice
+point. These cells are translates of one another, they cover $\mathbb{C}$, and
+they overlap only on their boundaries. Each has area $\sqrt D/2$. Every point of $V(z)$ lies within $\delta$ of $z$.
+
+Let $\rho>\delta$. If $|\zeta|\le\rho-\delta$ and $\zeta\in V(z)$, then
+$|z|\le|\zeta|+\delta\le\rho$. Hence the closed disk of radius
+$\rho-\delta$ is covered by the cells of lattice points of modulus at most
+$\rho$, and comparing areas gives
+\[
+  \#\{z\in\mathcal{O}_D:\ |z|\le\rho\}\ \ge\
+  \frac{2\pi(\rho-\delta)^2}{\sqrt D}.
+\]
+With $\rho=\rho_i$ the right side equals $i$, so at least $i$ lattice points
+have modulus at most $\rho_i$. This gives $|z_i|\le\rho_i$.
+\end{proof}
+
+We use Lemma~\ref{lem:node-disk} in two ways. It supplies the radius
+$\rho=\rho_n$ in the Archimedean estimates. It also controls residues, through
+the following consequence.
+
+\begin{corollary}[Distinct residues]\label{cor:distinct-residues}
+Let $p$ be a prime with $2\rho_n<p$. Then $z_1,\dots,z_n$ have
+distinct residues modulo $p\mathcal{O}_D$.
+\end{corollary}
+
+\begin{proof}
+A nonzero element $p\beta$ of $p\mathcal{O}_D$ has modulus
+$p\sqrt{N(\beta)}\ge p$. The difference of two distinct nodes is nonzero and
+has modulus at most $2\rho_n<p$.
+\end{proof}
+
+At $D=499$, with $n=35\,394\,400$, Lemma~\ref{lem:node-disk} gives
+$2\rho_n<22\,491.5$. This is far below every candidate auxiliary prime in
+$(160\,000,170\,000]$, so the residue hypothesis of the rank theorem holds
+whichever of those primes is inert.
+
+
+\input{comparison}

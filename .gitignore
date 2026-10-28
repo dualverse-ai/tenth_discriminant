@@ -1,0 +1,9 @@
+**/latex/*.aux
+**/latex/*.log
+**/latex/*.out
+**/latex/*.toc
+**/latex/paper.pdf
+**/latex/supplementary.pdf
+**/verification/venv/
+__pycache__/
+*.pyc
